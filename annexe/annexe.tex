@@ -1,0 +1,50 @@
+\addcontentsline{toc}{chapter}{{Annexe}}
+\lhead{\textsl{Annexe}}
+\chapter*{Annexe}
+\section*{Le logiciel Freefem++}
+Voici un bref aperçu de ce logiciel.
+Freefem++ [HP] est un logiciel libre de calcul scientifique, pour la résolution numérique d’équations aux dérivées partielles développé par Frédéric Hecht et Olivier Pironneau. Il est basé sur la méthode des éléments finis en dimension deux de l’espace. Il se caractérise par les principales fonctionnalités suivantes.
+\begin{itemize}
+\item La prise en compte sous forme variationnelle du problème à résoudre, qu’il soit linéaire, non linéaire, couplé, stationnaire ou évolutif en temps.
+\item La génération automatique de maillages à partir d’une description simple (par morceaux) de sa frontière, y compris d’éventuels trous.
+\item L’adaptation de maillage anisotrope basée sur une construction automatisée de métriques à partir de la matrice hessienne de fonctions freefem++.
+\item Un large choix de types d’éléments finis : continus, discontinus, $P_k,1\leq k\leq3$ Lagrange, Raviart-Thomas... et de solveurs directs ou itératifs : (LU, Chosesky, Crout, Gradient Conjugué CG, GMRES, UMFPACK) avec des solveurs pour vecteurs propres et valeurs propres.
+\end{itemize}
+\section*{Programmes}
+\begin{flushleft}
+\textbf{Code Freefem++ pour la résolution du problème de Poisson.}
+\end{flushleft}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.9]{poissonCode2}
+\end{figure}
+\newpage
+\textbf{Code Freefem++ avec adaptation de maillage pour la résolution du problème de Poisson.}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=1]{poissonAdaptCode2}
+\end{figure}
+\newpage
+\textbf{Ensemble des codes Scilab dans l'analyse de la méthode d'adaptation statistique en dimension 1.}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.95]{CodesScilab1}
+\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.99]{CodesScilab2}
+\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[ width =15cm , height =22cm ]{CodesScilab3}
+\end{figure}
+\[\]\[\]
+\textbf{Ensemble des codes Feefem++ dans l'analyse de la méthode d'adaptation statistique en dimension 2}
+\begin{figure}[!h]
+\centering
+\includegraphics[width =18.5cm , height =25cm ]{CodesFreefem++12}
+\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[width =18cm , height =25cm]{CodesFreefem++22}
+\end{figure}

@@ -1,0 +1,64 @@
+\chapter*{Introduction}\addcontentsline{toc}{chapter}{Introduction}
+
+\section*{Origines de la mécanique quantique}
+A la fin du XIXe siècle, les diverses branches de la physique s'intégraient dans un édifice cohérent, basé sur l'étude de deux types d’objets distincts, la matière et le rayonnement:
+\begin{itemize}
+	\item La matière est faite de corpuscules parfaitement localisables dont le mouvement peut être décrit par la mécanique de Newton. Les grandeurs physiques associées à ces corpuscules s’expriment en fonction des composantes de la position et de l’impulsion qui sont les variables dynamiques fondamentales.
+	\item Le rayonnement est gouverné par les lois de l'électromagnétisme de Maxwell. Ses variables dynamiques sont les composantes en chaque point de l’espace des champs électrique et magnétique.
+\end{itemize}
+Le succès de la physique était à cette époque impressionnant et tous les phénomènes connus trouvaient leur explication dans le cadre de ce programme classique.\\\\
+A l’aube du XXe siècle et avec l’essor des progrès technologiques, les physiciens se trouvèrent tout a coup confrontés à des phénomènes nouveaux pour lesquels les prévisions de la théorie classique sont en désaccord flagrant avec l'expérience. Il fallait donc jeter les bases d’une nouvelle théorie susceptible de pallier les insuffisances de la conception classique.
+
+\section*{Contrôle optimal et optimisation numérique}
+L'objet de notre étude est un système quantique, modelisé entre deux mesures par l'équation de Schrödinger (cite postulat 2):
+\begin{equation} \label{schrodinger}
+i \frac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+\end{equation}
+En vue de modéliser les intéractions onde-matière a l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
+La dynamique du systeme est désormais donnée par:
+\begin{equation} \label{eq1}
+\begin{cases}
+i \frac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
+\psi (x,t=0) &= \psi_0(x)
+\end{cases}
+\end{equation}
+Nous travaillons en unités atomiques ($h=1$) avec (a detailler ou a mieux definir par la suite):
+\begin{itemize}
+	\item Hamiltonien interne $H = H_0 + V$
+	\item Operateur energie cinétique $H_0 = -\frac{1}{2} \sum_{n=1}^{p} \frac{1}{m_n} \varDelta$
+\end{itemize}
+En posant:
+\begin{equation}
+A(\psi(t),\varepsilon(t))= -i(H(x)-\mu(x)\varepsilon(t))\psi (x,t)
+\end{equation}
+On se ramene au probleme de Cauchy
+\begin{equation} \label{chauchy1}
+\begin{cases}
+\dot{\psi}(t) &= A(\psi(t),\varepsilon(t)) \\
+\psi (t=0) &= \psi_0
+\end{cases}
+\end{equation}
+Nous nous posons maintenant deux questions.
+\subsection*{Contrôlabilité}
+Un système de contrôle est dit contrôlable si on peut l’amener (en temps fini) d’un état initial arbitraire vers un état final prescrit.
+\subsection*{Controle optimal}
+Existe t-il un controle pour atteindre un etat cible (upgrade).
+Nous voulons construire un controle d'amplitude "raisonnable" afin d'ammener le système d'un etat initial $\psi_0$ a un etat cible $O\psi(T)$. $O$ etant l'observable decrivant l'état cible.\\\\
+On considere ainsi une fonctionnelle $J$
+\begin{equation}
+J(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_{0}^{T}\varepsilon^2(t)dt \quad \alpha \in \R_+
+\end{equation}
+et on se pose le probleme: Trouver $\varepsilon$ tel que $\varepsilon$ resouds
+$$ \max_{\varepsilon \in L^2(0,T)} J(\varepsilon)$$
+Au maximum de la fonctionnelle $J(\varepsilon)$, les équations de Euler-Lagrange sont satisfaites. Le Lagrangien du système est donné par :
+\begin{equation} \label{lagrangien}
+\mathcal{L}(\psi,\varepsilon,\chi)= J(\varepsilon)\\
+-2\Re \bigg\{ \int_{0}^{T}\langle \chi (t)|\partial_{t}+i(H_0+V-\mu(x)\varepsilon(t))|\psi(t) \rangle dt \bigg\}
+\end{equation}
+\section*{Schémas monotones}
+Une strategie efficace de résolution de ces équations est donnée par une classe d’algorithmes relevant du contrôle quantique, les schémas monotones. Ils ont etes introduits en 1992 par D. Tannor et al (mettre les nom complets) \cite{Tannor}, sur la base des travaux de Krotov(precision). Une amelioration a ensuite ete proposee par W. Zhu et H. Rabitz \cite{Zhu} en 1998. Une généralisation est donnée par Y. Maday et G. Turinici en 2003 \cite{Maday}\\\\
+\textbf{Question}: Comment construire une discrétisation temporelle puis spaciale de ces algorithmes qui préserve la propriété de monotonie?\\\\
+(say it better)Dans ce travail, nous construisons et implémentons une telle discretisation.
+Dans le premier chapitre nous introduisons la mécanique quantique en trois postulats.
+Dans le chapitre trois, nous presentons le resultats de nos simulations.
+

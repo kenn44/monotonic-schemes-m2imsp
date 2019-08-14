@@ -1,0 +1,242 @@
+\documentclass[a4paper,12pt,onside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide,url}   
+\usepackage{amsmath}  
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm} 
+\usepackage[french]{babel}
+\usepackage{bbold}
+\usepackage{bbm}
+\usepackage{calligra}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{fancyhdr}
+\usepackage[Glenn]{ fncychap}
+\usepackage[T1]{fontenc}
+\usepackage[left=3.5cm,right=3.5cm,top=3.5cm,bottom=3.5cm]{geometry}
+\usepackage{graphics,graphicx,subfigure,wrapfig,picinpar}
+\usepackage{lipsum}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{hyperref}
+\usepackage[all,cmtip]{xy}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{pdfpages}
+\usepackage{mathpazo} % use palatino
+\usepackage[scaled]{helvet} % helvetica
+
+\newtheorem {theorem}{Théorème}[chapter]
+\newtheorem {lemme}{Lemme}[chapter]
+\newtheorem {corollary}{Corollaire}[chapter]
+\newtheorem {proposition}{Proposition}[chapter]
+\newtheorem {definition}{Définition}[chapter]
+\newtheorem*{ proof }{Preuve}
+\newtheorem{remark}{Remarque}[chapter]
+
+
+\newenvironment{prof}[1][Preuve]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\theoremstyle{plain}
+%\newtheorem{lemma}{Lemma}[chapter]
+%\newtheorem{Propri\'et\'e}{Propri\'et\'e}[chapter]
+\newtheorem{exercise}{Exercice}[chapter]
+%\newtheorem{proposition}{Proposition}[chapter]
+%\newtheorem{theorem}{Th\'eor\`eme}[chapter]
+%\newtheorem{definition}{D\'efinition}[chapter]
+\newtheorem{coro}{Corollaire}[chapter]
+%\newtheorem{not}{Notation}[chapter]
+\newtheorem{ex}{Exemple}[chapter]
+%\newtheorem{property}{Propri\'et\'e}[section]
+\newtheorem{theodef}{Th\'eor\`eme et D\'efinition}[chapter]
+\newtheorem{rap}{Rappel}[chapter]
+\newtheorem{thm}{Théoréme}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+\newtheorem{pro}{Propriétés}[chapter]
+\newtheorem{lem}{lemme}[chapter]
+\newtheorem{dfn}{Définition}[chapter]
+
+\newtheorem{Post}{Postulat}
+
+
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+
+\usepackage{eucal} 
+\addtolength{\hoffset}{-1.0cm} 
+\addtolength{\textwidth}{2.0cm}%1.6avant
+\addtolength{\voffset}{-1.0cm} 
+\addtolength{\textheight}{2.0cm}
+
+
+\makeatletter
+\newcommand{\thechapterwords}
+{ \ifcase \thechapter\or Premier\or Deux\or Trois\or Quatre\or
+Cinq\or
+Six\or Sept\or Huit\or Neuf\or Dix\or Onze\fi}
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{
+\vspace*{15\p@}
+{\parindent \z@ \centering \reset@font
+\thickhrulefill\quad
+\scshape \@chapapp{} \thechapterwords
+\quad \thickhrulefill
+\par\nobreak
+\vspace*{15\p@}
+\interlinepenalty\@M
+\hrule
+\vspace*{15\p@}
+\Huge \bfseries #1\par\nobreak
+\par
+\vspace*{15\p@}
+\hrule
+\vskip 60\p@
+}}
+\def\@makeschapterhead#1{
+\vspace*{15\p@}
+{\parindent \z@ \centering \reset@font
+\thickhrulefill
+\par\nobreak
+\vspace*{15\p@}
+\interlinepenalty\@M
+\hrule
+\vspace*{15\p@}
+\Huge \bfseries #1\par\nobreak
+\par
+\vspace*{15\p@}
+\hrule
+\vskip 60\p@
+}}
+\def\@makechapterhead#1{
+\vspace*{15\p@}
+{\parindent \z@ \centering \reset@font
+\thickhrulefill\quad
+\scshape \@chapapp{} \thechapterwords
+\quad \thickhrulefill
+\par\nobreak
+\vspace*{15\p@}
+\interlinepenalty\@M
+\hrule
+\vspace*{15\p@}
+\Huge \bfseries #1\par\nobreak
+\par
+\vspace*{15\p@}
+\hrule
+\vskip 60\p@
+}}
+\frenchspacing \pagestyle{headings}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage [dvips]{epsfig}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thechapter\ #1}}
+
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+\fancyhf{}
+
+\fancyhead[L,R]{\bfseries\thepage}
+
+\fancyhead[L]{\bfseries\rightmark} % Left Odd
+\fancyhead[R]{\bfseries\leftmark} % Right Even
+\renewcommand{\headrulewidth}{1pt}
+
+\addtolength{\headheight}{1pt} 
+
+\renewcommand{\footrulewidth}{0.5pt}
+
+\fancypagestyle{plain}{ % pages de tetes de chapitre
+\fancyhead{} % supprime l'entete
+%\fancyfoot{} %supprime le pied de page
+\renewcommand{\headrulewidth}{0pt}
+}
+\newcommand{\clearemptydoublepage}{%
+\newpage{\pagestyle{plain}\cleardoublepage}}
+
+\rhead{\textbf{\thepage}}
+\lhead{\textsl{\leftmark}}
+\fancyfoot[LO]{\tiny \emph{\textbf{Schémas monotones discrétisés en temps pour l'équation de Schrödinger}}} 
+
+\usepackage{newlfont}
+
+%\usepackage[active]{srcltx}
+\hfuzz2pt
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]%
+{\setlength{\baselineskip}{#1 \defbaselineskip}}
+\newcommand{\doublespacing}{\setlength{\baselineskip}%
+{1.5 \defbaselineskip}}
+\newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
+
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\F}{\mathbb F}
+%\newcommand{\1}{1 \! \! {\rm I}}
+\newcommand{\cc}{\mathcal{C}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\el}{\mathcal{L}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\f}{\mathcal{F}}
+\newcommand{\E}{\mathcal{E}}
+%\newcommand{\H}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\n}{\mathcal{N}}
+\newcommand{\ho}{\hbox{\rm Hom}}
+\newcommand{\Q}{l \! \! \! Q}
+\newcommand{\0}{/ \! \! \! 0}
+%\newcommand{\a}{\mathcal{a}}
+\newcommand{\g}{\mathfrak g}
+\newcommand{\h}{\mathfrak h}
+%\newcommand{\e}{\mathfrak e}
+%\newcommand{\u}{\mathfrak u}
+
+\usepackage{amssymb,textcomp}
+
+\def\card{{\rm card }}
+
+\usepackage{stmaryrd}
+\begin{document}
+\input{pagedegarde/pagedegarde.tex}
+%\newpage
+%\bibliographystyle{plain}
+\pagenumbering{roman}
+%\input{Dedicace.tex}
+%\input{Remerciements.tex}
+%\input{ResumeEtAbstract.tex}
+\input{notations/notations.tex}
+\tableofcontents%\addcontentsline{toc}{chapter}{Table des matières}
+%\listoffigures\addcontentsline{toc}{chapter}{Table des figures}
+%\listoftables\addcontentsline{toc}{chapter}{Liste des tableaux}
+\newpage
+\newpage
+\pagenumbering{arabic}
+\input{introduction/introduction.tex}
+\newpage
+\input{chapitre1/controlequantique.tex}
+%\input{chapitre2/}
+%\input{chapitre3/}
+%\input{conclusion/conclusionetperspectives.tex}
+%\input{annexe.tex}
+\input{bibliographie/bibliographie.tex}
+%\bibliographystyle{plain}
+%\bibliography{bibliographie}
+\end{document}

@@ -1,0 +1,63 @@
+\chapter{Mécanique quantique et contrôle optimal}
+
+\section{La mécanique quantique en trois postulats}
+\subsection{Premier postulat de la mécanique quantique}
+\subsubsection{Fonction d'onde}
+Au mouvement de toute particule, on associe une fonction $\psi(x,t)$ appelée fonction d’onde. $\psi(x,t)$ nous donne toutes les informations sur l'état quantique de la particule a l’instant $t$.\\
+\subsubsection{Cas d’une particule dans l’espace a une dimension}
+(a mettre en subsssection)
+A-Cas d’une particule dans l’espace a une dimension\\
+La probabilité pour que la particule soit dans l’intervalle $[a,b]$ est donnée par l’aire de la courbe située entre $x=a$ et $x=b$ (figure si possible)
+\begin{equation}
+\int_a^b dP(x)= \int_a^b |\psi(x,t)|^2dx
+\end{equation}
+Il est impossible de connaître avec précision la position de la particule a un instant t. On ne peut que connaître la probabilité $dP(x)$ pour qu’elle soit entre $x$ et $x+dx$, soit:
+\begin{equation}
+dP(x)=|\psi(x,t)|^2dx=\psi(x,t)\overline{\psi(x,t)}dx
+\end{equation}
+La particule doit être quelque part sur l’axe $X’OX$, par conséquent:
+\begin{equation}
+\int_{-\infty}^{+\infty}|\psi(x,t)|^2dx=1
+\end{equation}
+pour tout $t$. $\psi$ est donc de carre sommable.
+La densite de probabilite est donnee par
+\begin{equation}
+\frac{dP(x,t)}{dx}=|\psi(x,t)|^2=\rho(x,t)
+\end{equation}
+
+B-Cas d’une particule dans l’espace à trois dimensions\\
+On a 
+\begin{equation}
+\int dP(\vec{r},t)=\iiint_{espace}|\psi(x,t)|^2d^3r=1
+\end{equation}
+
+Ou $d^3r$ représente l'élément de volume donnée par: $$d^3r=dxdydz=r^2sin\theta dr d\theta d\varphi$$
+
+C-Cas de N particules\\
+L’espace le mieux adapté à la description des systèmes en physique quantique est un espace $\Omega$, nommé espace des configurations qui représente l’ensemble de toutes les configurations possibles du système. Par exemple, dans le cas d’un système à $N$ particules isolées et sans contraintes, l’espace des configurations est $\Omega = \R^{3N}$ et $\psi(x,t) \in L^2(\Omega, \C)$.
+
+\begin{Post}
+	A tout système quantique correspond un espace de Hilbert complexe $\mathcal{H}$, tel que l’ensemble des états accessibles au système soit en bijection avec la sphère unité de $\mathcal{H}$.
+\end{Post}
+Dans la suite $\lVert\cdot\rVert$ et $\langle\cdot,\cdot\rangle$ désignent la norme et le produit hermitien associés à $\mathcal{H}$.
+\subsubsection{Observables et deuxième postulat}
+(talk about) Superposition des etats\\
+(A beaucoup mieux traiter) (voir doc upmc)\\
+En mécanique quantique, une grandeur ne prend une valeur déterminée que lors d’une mesure:
+\begin{Post}
+	A toute grandeur physique (scalaire) $\mathcal{A}$ correspond un opérateur $A$ auto-adjoint sur $\mathcal{H}$, vérifiant la propriété suivante : le résultat de la mesure d’une grandeur physique $\mathcal{A}$ ne peut être qu’un élément du spectre de $A$.
+\end{Post}
+La moyenne des mesures de $A$ est quant à elle égale à $\langle\psi|A|\psi\rangle$ où la notation $\langle\cdot|A|\cdot\rangle$ est définie par :
+\begin{equation}
+\langle\psi|A|\chi\rangle = \int_{\Omega} \bar{\psi}A\chi
+\end{equation}
+ou $\psi$ et $\chi$ sont des fonctions de $L^2(\Omega, \C)$ et $A$ un opérateur arbitraire défini de $L^2(\Omega, \C)$ dans lui-même.
+(tableau observables)
+\subsubsection{Equation de Schrödinger et troisième postulat}
+L'équation de Schrodinger, conçue par le physicien autrichien Erwin Schrodinger en 1952, est une équation fondamentale en mécanique quantique. Elle décrit l'évolution dans le temps d’une particule massive non relativiste, et remplit ainsi le même rôle que la relation fondamentale de la dynamique en mécanique classique.
+\begin{Post}
+	Entre deux mesures, l’évolution de l’état est régie par l’équation de Schrödinger
+	\begin{equation}
+	i \frac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+	\end{equation}
+\end{Post}

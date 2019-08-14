@@ -1,0 +1,8 @@
+\chapter*{Conclusion et perspectives}\addcontentsline{toc}{chapter}{Conclusion et perspectives}
+
+Dans ce mémoire, nous nous sommes attachés à exposer les rudiments de l'adaptation de maillage ainsi que les notions nécessaires à sa compréhension. L'adaptation de maillage est un outil intéressant pour la résolution numérique des équations aux dérivées partielles et grâce à cet outil, l'on gagne considérablement dans la précision des résultats obtenus.\\
+
+Nous avons donc abordé deux méthodes d'adaptation à savoir l'adaptation métrique qui associe à chaque arête des éléments, une métrique dépendant de l'erreur commise lors de l'interpolation et l'adaptation hiérarchique qui approche l'erreur sur la solution éléments finis en construisant une nouvelle solution à l'aide d'une base hiérarchique.\\
+Somme toute, ces deux méthodes se basent sur des estimations de dérivées puisque la solution exacte au problème n'est pas connue à priori. Pour ce faire, des méthodes d'estimations de dérivées telles que celle décrite par  Zhang, Z. et A. Naga dans~~\cite{2}~~sont utilisées. Nous introduisons dans ce mémoire une méthode d'estimations de dérivées basée sur le comportement d'une famille de maillage possédant des propriétés statistiques données.\\
+
+Dans un travail futur, nous pensons nous interesser à paralléliser sur plusieurs processeurs l'algorithme d'estimation de dérivées afin de réduire le temps de calcul. Nous nous interesserons aussi à trouver théoriquement la constante exhibée dans la partie~~\ref{partieconstante}~~mais aussi à une démonstration théorique de la convergence du processus mis en place.
