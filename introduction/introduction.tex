@@ -7,7 +7,7 @@ A la fin du XIXe siècle, les diverses branches de la physique s'intégraient da
 	\item Le rayonnement est gouverné par les lois de l'électromagnétisme de Maxwell. Ses variables dynamiques sont les composantes en chaque point de l’espace des champs électrique et magnétique.
 \end{itemize}
 Le succès de la physique était à cette époque impressionnant et tous les phénomènes connus trouvaient leur explication dans le cadre de ce programme classique.\\\\
-A l’aube du XXe siècle et avec l’essor des progrès technologiques, les physiciens se trouvèrent tout a coup confrontés à des phénomènes nouveaux pour lesquels les prévisions de la théorie classique sont en désaccord flagrant avec l'expérience. Il fallait donc jeter les bases d’une nouvelle théorie susceptible de pallier les insuffisances de la conception classique.
+A l’aube du XXe siècle et avec l’essor des progrès technologiques, les physiciens se trouvèrent tout a coup confrontés à des phénomènes nouveaux pour lesquels les prévisions de la théorie classique sont en désaccord flagrant avec l'expérience. Il fallait donc jeter les bases d’une nouvelle théorie susceptible de pallier les insuffisances de la conception classique. (une transition serait appreciable)
 
 \section*{Contrôle optimal et optimisation numérique}
 L'objet de notre étude est un système quantique, modelisé entre deux mesures par l'équation de Schrödinger (cite postulat 2):
@@ -22,7 +22,7 @@ i \frac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)
 \psi (x,t=0) &= \psi_0(x)
 \end{cases}
 \end{equation}
-Nous travaillons en unités atomiques ($h=1$) avec (a detailler ou a mieux definir par la suite):
+Nous travaillons en unités atomiques ($\hbar=1$) avec (a detailler ou a mieux definir par la suite):
 \begin{itemize}
 	\item Hamiltonien interne $H = H_0 + V$
 	\item Operateur energie cinétique $H_0 = -\frac{1}{2} \sum_{n=1}^{p} \frac{1}{m_n} \varDelta$
@@ -31,7 +31,7 @@ En posant:
 \begin{equation}
 A(\psi(t),\varepsilon(t))= -i(H(x)-\mu(x)\varepsilon(t))\psi (x,t)
 \end{equation}
-On se ramene au probleme de Cauchy
+On se ramène au problème de Cauchy
 \begin{equation} \label{chauchy1}
 \begin{cases}
 \dot{\psi}(t) &= A(\psi(t),\varepsilon(t)) \\
@@ -40,9 +40,12 @@ On se ramene au probleme de Cauchy
 \end{equation}
 Nous nous posons maintenant deux questions.
 \subsection*{Contrôlabilité}
-Un système de contrôle est dit contrôlable si on peut l’amener (en temps fini) d’un état initial arbitraire vers un état final prescrit.
-\subsection*{Controle optimal}
-Existe t-il un controle pour atteindre un etat cible (upgrade).
+Un système est dit contrôlable si on peut le ramener à tout état prédéfini au moyen d’un contrôle. Plus précisément on pose la définition suivante (revoir les ensembles)
+\begin{dfn}
+On dit que le système \eqref{chauchy1} est contrôlable (ou commandable) si pour tous les états $\psi_0$ , $\psi_{cible}$ , il existe un temps fini $T$ et un contrôle admissible $\varepsilon(.)$ tel que $\psi_{cible} = \psi(T, \psi_0, \varepsilon(.))$.
+\end{dfn}
+\subsection*{Contrôle optimal}
+Existe t-il un contrôle pour atteindre un etat cible (upgrade).
 Nous voulons construire un controle d'amplitude "raisonnable" afin d'ammener le système d'un etat initial $\psi_0$ a un etat cible $O\psi(T)$. $O$ etant l'observable decrivant l'état cible.\\\\
 On considere ainsi une fonctionnelle $J$
 \begin{equation}
