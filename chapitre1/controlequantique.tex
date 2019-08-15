@@ -3,10 +3,15 @@
 \section{La mécanique quantique en trois postulats}
 \subsection{Premier postulat de la mécanique quantique}
 \subsubsection{Fonction d'onde}
-Au mouvement de toute particule, on associe une fonction $\psi(x,t)$ appelée fonction d’onde. $\psi(x,t)$ nous donne toutes les informations sur l'état quantique de la particule a l’instant $t$.\\
+En mécanique quantique, on représente l'état d'un système par un vecteur dans un espace de Hilbert. En raison de l'importance de ces produits scalaires, on utilise la notation bra-ket introduite par Dirac \footnote{Paul Dirac, Les Principes de la mécanique quantique [« The Principles of Quantum Mechanics »] (1re éd. 1930) } pour représenter les états quantiques de manière concise et simple. Le vecteur $\psi$ est ainsi noté $|\psi \rangle$ et appelé \textbf{ket}, tandis que son vecteur dual est appelé \textbf{bra} et noté $\langle \psi |$. \\
+L'espace des états dépend du système considéré. Par exemple, dans le cas le plus simple où le système n'a pas de spin ou de structure interne, les états quantiques sont des fonctions $\psi$ : 
+$$
+\begin{aligned}
+	\psi :\quad \quad \mathbb {R} ^{3}&\rightarrow \mathbb{C} \\(x,y,z)&\mapsto \psi (x,y,z)
+\end{aligned}
+$$
+telles que l'intégrale  $\int _{\mathbb{R} ^{3}}|\psi (\mathbf{r} )|^{2}d\mathbf{r}$ converge. Dans ce cas, $\psi$ est appelée la fonction d'onde du système.
 \subsubsection{Cas d’une particule dans l’espace a une dimension}
-(a mettre en subsssection)
-A-Cas d’une particule dans l’espace a une dimension\\
 La probabilité pour que la particule soit dans l’intervalle $[a,b]$ est donnée par l’aire de la courbe située entre $x=a$ et $x=b$ (figure si possible)
 \begin{equation}
 \int_a^b dP(x)= \int_a^b |\psi(x,t)|^2dx
@@ -25,7 +30,7 @@ La densite de probabilite est donnee par
 \frac{dP(x,t)}{dx}=|\psi(x,t)|^2=\rho(x,t)
 \end{equation}
 
-B-Cas d’une particule dans l’espace à trois dimensions\\
+\subsubsection{Cas d’une particule dans l’espace à trois dimensions}
 On a 
 \begin{equation}
 \int dP(\vec{r},t)=\iiint_{espace}|\psi(x,t)|^2d^3r=1
@@ -33,7 +38,7 @@ On a
 
 Ou $d^3r$ représente l'élément de volume donnée par: $$d^3r=dxdydz=r^2sin\theta dr d\theta d\varphi$$
 
-C-Cas de N particules\\
+\subsubsection{Cas de N particules}
 L’espace le mieux adapté à la description des systèmes en physique quantique est un espace $\Omega$, nommé espace des configurations qui représente l’ensemble de toutes les configurations possibles du système. Par exemple, dans le cas d’un système à $N$ particules isolées et sans contraintes, l’espace des configurations est $\Omega = \R^{3N}$ et $\psi(x,t) \in L^2(\Omega, \C)$.
 
 \begin{Post}
