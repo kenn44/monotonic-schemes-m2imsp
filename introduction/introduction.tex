@@ -22,11 +22,10 @@ i \frac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)
 \psi (x,t=0) &= \psi_0(x)
 \end{cases}
 \end{equation}
-Nous travaillons en unités atomiques ($\hbar=1$) avec (a detailler ou a mieux definir par la suite):
-\begin{itemize}
-	\item Hamiltonien interne $H = H_0 + V$
-	\item Operateur energie cinétique $H_0 = -\frac{1}{2} \sum_{n=1}^{p} \frac{1}{m_n} \varDelta$
-\end{itemize}
+Nous travaillons en unités atomiques ($\hbar=1$) avec l’opérateur $H$, défini par:
+$$
+H = H_0 + V = -\frac{1}{2m} \varDelta + V
+$$
 En posant:
 \begin{equation}
 A(\psi(t),\varepsilon(t))= -i(H(x)-\mu(x)\varepsilon(t))\psi (x,t)
@@ -44,8 +43,8 @@ Un système est dit contrôlable si on peut le ramener à tout état prédéfini
 \begin{dfn}
 On dit que le système \eqref{chauchy1} est contrôlable (ou commandable) si pour tous les états $\psi_0$ , $\psi_{cible}$ , il existe un temps fini $T$ et un contrôle admissible $\varepsilon(.)$ tel que $\psi_{cible} = \psi(T, \psi_0, \varepsilon(.))$.
 \end{dfn}
-Si la condition précédente est remplie, existe-t-il un contrôle joignant x 0 à x 1 , et qui de plus
-minimise une certaine fonctionnelle C(u) ?
+Si la condition précédente est remplie, existe-t-il un contrôle joignant $\psi_0$ à $\psi_{cible}$ , et qui de plus
+minimise une certaine fonctionnelle $J(\varepsilon)$ ?
 \subsection*{Contrôle optimal}
 Existe t-il un contrôle pour atteindre un etat cible (upgrade).
 Nous voulons construire un controle d'amplitude "raisonnable" afin d'ammener le système d'un etat initial $\psi_0$ a un etat cible $O\psi(T)$. $O$ etant l'observable decrivant l'état cible.\\\\
@@ -61,9 +60,8 @@ Au maximum de la fonctionnelle $J(\varepsilon)$, les équations de Euler-Lagrang
 -2\Re \bigg\{ \int_{0}^{T}\langle \chi (t)|\partial_{t}+i(H_0+V-\mu(x)\varepsilon(t))|\psi(t) \rangle dt \bigg\}
 \end{equation}
 \section*{Schémas monotones}
-Une strategie efficace de résolution de ces équations est donnée par une classe d’algorithmes relevant du contrôle quantique, les schémas monotones. Ils ont etes introduits en 1992 par David Tannor, Vladimir Kazakov et V. Orlov,  \cite{Tannor}, sur la base des travaux de Krotov(precision). Une amelioration a ensuite ete proposee par Wusheng Zhu et Herschel Rabitz \cite{Zhu} en 1998. Une généralisation est donnée par Yvon Maday et Gabriel Turinici en 2003 \cite{Maday}\\\\
+Une strategie efficace de résolution de ces équations est donnée par une classe d’algorithmes relevant du contrôle quantique, les schémas monotones. Ils ont etes introduits en 1992 par David Tannor, Vladimir Kazakov et V. Orlov,  \cite{Tannor}, sur la base des travaux de Krotov(precision). Une amelioration a ensuite ete proposee par Wusheng Zhu et Herschel Rabitz \cite{Zhu} en 1998. Une généralisation est donnée par Yvon Maday et Gabriel Turinici en 2003 \cite{Maday}.\\\\
 \textbf{Question}: Comment construire une discrétisation temporelle puis spaciale de ces algorithmes qui préserve la propriété de monotonie?\\\\
-(say it better)Dans ce travail, nous construisons et implémentons une telle discretisation.
-Dans le premier chapitre nous introduisons la mécanique quantique en trois postulats.
-Dans le chapitre trois, nous presentons le resultats de nos simulations.
+(Plan)
+%Dans ce travail, nous construisons et implémentons une telle discretisation. Dans le premier chapitre nous introduisons la mécanique quantique en trois postulats. Dans le chapitre trois, nous presentons le resultats de nos simulations.
 
