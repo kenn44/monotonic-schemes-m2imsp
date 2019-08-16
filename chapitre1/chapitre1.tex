@@ -28,7 +28,7 @@ La particule doit être quelque part sur l’axe $X’OX$, par conséquent:
 pour tout $t$. $\psi$ est donc de carre sommable.
 La densite de probabilite est donnee par
 \begin{equation}
-\frac{dP(x,t)}{dx}=|\psi(x,t)|^2=\rho(x,t)
+\dfrac{dP(x,t)}{dx}=|\psi(x,t)|^2=\rho(x,t)
 \end{equation}
 
 \subsubsection{Cas d’une particule dans l’espace à trois dimensions}
@@ -47,16 +47,16 @@ L’espace le mieux adapté à la description des systèmes en physique quantiqu
 \end{Post}
 
 \subsection{Observables et deuxième postulat}
-Une observable est l'équivalent en mécanique quantique d'une grandeur physique en mécanique classique, comme la position, la quantité de mouvement, l'énergie, etc. Une observable est formalisée mathématiquement par un opérateur agissant sur les vecteurs de $\mathcal{H}$ (chaque état quantique est représenté par un vecteur de $\mathcal{H}$). 
+Une observable est l'équivalent en mécanique quantique d'une grandeur physique en mécanique classique, comme la position, la quantité de mouvement, l'énergie, etc. Une observable est formalisée mathématiquement par un opérateur hermitien (endomorphisme autoadjoint) sur $\mathcal{H}$ (chaque état quantique est représenté par un vecteur de $\mathcal{H}$). 
 %Cet operateur permet de décomposer un état quantique quelconque $|\psi \rangle$ en une combinaison linéaire d'états propres,
 \begin{ex}
 	Exemples d'observables
 	\begin{enumerate}
-		\item la position
+		\item la position: $X$
 		\item l'énergie potentielle: $V$
 		\item la quantité de mouvement: $P=-i\hbar \nabla$
 		\item l'énergie cinétique:
-		$H_0=\frac{P \cdot P}{2m}=-\frac{\hbar ^{2}}{2m}\nabla^{2}$
+		$H_0=\dfrac{P \cdot P}{2m}=-\dfrac{\hbar ^{2}}{2m}\nabla^{2}$
 		\item l'énergie totale, appelé hamiltonien:
 		$H=H_0+V$
 	\end{enumerate}
@@ -80,15 +80,22 @@ La moyenne des mesures de $\mathcal{A}$ est quant à elle égale à $\langle\psi
 \langle\psi|A|\chi\rangle = \int_{\Omega} \bar{\psi}A\chi
 \end{equation}
 %ou $\psi$ et $\chi$ sont des fonctions de $L^2(\Omega, \C)$ et $A$ un opérateur arbitraire défini de $L^2(\Omega, \C)$ dans lui-même.
+\begin{ex}
+	La position moyenne sur l’axe des abcisses:
+	\begin{equation*}
+	\langle X \rangle = \int_{- \infty}^{- \infty} x |\psi(x,t)|^2 dx
+	\end{equation*}
+\end{ex}
 
 \subsection{Equation de Schrödinger et troisième postulat}
-L'équation de Schrödinger, conçue par le physicien autrichien Erwin Schrödinger en 1952, est une équation fondamentale en mécanique quantique. Elle décrit l'évolution dans le temps d’une particule massive non relativiste, et remplit ainsi le même rôle que la relation fondamentale de la dynamique en mécanique classique.
+L'équation de Schrödinger, proposée par le physicien autrichien Erwin Schrödinger en 1952, est une équation fondamentale en mécanique quantique. Elle décrit l'évolution dans le temps d’une particule massive non relativiste, et remplit ainsi le même rôle que la relation fondamentale de la dynamique en mécanique classique $\dfrac{dp}{dt}=F$.
 \begin{Post}
 	Entre deux mesures, l’évolution de l’état est régie par l’équation de Schrödinger
-	\begin{equation}
-	i \frac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+	\begin{equation} \label{sch1}
+	i\hbar \dfrac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
 	\end{equation}
 \end{Post}
+%\subsubsection{Exemple de resolution de \eqref{sch1}: cas d'une particule libre}
 Considerons le cas d'une particule libre ($V=0$) et menons notre étude sur $\R^m$ $(m \geq 1)$ nous étudions alors l'équation
 \begin{equation} \label{chauchy2}
 u'(t)=Au(t)
@@ -138,3 +145,24 @@ Ainsi, $||u(t)||$ est constante:
 \end{equation}
 En conclusion, le probleme de Cauchy pour \eqref{chauchy2} est bien pose pour tout $t$.\\
 En outre, \cite{Fattorini} generalise ce resultat sur $E=L^p (\R^m)$ avec $1 \leq p < m$.
+
+\section{Controle quantique bilinéaire}
+On rappelle que 
+l'équation de Schrödinger:
+\begin{equation} \label{schrodinger}
+i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+\end{equation}
+Nous travaillons en unités atomiques ($\hbar=1$) a
+
+En vue de modéliser les intéractions onde-matière a l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
+La dynamique du systeme est désormais donnée par:
+\begin{equation} \label{eq1}
+\begin{cases}
+i \dfrac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
+\psi (x,t=0) &= \psi_0(x)
+\end{cases}
+\end{equation}
+
+\section{Discrétisation temporelle}
+\subsection{Méthode du splitting d’opérateur}
+\subsection{Schéma de Cranck-Nicholson}
