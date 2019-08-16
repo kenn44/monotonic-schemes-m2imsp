@@ -12,13 +12,13 @@ A l’aube du XXe siècle et avec l’essor des progrès technologiques, les phy
 \section*{Contrôle optimal et optimisation numérique}
 L'objet de notre étude est un système quantique, modelisé entre deux mesures par l'équation de Schrödinger:
 \begin{equation} \label{schrodinger}
-i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t)
 \end{equation}
 En vue de modéliser les intéractions onde-matière a l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
 La dynamique du systeme est désormais donnée par:
 \begin{equation} \label{eq1}
 \begin{cases}
-i \hbar \dfrac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
+i \hbar \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
 \psi (x,t=0) &= \psi_0(x)
 \end{cases}
 \end{equation}
@@ -28,7 +28,7 @@ H = H_0 + V = -\dfrac{1}{2m} \varDelta + V
 $$
 En posant:
 \begin{equation}
-A(\psi(t),\varepsilon(t))= -i(H(x)-\mu(x)\varepsilon(t))\psi (x,t)
+A(\psi(t),\varepsilon(t))= -i(H-\mu(x)\varepsilon(t))\psi (x,t)
 \end{equation}
 On se ramène au problème de Cauchy
 \begin{equation} \label{chauchy1}

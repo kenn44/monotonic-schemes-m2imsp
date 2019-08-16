@@ -1,4 +1,4 @@
-\chapter{Mécanique quantique et contrôle optimal}
+\chapter{Mécanique quantique et contrôle quantique}
 
 \section{La mécanique quantique en trois postulats}
 \subsection{Premier postulat de la mécanique quantique}
@@ -92,7 +92,7 @@ L'équation de Schrödinger, proposée par le physicien autrichien Erwin Schröd
 \begin{Post}
 	Entre deux mesures, l’évolution de l’état est régie par l’équation de Schrödinger
 	\begin{equation} \label{sch1}
-	i\hbar \dfrac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+	i\hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t)
 	\end{equation}
 \end{Post}
 %\subsubsection{Exemple de resolution de \eqref{sch1}: cas d'une particule libre}
@@ -140,29 +140,47 @@ Par consequent, si $u(.)$ est une solution de \eqref{chauchy2}, nous avons:
 &=0
 \end{align*}
 Ainsi, $||u(t)||$ est constante:
-\begin{equation}
+\begin{equation} \label{normecons}
 ||u(t)||=||u(0)|| \quad \forall t \in \R
 \end{equation}
 En conclusion, le probleme de Cauchy pour \eqref{chauchy2} est bien pose pour tout $t$.\\
 En outre, \cite{Fattorini} generalise ce resultat sur $E=L^p (\R^m)$ avec $1 \leq p < m$.
 
-\section{Controle quantique bilinéaire}
-On rappelle que 
-l'équation de Schrödinger:
-\begin{equation} \label{schrodinger}
-i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H(x)\psi (x,t)
+\section{Controle quantique}
+On rappelle que l'état $\psi(t)$ d'un systeme quantique evolue conformement a l'équation de Schrödinger:
+\begin{equation}
+i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t),\quad \quad \psi(t=0)=\psi_0
 \end{equation}
-Nous travaillons en unités atomiques ($\hbar=1$) a
-
+ou $H$ est un endomorphisme auto-adjoint sur $\mathcal{H}$ appelé Hamiltonien interne du systeme. $\hbar$ est la constante de Planck. Dans la suite, nous travaillons en unités atomiques, c'est-a-dire $\hbar=1$ et l'etat initial a une norme unitaire, $||\psi_0||^2 \equiv \langle \psi_0|\psi_0 \rangle =1$.
+\subsection{Exemple de modele bilineaire (BLM)}
+Pour simplifier, nous considerons un systeme quantique de dimension finie. C'est une approximation appropriee dans de nombreuses situations pratiques. Pour un systeme quantique de dimension $N$, $\mathcal{H}$ est un espace de Hilbert complexe de dimension $N$. Les valeurs propres $(\phi_{i})_{1 \leq i \leq N}$ de $H$ forment une base orthogonale de $\mathcal{H}$.\\
+Dans de nombreuses situations, le controle du systeme peut-etre realise par un ensemble de fonctions de controle $\varepsilon_{k}(t) \in \R$ couplees au systeme via une famille d'operateurs hermitions independants du temps $\{H_k, k=1,2,...\}$. L'Hamiltonien total $H+\sum_{k} \varepsilon_{k}(t)H_k$ determine alors la nouvelle dynamique du systeme.
+\begin{equation} \label{schcon}
+i \dfrac{\partial }{\partial t} \psi (x,t) = (H+\sum_{k} \varepsilon_{k}(t)H_k)\psi (x,t)
+\end{equation}
+Le but typique d'un probleme de conrole quantique defini sur le systeme \eqref{schcon} est de trouver en temps fini $T > 0$ un ensemble de controles admissibles $u_k(t) \in \R$ qui conduit le systeme d'un etat initial $\psi_0$ a un etat prescrit $\psi_{cible}$.
+\subsection{Cas d'un champs laser}
 En vue de modéliser les intéractions onde-matière a l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
 La dynamique du systeme est désormais donnée par:
-\begin{equation} \label{eq1}
+\begin{equation}
 \begin{cases}
-i \dfrac{\partial }{\partial t} \psi (x,t) &= H(x)\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
+i \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
 \psi (x,t=0) &= \psi_0(x)
 \end{cases}
 \end{equation}
 
 \section{Discrétisation temporelle}
+Choisissons deux paramètres de discrétisation temporelle $N$ et $\Delta T$ tel que $N \Delta T = T$ et notons $\psi_j$ l'approximation de $\psi(j\Delta T)$, $0 \leq j \leq N$.
 \subsection{Méthode du splitting d’opérateur}
+La méthode du splitting d’opérateur encore appellee est une méthode numérique permettant de résoudre des équations différentielles décomposables en somme d'opérateurs différentiels.
+\begin{pro}
+	Cette méthode est qu’elle conserve la norme $L^2$ de la fonction d’onde $\psi$ au cours du temps.
+\end{pro}
+\begin{ proof }
+	Les opérateurs exponentiés étant anti-hermitiens, leurs exponentielles sont en effet unitaires.
+\end{ proof }
+Cette propriété importante \eqref{normecons} est donc conservée après discrétisation.\\
+D’autres méthodes de résolution approchée peuvent être envisagées : schémas d’Euler, Runge-Kutta... Le problème posé par ces schémas est qu’ils ne conservent pas la norme de la solution en général.
 \subsection{Schéma de Cranck-Nicholson}
+Une exception existe avec le schéma implicite de Cranck-Nicholson défini dans notre cas de la manière suivante :
+En tant que schéma implicite, son inconvénient majeur est d’être coûteux.
