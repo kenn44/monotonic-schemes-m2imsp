@@ -1,3 +1,207 @@
-\chapter{Chap2}
+\chapter{Schémas monotones en chimie quantique}
 
-\section{Sec 2.1}
+\section{Introduction}
+
+Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au paragraphe 1.2.5, l’évolution d’un tel système est régie par l’équation:
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \psi (x,t) = H\psi(x,t) - \mu(x)\varepsilon(t)\psi(x,t)\\
+\psi(x,t=0)=\psi_0(x)
+\end{cases}
+\end{equation}
+
+Le moment dipolaire $\mu$ est supposé connu et indépendant du temps.
+
+\section{Fonctionnelles de coût}
+Soit $\alpha : [0, T ] \longrightarrow \R^+$ une fonction bornée, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega × [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
+\\Les fonctionnelles de coût rencontrées dans cette thèse peuvent se mettre sous l’une des deux formes suivantes :
+
+\begin{equation}
+J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+\end{equation}
+
+\begin{equation}
+J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+\end{equation}
+
+L’optimisation de $J_1$ permet de réaliser un compromis entre la recherche d'une grande valeur de l’observable et une norme $L_2$ du champ $\varepsilon$ raisonnable. Bien que ne relevant pas du formalisme attaché aux observables, la fonctionnelle $J_2$ est parfois utilisée par les chimistes. Le terme $\psi_{cible}$ représente une fonction d’onde cible. Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est en effet atteint pour $\psi(T) = \psi_{cible}$ puisque $\lVert \psi_{cible} \rVert = 1$ et que $2\Re\langle \psi_{cible}|\psi(T)\rangle = -\lVert \psi_{cible} - \psi(T)\rVert ^2+2$.
+
+$ $
+\\Le bénéfice apporté par la dépendance en temps de $\alpha$ est qu'elle permet de spécifier des contraintes au cours du temps. Il est par exemple souhaitable dans certaines applications que le champ soit nul aux voisinages des bords de l'intervalle de contrôle. Cette contrainte pourra être prise en compte en choisissant $\alpha$ suffisamment grand sur les bords de $[0, T ]$. Nous présentons quelques intérêts pratiques d’une telle propriété au chapitre 3. L'ensemble $U$ des contrôles admissibles, sur lequel est réalisé l'optimisation, est a priori $L^2 ([0, T ], \R)$. Comme nous le verrons aux chapitres 2 et 5, les algorithmes développés dans cette thèse conduisent en fait plus particulièrement à des contrôles bornés sur $[0, T]$.
+
+\begin{remark}
+
+Les opérateurs, tels que $O$, associés à des observables sont toujours supposés bornés sur $L^2 ([0, T ], \R)$ dans cette thèse. Sans perte de généralité, il est de plus possible de les considérer comme définis positifs. Par exemple, en notant $\lVert O \rVert_*$ la norme de l'opérateur $O$, l’opérateur $\tilde{O} = O + 2\lVert O \rVert_* Id$ est défini positif. Le remplacement de O par $\tilde{O}$ n’entraîne qu'un décalage de $ 2 \lVert O \rVert_*$ de la valeur de la fonctionnelle, puisqu'une fonction d'onde est toujours de norme égale à $1$ dans $L^2 (\Omega)$. Les maxima de $J$ ne sont donc pas affectés par cette modification sur $O$.
+
+\end{remark}
+
+D’un point de vue algébrique, le multiplicateur de Lagrange est le même que celui introduit au paragraphe 1.5.2, à un facteur $\frac{1}{2} $ près. Ce choix est effectué pour des raisons pratiques puisque des simplifications sont alors possibles grâce à la présence de termes quadratiques dans les fonctionnelles $J_1$ et $J_2$ définies par les équations (1.14) et (1.15). Les équations d'Euler-Lagrange sont alors données pour $J_1$ par :
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \psi (x,t) = H - \varepsilon(t)\mu(x)\psi(x,t)\\
+\psi(x,t=0)=\psi_0(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \chi (x,t) = H - \varepsilon(t)\mu(x)\chi(x,t)\\
+\chi(x,t=T)=O\psi(x,T)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\end{equation}
+
+et pour $J_2$ par:
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \psi (x,t) = H - \varepsilon(t)\mu(x)\psi(x,t)\\
+\psi(x,t=0)=\psi_0(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \chi (x,t) = H - \varepsilon(t)\mu(x)\chi(x,t)\\
+\chi(x,t=T)=\psi_{cible}(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\end{equation}
+
+Notons de plus que dans ces deux fonctionnelles, seule la valeur au temps T des fonctions d’onde est prise en compte. Les résultats exposés dans ce mémoire peuvent s'appliquer cependant dans certains cas à des fonctionnelles comportant des termes de la forme :
+
+\begin{equation}
+\int_0^T \langle \psi(t)|O'(t)|\psi(t)\rangle + \lambda \Re\langle \psi_{ref}(t)|\psi(t)\rangle dt
+\end{equation}
+
+où $O'(t)$ et $\psi_{ref}(t)$ représentent respectivement une observable et une fonction d'onde dépendant du temps. Signalons enfin que l'existence de maxima de $J_1$ et de $J_2$ et de fonctionnelles plus générales a été montrée dans [30] et [31].
+
+\section{Schémas monotones}
+Supposons $\varepsilon_k$ connu et voyons comment déterminer $\tilde{\varepsilon}^k$ et $\varepsilon^{k+1}$ , les champs permettant le calcul des propagations respectives de $\chi^k$ et $\psi^{k+1}$ . Les formules des accroissements (1.11), (1.12) donnent dans les cas des fonctionnelles $J_1$ et $J_2$ :
+
+\begin{equation}
+\begin{split}
+J_1(\varepsilon^{k+1} - J_1(\varepsilon^k) = \int_0^T (\tilde{\varepsilon}^k(t) - \varepsilon^{k+1}(t))(2\Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle + \alpha(t)(\tilde{\varepsilon}^k(t) + \varepsilon^{k+1}(t)))dt \\
++ \int_0^T(\varepsilon^k(t) - \tilde{\varepsilon}^k(t))(2\Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle + \alpha(t)(\varepsilon^k(t) + \tilde{\varepsilon}^k(t)))dt \quad\\
++ \langle \delta \psi^{k+1,k}(T)|O|\delta\psi^{k+1,k}(T)\rangle dt \phantom{111111111111111111111111111111}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+J_2(\varepsilon^{k+1} - J_2(\varepsilon^k) = \int_0^T (\tilde{\varepsilon}^k(t) - \varepsilon^{k+1}(t))(2\Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle + \alpha(t)(\tilde{\varepsilon}^k(t) + \varepsilon^{k+1}(t)))dt \\
++ \int_0^T(\varepsilon^k(t) - \tilde{\varepsilon}^k(t))(2\Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle + \alpha(t)(\varepsilon^k(t) + \tilde{\varepsilon}^k(t)))dt \quad
+\end{split}
+\end{equation}
+
+Notons $I_k$ la partie intégrale commune à ces deux formules.
+
+\begin{equation}
+\begin{split}
+I_k = \int_0^T (\tilde{\varepsilon}^k(t) - \varepsilon^{k+1}(t))(2\Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle + \alpha(t)(\tilde{\varepsilon}^k(t) + \tilde{\varepsilon}^{k+1}(t)))dt \\
++ \int_0^T(\varepsilon^k(t) - \tilde{\varepsilon}^k(t))(2\Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle + \alpha(t)(\varepsilon^k(t) + \tilde{\varepsilon}^k(t)))dt \quad
+\end{split}
+\end{equation}
+
+Des conditions suffisantes pour assurer la monotonie de la suite $(J(\varepsilon^k))_{k \in \N}$ sont alors données par le critère $(C)$ suivant :
+
+\begin{equation*}
+\forall t \in [0,T],\ 
+\begin{cases}
+\quad(\varepsilon^k(t) - \tilde{\varepsilon}^k(t))(2\Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle + \alpha(t)(\varepsilon^k(t) + \tilde{\varepsilon}^k(t))) \quad \quad \quad \geq 0\\
+\phantom{11111111111111111111111111111111111111111111111111111111}\quad \quad \quad(C) \\
+(\tilde{\varepsilon}^k(t) - \varepsilon^{k+1}(t))(2\Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle + \alpha(t)(\tilde{\varepsilon}^k(t) + \varepsilon^{k+1}(t))) \quad \geq 0
+\end{cases}
+\end{equation*}
+
+Nous passons en revue dans les sections suivantes différentes approches permettant d’assurer la vérification du critère $(C)$.
+
+\paragraph*{Monotonie imposée par une condition algébrique}
+$ $\\
+Remarquons que $I_k$ peut être écrit sous la forme suivante :
+
+\begin{align}
+I_k & = \int_0^T \alpha(t)\left[ \left(\varepsilon^{k+1}(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle \right)^2 - \left(\tilde{\varepsilon}^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle \right)^2 \right] dt \\
+& \quad \quad \quad + \int_0^T \alpha(t)\left[ \left(\tilde{\varepsilon}^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle \right)^2 - \left(\varepsilon^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle
+ \right)^2 \right] dt
+\end{align}
+
+Cette expression permet de formuler une condition algébrique ([32]) assurant la positivité de l'accroissement. La détermination de $\tilde{\epsilon}^k$ est effectuée à partir de $ \epsilon^k$ sous le critère imposé par le terme (1.19) :
+
+$$\forall t \in [0,T],\ \left|\tilde{\varepsilon}^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle\right|\leq \left|\varepsilon^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle\right| $$
+
+tandis que $\varepsilon^{k+1}$ est déterminé à partir de $\tilde{\varepsilon}^k$ sous le critère imposé par le terme (1.18) :
+
+$$\forall t \in [0,T],\ \left|\varepsilon^{k+1}(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle\right|\leq \left|\varepsilon^k(t) + \frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle\right| $$
+
+La figure 1.2 illustre le critère issu de (1.19). L'avantage de cette formulation est qu'elle laisse une liberté de choix relative sur les caractéristiques des champs obtenus. Le champ peut par exemple être astreint à être borné ou encore à prendre ses valeurs dans un ensemble discret. Définissons par exemple les fonctions $sign^+$ et $sat_M$ par :
+
+\begin{equation}
+sign^+(x) = \begin{cases}
+-1 \quad,\ x< 0\\
+\quad 1 \quad,\ x \geq 0
+\end{cases}
+\end{equation}
+
+\begin{equation}
+sat_M(x) = \begin{cases}
+-M \quad,\ x\geq -M\\
+\quad x\quad,\ -M\geq x \geq M\\
+\quad M \quad,\ x\geq M 
+\end{cases}
+\end{equation}
+
+\noindent et posons alors:
+\begin{equation}
+\begin{cases}
+\tilde{\varepsilon}^k(t) = Msign^+ \left(-\frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle\right)\\
+\varepsilon^{k+1}(t) = Msign^+ \left(-\frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle\right)
+\end{cases}
+\end{equation}
+
+\noindent qui assure que les champs obtenus ne prennent comme valeurs que $M$ et $-M$ , ou bien
+
+\begin{equation}
+\begin{cases}
+\tilde{\varepsilon}^k(t) = sat_M \left(-\frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle\right)\\
+\varepsilon^{k+1}(t) = sat_M \left(-\frac{1}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle\right)
+\end{cases}
+\end{equation}
+
+qui contraint les champs à prendre leurs valeurs dans l'intervalle $[-M, M ]$. Les définitions (1.20) et (1.21) conduisent à des schémas monotones.
+\\Cette approche se prête particulièrement bien à un couplage avec la méthode du \textit{toolkit} [13] présentée au paragraphe 1.3.3 qui suggère de discrétiser les valeurs du champ pour calculer rapidement les propagations. Les différents schémas présentés dans ce paragraphe donnent en effet lieu à des champs bornés par des constantes arbitraires, voire à des champs prenant un nombre fini de valeurs.
+
+\paragraph*{Schémas monotones à deux paramètres}
+$ $\\Dans un article récent [29], Y. Maday et G. Turinici montrent comment assurer la positivité des deux accroissements précédents. L’algorithme proposé prescrit les formules suivantes pour calculer$\tilde{\varepsilon}^k$ et $\varepsilon^{k+1}$ :
+
+\begin{equation}
+\begin{split}
+\tilde{\varepsilon}^k(t) = (1-\eta)\varepsilon^k(t)-\frac{\eta}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^k(t)\rangle\quad \\
+\varepsilon^{k+1}(t) = (1-\delta)\tilde{\varepsilon}^k(t) -\frac{\delta}{\alpha(t)} \Im\langle \chi^k(t)|\mu|\psi^{k+1}(t)\rangle
+\end{split}
+\end{equation}
+
+où $\delta$ et $\eta$ peuvent être arbitrairement choisis dans $[0, 2]$. En reportant ces deux définitions dans les accroissements (1.16) et (1.17), ceux-ci s’écrivent alors sous la forme :
+\begin{align*}
+J_1(\varepsilon^{k+1})-J_1(\epsilon^k) &= \langle \psi^{k+1}(T) - \psi^k(T)|O|\psi^{k+1}(T) - \psi^k(T)\rangle\\
+\quad & + \int_0^T \alpha(t)(\frac{2}{\delta} - 1)(\varepsilon^{k+1}(t) - \tilde{\varepsilon}^k(t))^2dt\\
+ \quad & + \int_0^T \alpha(t)(\frac{2}{\eta} - 1)(\tilde{\varepsilon}^k(t) - \tilde{\varepsilon}^k(t))^2dt
+\end{align*}
+
+\begin{align*}
+J_2(\varepsilon^{k+1})-J_2(\epsilon^k) &=  \int_0^T \alpha(t)(\frac{2}{\delta} - 1)(\varepsilon^{k+1}(t) - \tilde{\varepsilon}^k(t))^2dt\\
+ \quad & + \int_0^T \alpha(t)(\frac{2}{\eta} - 1)(\tilde{\varepsilon}^k(t) - \tilde{\varepsilon}^k(t))^2dt
+\end{align*}
+
+Cette formule est valable dans les cas où $\delta$ et $\eta$ ne sont pas nuls. Dans le cas contraire, un calcul analogue montre que la différence reste positive. Une formulation plus générale montre que ce calcul reste valable lorsque les coefficients $\delta$ et $\varepsilon$ dépendent du temps.
+L'accroissement obtenu est alors positif ou nul. La monotonie est donc assurée, dès lors que les assignations (1.22) sont effectuées.
+\\Signalons enfin que le schéma de Krotov (présenté par Tannor dans [27]) correspond au cas où $(\delta,\eta)= (1, 0)$ tandis que celui de Zhu et Rabitz [28] correspond au cas où $(\delta,\eta)= (1, 1)$.
+

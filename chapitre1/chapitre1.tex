@@ -172,7 +172,31 @@ i \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\p
 \section{Discrétisation temporelle}
 Choisissons deux paramètres de discrétisation temporelle $N$ et $\Delta T$ tel que $N \Delta T = T$ et notons $\psi_j$ l'approximation de $\psi(j\Delta T)$, $0 \leq j \leq N$.
 \subsection{Méthode du splitting d’opérateur}
-La méthode du splitting d’opérateur encore appellee est une méthode numérique permettant de résoudre des équations différentielles décomposables en somme d'opérateurs différentiels.
+Pour (L2), le calcul se fait de la meme maniere et donne le meme resultat.\\\\
+On appelle \textbf{splitting de Lie} ou méthode de pas fractionnaires les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
+Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes d’evolution.
+\begin{definition}
+	semi groupe Khalil
+\end{definition}
+\subsubsection{Splittings de Strang}
+L’application qui a $x_0$ associe $x(t)$par le flot de l’EDO est le semi-groupe que nous noterons $S(t)$
+\begin{equation}
+x(t)=S(t)x_0=exp((a+b)t)x_0
+\end{equation}
+On note $A(t)$ et $B(t)$ les semi-groupes associes aux deux parties de l’equation, a savoir
+$$
+A(t)x_0=exp(at)x_0, \quad \quad B(t)x_0=exp(bt)x_0
+$$
+Les deux splittings de Lie (L1) et (L2) consistent donc a ecrire
+$$
+\mbox{(L1) } x(t)=A(t)B(t)x_0, \quad \quad \mbox{(L2) } x(t)=B(t)A(t)x_0
+$$
+On definit sans effort deux nouveaux types de splitting : les \textbf{splittings de Strang} \cite{Strang}
+$$
+\mbox{(S1) } x(t)=A(\dfrac{t}{2})B(t)A(\dfrac{t}{2})x_0, \quad \quad \mbox{(S2) } x(t)=B(\dfrac{t}{2})A(t)B(\dfrac{t}{2})x_0
+$$
+Les methodes de Lie et de Strang sont respectivement d’ordre 1 et 2.
+\subsubsection{Splitting de Strang pour l'équation de Schrödinger}
 \begin{pro}
 	Cette méthode est qu’elle conserve la norme $L^2$ de la fonction d’onde $\psi$ au cours du temps.
 \end{pro}
