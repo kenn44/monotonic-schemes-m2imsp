@@ -205,7 +205,32 @@ Pour (L2), le calcul se fait de la meme maniere et donne le meme resultat.\\\\
 On appelle \textbf{splitting de Lie} ou methode a pas fractionnaire les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
 Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes.
 \begin{definition}
-	semi groupe Khalil
+Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs lineaires bornes de $X$ dans $X$ est un semi-groupe (fortement) continu d'opérateurs linéaires bornés si
+\begin{enumerate}
+	\item[(i)] $T(0)=id_X$;
+	\item[(ii)] $T(t+s)=T(t)T(s), \: \forall t, s \geq 0$;
+	\item[(iii)] $\forall x \in X, \:\: \R \ni t \mapsto T(t)x \in X$ est continue en $0$.  
+\end{enumerate}
+\end{definition}
+\begin{remark}
+	Un semi-groupe d'operateurs lineaires bornes $(T(t))_{t\geq 0}$, est uniformement continue si
+	$$
+	\lim_{t \rightarrow 0} ||T(t)-I||=0
+	$$
+\end{remark}
+Un semi-groupe (fortement) continu d'opérateurs linéaires bornés sur $X$ sera appele semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
+
+Si seulement (i) et (ii) sont satisfaits, on dit que la famille $(T(t))_{t\geq 0}$ est un semi-groupe.
+\begin{definition}
+	L'operateur lineaire $A$ defini par
+	\begin{equation}
+	D(A)= \left \{ x \in X : \lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \mbox{ existe} \right \}
+	\end{equation}
+	et
+	\begin{equation}
+	Ax=\lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \quad \mbox{pour } x \in D(A)
+	\end{equation}
+	est le generateur infinitesimal du semi-groupe $(T(t))_{t\geq 0}$; $D(A)$ est le domaine de $A$
 \end{definition}
 \subsubsection{Splittings de Strang}
 L’application qui a $x_0$ associe $x(t)$par le flot de l’EDO est le semi-groupe que nous noterons $S(t)$
