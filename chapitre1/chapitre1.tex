@@ -172,9 +172,38 @@ i \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\p
 \section{Discrétisation temporelle}
 Choisissons deux paramètres de discrétisation temporelle $N$ et $\Delta T$ tel que $N \Delta T = T$ et notons $\psi_j$ l'approximation de $\psi(j\Delta T)$, $0 \leq j \leq N$.
 \subsection{Méthode du splitting d’opérateur}
+Considerons l’equation differentielle ordinaire scalaire
+\begin{equation} \label{edo1}
+\dot{x}=(a+b)x, \quad \quad x(0)=x_0
+\end{equation}
+ou $a$ et $b$ sont des scalaires. On connaıt la solution exacte de cette equation :
+\begin{align*}
+x(t)=exp((a+b)t)x_0 &= exp(at)exp(bt)x_0 \quad \mbox{(methode 1)}\\
+&= exp(bt)exp(at)x_0 \quad \mbox{(methode 2)}
+\end{align*}
+Nous pouvons ainsi separer l'evolution selon \eqref{edo1} en deux temps :
+$$\mbox{(L1)}
+\begin{cases}
+\dot{y}=by,\quad y(0)=x_0\\
+\dot{x}=ax,\quad x(0)=y(t)
+\end{cases}
+$$
+$$\mbox{(L2)}
+\begin{cases}
+\dot{y}=ay,\quad y(0)=x_0\\
+\dot{x}=bx,\quad x(0)=y(t)
+\end{cases}
+$$
+Pour le systeme (L1), on a clairement
+\begin{align*}
+x(t) &= exp(at)x_0\\
+&= exp(at)y(t)\\
+&= exp(at)exp(bt)y(0)\\
+&= exp(at)exp(bt)x_0
+\end{align*}
 Pour (L2), le calcul se fait de la meme maniere et donne le meme resultat.\\\\
-On appelle \textbf{splitting de Lie} ou méthode de pas fractionnaires les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
-Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes d’evolution.
+On appelle \textbf{splitting de Lie} ou methode a pas fractionnaire les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
+Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes.
 \begin{definition}
 	semi groupe Khalil
 \end{definition}
@@ -197,8 +226,20 @@ $$
 $$
 Les methodes de Lie et de Strang sont respectivement d’ordre 1 et 2.
 \subsubsection{Splitting de Strang pour l'équation de Schrödinger}
+Afin de presenter le schema de splitting, on considere un probleme d'evolution general. Soit $A$ et $B$, deux operateurs auto-adjoints, tels que : $D(A) \subset \mathcal{H}$, $D(B) \subset \mathcal{H}$ et $A+B$ est un operateur auto-adjoint sur $D(A) \cap D(B)$. On note ici $D(A)$ et $D(B)$ les domaines respectifs des operateurs $A$ et $B$. Considerons le probleme d'evolution
+\begin{equation}
+\begin{cases}
+i \partial_t \psi (x,t) &= A\psi (x,t)+B\psi (x,t), \quad x \in \Omega, t>0 \\
+\psi (x,t=0) &= \psi_0(x) \in \mathcal{H}
+\end{cases}
+\end{equation}
+et notons $\psi(x,t)=e^{-i(A+B)t}\psi_0(x)$ sa solution pour $t>0$, et $x\in \Omega$. Le schema de splitting consiste a approcher la solution $\psi$ du probleme d'evolution via une approximation de l'operateur $e^{-i(A+B)t}$ a travers les operateurs $e^{-iA}$ et $e^{-iA}$. Ceci permet alors d'avoir a resoudre successivement deux equations plus simples. 
+\\Ici, $A=H_0$ et $B=V(x)-\mu(x)\varepsilon(t)$ est la partie potentielle. On obtient l'approximation
+\begin{equation}
+\psi(x,t+\Delta T) \approx e^{-iH_0 \frac{\Delta T}{2}}e^{-i(V(x)-\mu\varepsilon)\Delta T}e^{-iH_0 \frac{\Delta T}{2}} \psi(x,t)
+\end{equation}
 \begin{pro}
-	Cette méthode est qu’elle conserve la norme $L^2$ de la fonction d’onde $\psi$ au cours du temps.
+	Cette méthode conserve la norme $L^2$ de la fonction d’onde $\psi$ au cours du temps.
 \end{pro}
 \begin{ proof }
 	Les opérateurs exponentiés étant anti-hermitiens, leurs exponentielles sont en effet unitaires.
@@ -206,5 +247,8 @@ Les methodes de Lie et de Strang sont respectivement d’ordre 1 et 2.
 Cette propriété importante \eqref{normecons} est donc conservée après discrétisation.\\
 D’autres méthodes de résolution approchée peuvent être envisagées : schémas d’Euler, Runge-Kutta... Le problème posé par ces schémas est qu’ils ne conservent pas la norme de la solution en général.
 \subsection{Schéma de Cranck-Nicholson}
-Une exception existe avec le schéma implicite de Cranck-Nicholson défini dans notre cas de la manière suivante :
+Une exception existe avec le schéma implicite de Cranck-Nicholson défini dans notre cas par :
+\begin{equation}
+i\dfrac{\psi_{j+1}-\psi_j}{\Delta T}=(H_0-\mu\varepsilon_j)\dfrac{\psi_{j+1}+\psi_j}{2}
+\end{equation}
 En tant que schéma implicite, son inconvénient majeur est d’être coûteux.
