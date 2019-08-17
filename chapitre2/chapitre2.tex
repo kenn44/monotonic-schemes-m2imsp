@@ -2,7 +2,7 @@
 
 \section{Introduction}
 
-Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au paragraphe 1.2.5, l’évolution d’un tel système est régie par l’équation:
+Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au \eqref{schcon2}, l’évolution d’un tel système est régie par l’équation:
 
 \begin{equation}
 \begin{cases}
@@ -14,8 +14,8 @@ i \frac{\partial}{\partial t} \psi (x,t) = H\psi(x,t) - \mu(x)\varepsilon(t)\psi
 Le moment dipolaire $\mu$ est supposé connu et indépendant du temps.
 
 \section{Fonctionnelles de coût}
-Soit $\alpha : [0, T ] \longrightarrow \R^+$ une fonction bornée, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega × [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
-\\Les fonctionnelles de coût rencontrées dans cette thèse peuvent se mettre sous l’une des deux formes suivantes :
+Soit $\alpha : [0, T ] \longrightarrow \R^+$ une fonction bornée, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega \times [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
+\\Nous considerons deux fonctionnelles de coût:
 
 \begin{equation}
 J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
@@ -25,10 +25,9 @@ J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \int_0^T \alpha(t)\vareps
 J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
 \end{equation}
 
-L’optimisation de $J_1$ permet de réaliser un compromis entre la recherche d'une grande valeur de l’observable et une norme $L_2$ du champ $\varepsilon$ raisonnable. Bien que ne relevant pas du formalisme attaché aux observables, la fonctionnelle $J_2$ est parfois utilisée par les chimistes. Le terme $\psi_{cible}$ représente une fonction d’onde cible. Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est en effet atteint pour $\psi(T) = \psi_{cible}$ puisque $\lVert \psi_{cible} \rVert = 1$ et que $2\Re\langle \psi_{cible}|\psi(T)\rangle = -\lVert \psi_{cible} - \psi(T)\rVert ^2+2$.
-
-$ $
-\\Le bénéfice apporté par la dépendance en temps de $\alpha$ est qu'elle permet de spécifier des contraintes au cours du temps. Il est par exemple souhaitable dans certaines applications que le champ soit nul aux voisinages des bords de l'intervalle de contrôle. Cette contrainte pourra être prise en compte en choisissant $\alpha$ suffisamment grand sur les bords de $[0, T ]$. Nous présentons quelques intérêts pratiques d’une telle propriété au chapitre 3. L'ensemble $U$ des contrôles admissibles, sur lequel est réalisé l'optimisation, est a priori $L^2 ([0, T ], \R)$. Comme nous le verrons aux chapitres 2 et 5, les algorithmes développés dans cette thèse conduisent en fait plus particulièrement à des contrôles bornés sur $[0, T]$.
+$\psi_{cible}$ représente une fonction d’onde cible. $J_1$ releve du formalisme attaché aux observables tandis que $J_2$ est plus simple a manipuler.
+%Les deux permettent de réaliser un compromis entre la recherche d'une grande valeur de l’observable et une norme $L_2$ du champ $\varepsilon$ raisonnable.
+Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est bien atteint pour $\psi(T) = \psi_{cible}$ puisque $\lVert \psi_{cible} \rVert = 1$ et que $2\Re\langle \psi_{cible}|\psi(T)\rangle = -\lVert \psi_{cible} - \psi(T)\rVert ^2+2$.
 
 \begin{remark}
 
