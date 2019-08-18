@@ -100,13 +100,13 @@ Considerons le cas d'une particule libre ($V=0$) et menons notre étude sur $\R^
 \begin{equation} \label{chauchy2}
 u'(t)=Au(t)
 \end{equation}
-où $A$ est un operateur sur $E=L^2(R^m)$ defini par 
+où $A$ est un opérateur sur $E=L^2(R^m)$ defini par 
 $$
 Au=ik\Delta u=ik(\partial_{1}^2u+...+\partial_{m}^2u)
 $$
-$k$ une constante reelle. Le domaine de $A$ est l'ensemble des $u \in L^2(R^m)$ tel que $\Delta u$ (au sens des distributions) appartient a $L^2$.
+$k$ une constante réelle. Le domaine de $A$ est l'ensemble des $u \in L^2(R^m)$ tel que $\Delta u$ (au sens des distributions) appartient à $L^2$.
 \begin{definition}
-	On dit que le probleme de Cauchy pour l'equation \eqref{chauchy2} est bien pose si les deux hypotheses suivantes sont satisfaites:
+	On dit que le problème de Cauchy pour l'équation \eqref{chauchy2} est bien posé si les deux hypotheses suivantes sont satisfaites:
 	\begin{enumerate}
 		\item[(a)] \textbf{Existance et unicite de solutions}: Il existe un sous espace dense $D$ de $E$ tel que, pour tout $u_0 \in D$, il existe une unique solution $u(.)$ de \eqref{chauchy2} avec $u(0)=u_0$
 		\item[(b)] \textbf{La solution dépend de façon continue des données} Il existe une fonction non décroissante, non négative $C(t)$ tel que
@@ -115,7 +115,7 @@ $k$ une constante reelle. Le domaine de $A$ est l'ensemble des $u \in L^2(R^m)$ 
 		$$
 	\end{enumerate}
 \end{definition}
-En appliquant la transformee de Fourier a \eqref{chauchy2}, nous obtenons
+En appliquant la transformée de Fourier a \eqref{chauchy2}, nous obtenons
 \begin{align*} 
 \mathcal{F}[Au](\xi) &= \mathcal{F}[ik\Delta u](\xi) \\ 
 &= ik\mathcal{F}[\Delta u](\xi) \\
@@ -133,7 +133,7 @@ Ensuite, observons que si $u \in D(A)$, alors
 &= ik\int|\xi|^2 |\tilde{u}|^2
 \end{align*}
 Ainsi, $\Re (Au,u)=0$\\
-Par consequent, si $u(.)$ est une solution de \eqref{chauchy2}, nous avons:
+Par conséquent, si $u(.)$ est une solution de \eqref{chauchy2}, nous avons:
 \begin{align*}
 \partial_{t}||u(t)||^2 &= 2 \Re (u'(t),u(t))\\
 &= 2 (Au(t),u(t))\\
@@ -143,7 +143,7 @@ Ainsi, $||u(t)||$ est constante:
 \begin{equation} \label{normecons}
 ||u(t)||=||u(0)|| \quad \forall t \in \R
 \end{equation}
-En conclusion, le probleme de Cauchy pour \eqref{chauchy2} est bien pose pour tout $t$.\\
+En conclusion, le problème de Cauchy pour \eqref{chauchy2} est bien posé pour tout $t$.\\
 En outre, \cite{Fattorini} generalise ce resultat sur $E=L^p (\R^m)$ avec $1 \leq p < m$.
 
 \section{Controle quantique}
@@ -151,10 +151,10 @@ On rappelle que l'état $\psi(t)$ d'un systeme quantique evolue conformement a l
 \begin{equation}
 i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t),\quad \quad \psi(t=0)=\psi_0
 \end{equation}
-ou $H$ est un endomorphisme auto-adjoint sur $\mathcal{H}$ appelé Hamiltonien interne du systeme. $\hbar$ est la constante de Planck. Dans la suite, nous travaillons en unités atomiques, c'est-a-dire $\hbar=1$ et l'etat initial a une norme unitaire, $||\psi_0||^2 \equiv \langle \psi_0|\psi_0 \rangle =1$.
+ou $H$ est un endomorphisme auto-adjoint sur $\mathcal{H}$ appelé Hamiltonien interne du système. $\hbar$ est la constante de Planck. Dans la suite, nous travaillons en unités atomiques, c'est-a-dire $\hbar=1$ et l'état initial a une norme unitaire, $||\psi_0||^2 \equiv \langle \psi_0|\psi_0 \rangle =1$.
 \subsection{Exemple de modele bilineaire (BLM)}
-Pour simplifier, nous considerons un systeme quantique de dimension finie. C'est une approximation appropriee dans de nombreuses situations pratiques. Pour un systeme quantique de dimension $N$, $\mathcal{H}$ est un espace de Hilbert complexe de dimension $N$. Les valeurs propres $(\phi_{i})_{1 \leq i \leq N}$ de $H$ forment une base orthogonale de $\mathcal{H}$.\\
-Dans de nombreuses situations, le controle du systeme peut-etre realise par un ensemble de fonctions de controle $\varepsilon_{k}(t) \in \R$ couplees au systeme via une famille d'operateurs hermitions independants du temps $\{H_k, k=1,2,...\}$. L'Hamiltonien total $H+\sum_{k} \varepsilon_{k}(t)H_k$ determine alors la nouvelle dynamique du systeme.
+Pour simplifier, nous considerons un systeme quantique de dimension finie. C'est une approximation appropriée dans de nombreuses situations pratiques. Pour un systeme quantique de dimension $N$, $\mathcal{H}$ est un espace de Hilbert complexe de dimension $N$. Les valeurs propres $(\phi_{i})_{1 \leq i \leq N}$ de $H$ forment une base orthogonale de $\mathcal{H}$.\\
+Dans de nombreuses situations, le controle du systeme peut-etre realise par un ensemble de fonctions de contrôle $\varepsilon_{k}(t) \in \R$ couplées au systeme via une famille d'opérateurs hermitions indépendants du temps $\{H_k, k=1,2,...\}$. L'Hamiltonien total $H+\sum_{k} \varepsilon_{k}(t)H_k$ détermine alors la nouvelle dynamique du systeme.
 \begin{equation} \label{schcon}
 i \dfrac{\partial }{\partial t} \psi (x,t) = (H+\sum_{k} \varepsilon_{k}(t)H_k)\psi (x,t)
 \end{equation}
@@ -205,7 +205,7 @@ Pour (L2), le calcul se fait de la meme maniere et donne le meme resultat.\\\\
 On appelle \textbf{splitting de Lie} ou methode a pas fractionnaire les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
 Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes.
 \begin{definition}
-Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs lineaires bornes de $X$ dans $X$ est un semi-groupe (fortement) continu d'opérateurs linéaires bornés si
+Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs lineaires bornes de $X$ dans $X$ est un semi-groupe fortement continu d'opérateurs linéaires bornés si
 \begin{enumerate}
 	\item[(i)] $T(0)=id_X$;
 	\item[(ii)] $T(t+s)=T(t)T(s), \: \forall t, s \geq 0$;
@@ -218,7 +218,7 @@ Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs linea
 	\lim_{t \rightarrow 0} ||T(t)-I||=0
 	$$
 \end{remark}
-Un semi-groupe (fortement) continu d'opérateurs linéaires bornés sur $X$ sera appele semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
+Un semi-groupe fortement continu d'opérateurs linéaires bornés sur $X$ sera appele semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
 
 Si seulement (i) et (ii) sont satisfaits, on dit que la famille $(T(t))_{t\geq 0}$ est un semi-groupe.
 \begin{definition}

@@ -1,3 +1,504 @@
-\chapter{Chap3}
+\chapter{Schémas monotones discrets}
 
-\section{Sec 3.1}
+Appliquons les calculs précédents aux problèmes de contrôle quantique présentés à la section 1.6 du chapitre 1. Les fonctionnelles à considérer dans ce cadre sont :
+
+\begin{equation}
+J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+\end{equation}
+
+\begin{equation}
+J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+\end{equation}
+
+Rappelons que l'opérateur $O$ est défini positif et que $\psi_{cible}$ représente une fonction de $L_2(\Omega,\C)$ de norme $1$, où $\Omega$ est l'espace des configurations. Rappelons également que les équations d'Euler-Lagrange associées à ces fonctionnelles sont dans le cas de $J_1$ :
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \psi (x,t) = (H - \varepsilon(t)\mu(x))\psi(x,t)\\
+\psi(x,t=0)=\psi_0(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \chi (x,t) = (H - \varepsilon(t)\mu(x))\chi(x,t)\\
+\chi(x,t=T)=O\psi(x,T)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\end{equation}
+
+et dans le cas de $J_2$ par:
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \psi (x,t) = (H - \varepsilon(t)\mu(x))\psi(x,t)\\
+\psi(x,t=0)=\psi_0(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+i \frac{\partial}{\partial t} \chi (x,t) = (H - \varepsilon(t)\mu(x))\chi(x,t)\\
+\chi(x,t=T)=\psi_{cible}(x)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\end{equation}
+
+où:
+\begin{itemize}
+	\item $\psi(x, t)$ est la fonction d'onde du système contrôlé,
+	\item H est l'Hamiltonien interne associé au système,
+	\item $\mu(x)$ est le moment dipolaire, caractéristique lui aussi du système traité. L'opérateur $\mu$ est donc une fonction de $L^2(\Omega, \R)$ que nous identifions avec l'opérateur associé : $\psi \mapsto \mu\psi$,
+	\item $\varepsilon(t)$ est le terme de contrôle, soit, dans les cas qui nous intéressent, un champ
+	électrique.
+\end{itemize}
+
+Sans perdre beaucoup de généralité au regard des différentes applications traitées par le contrôle quantique, supposons que l’Hamiltonien s'écrit sous la forme usuelle :
+$$ H = H_0+V(x)$$
+
+où $H_0$ est l'opérateur $-\Delta$, opposé du Laplacien et $V(x)$ est le potentiel électrostatique interne. Nous présentons plus précisément différents modèles et les paramètres qui leurs sont associés au chapitre 3.
+
+
+De même qu'à la section 2.3, notons $(\psi_j)_{j = 0\cdots N}, (\chi_j)_{j = 0\cdots N}, (\varepsilon_j)_{j = 0\cdots N-1}, (\tilde{\varepsilon}_j)_{j = 0\cdots N-1}$ et $(\alpha_j)_{j = 0\cdots N-1},$ les différentes grandeurs discrétisées à un pas de temps $\Delta T$ . Les discrétisations des deux fonctionnelles conduisent à l'introduction de :
+
+\begin{equation}
+J_{\Delta T,1}(\varepsilon) = \langle \psi(T)|O|\psi(T)\rangle - \Delta T \sum_{j=0}^{N -1} \alpha_j\varepsilon_j^2
+\end{equation}
+
+\begin{equation}
+J_{\Delta T,2}(\varepsilon) = 2\Re \langle \psi_{cible}|\psi(T)\rangle - \Delta T \sum_{j=0}^{N -1} \alpha_j\varepsilon_j^2
+\end{equation}
+
+Les propagations sont effectuées suivant les formules de splitting d'opérateur présentées au chapitre 1 :
+
+\begin{equation}
+\chi_j(x) = e^{iH_0\frac{\Delta T}{2}} e^{i(V(x)-\mu(x)\tilde{\varepsilon}_j)\Delta T} e^{iH_0\frac{\Delta T}{2}} \chi_{j+1}(x)
+\end{equation}
+
+avec la condition $\chi_N = O\psi_N$ dans le cas de $J_{\Delta T,1}$ et $\chi_N = \psi_{cible}$ dans le cas de $J_{\Delta T,2}$ et
+
+\begin{equation}
+\psi_{j+1}(x) = e^{-iH_0\frac{\Delta T}{2}} e^{-i(V(x)-\mu(x)\varepsilon_j)\Delta T} e^{-iH_0\frac{\Delta T}{2}} \psi_j(x)
+\end{equation}
+
+avec un état initial $\psi_0$ fixé.
+
+\section{Calcul de variation}
+
+Les résultats de la section 2.3 peuvent être appliqués aux deux fonctionnelles $J_{\Delta T,1}$ et $J_{\Delta T,2}$. Quelques précautions sont nécessaires puisque les formules de splitting (2.17) et (2.18) ne sont pas tout à fait les mêmes que (2.9) et (2.10) puisque les opérateurs rencontrés dans le cadre de l’équation Schrödinger ne commutent pas. Cette restriction n'est cependant pas contraignante et il suffit d'effectuer formellement les remplacements suivants :
+
+$$ e ^{A^*(\overline{u}^k_j)\Delta T} \longleftarrow  e^{iH_0\frac{\Delta T}{2}} e^{i(V(x)-\mu(x)\tilde{\varepsilon}_j^k)\Delta T} e^{iH_0\frac{\Delta T}{2}}$$
+
+$$ e ^{-A(u_j^{k+1})\Delta T} \longleftarrow  e^{-iH_0\frac{\Delta T}{2}} e^{-i(V(x)-\mu(x)\varepsilon_j^{k+1})\Delta T} e^{-iH_0\frac{\Delta T}{2}}$$
+
+dans les formules (2.14). De plus, comme au chapitre 1, l'adjoint des fonction d'un facteur 12 de l'adjoint des sections précédentes. Les correspondances suivantes s'appliquent :
+
+\begin{align*}
+\Re(Y^k_{j+1} &+ \Delta T \nabla f(X^k_{j+1})|e^{A(u^k_j)\Delta T} e^{-A(\overline{u}^k_j)\Delta T}-Id|X^k_{j+1}\rangle\\
+& = 2 \Re(\chi^k_{j+1}| e^{ -iH_0 \frac{\Delta T}{2}} e^{-i\mu (\varepsilon^k_j - \tilde{\varepsilon}^k_j)\Delta T} e^{ iH_0 \frac{\Delta T}{2}} -Id|\psi^k_{j+1}\rangle
+\end{align*}
+
+\begin{align*}
+\Re(Y^k_j |& e^{A(\overline{u}^k_j)\Delta T} e^{-A(u^{k+1}_j)\Delta T}-Id|X^{k+1}_j\rangle\\
+& = 2 \Re(\chi^k_j| e^{iH_0 \frac{\Delta T}{2}} e^{-i\mu (\tilde{\varepsilon}^k_j - \varepsilon^{k+1}_j)\Delta T} e^{ -iH_0 \frac{\Delta T}{2}} -Id|\psi^{k+1}_j\rangle
+\end{align*}
+
+Posons alors:
+
+\begin{equation}
+\hat{\psi^I_m} = e^{-iH_0 \frac{\Delta T}{2}} \psi^I_m, \check{\psi^I_m} = e^{iH_0 \frac{\Delta T}{2}} \psi^I_m,\hat{\chi^I_m} = e^{-iH_0 \frac{\Delta T}{2}} \chi^I_m, \check{\chi^I_m} = e^{iH_0 \frac{\Delta T}{2}} \chi^I_m
+\end{equation}
+
+pour finalement obtenir une version du lemme 2 adaptée au contrôle quantique :
+
+\begin{lemme}
+	Soit $(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ et $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$ deux suites de champs discrets vérifiant :
+	
+	\begin{align*}
+	\forall j,& \quad 0\leq j\leq N,\\
+	& 2\Re(\check{\chi}^k_{j+1}|e^{-i\mu(\varepsilon^k_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\check{\psi}^k_{j+1}\rangle - \alpha_j \Delta T ((\tilde{\varepsilon}^k_j)^2-(\varepsilon^k_j)^2) \geq 0,\quad (C_d)\\
+	& 2\Re(\hat{\chi}^k_j|e^{i\mu(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\hat{\psi}^{k+1}_j\rangle - \alpha_j \Delta T ((\varepsilon^{k+1}_j)^2-(\tilde{\varepsilon}^k_j)^2) \geq 0
+	\end{align*}
+	
+	où $(\check{\chi}_j^k)^{k\in\N}_{j = 0\cdots N}$ et $(\hat{\chi}_j^k)^{k\in\N}_{j = 0\cdots N}$ désignent les adjoints associés à $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$   par (2.19) et (2.17) et $(\hat{\psi}_j^k)^{k\in\N}_{j = 0\cdots N}$, $(\check{\psi}_j^k)^{k\in\N}_{j = 0\cdots N}$ désignent les états associés à $(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ par (2.19) et (2.18). Alors ces suites entraînent une convergence monotone des fonctionnelles $J_{\Delta T,1}$ et $J_{\Delta T,2}$  définies par (2.15) et (2.16), c’est-à-dire :
+	
+	$$ \forall n \in \{1,2\},\  \forall k \in \N, J_{n,\Delta T}(\varepsilon^{k+1}) - J_{n,\Delta T}(\varepsilon^k)\geq 0 $$
+	
+\end{lemme}
+
+Nous pouvons alors concevoir des schémas monotones discrets en suivant les idées présentées au chapitre 1. Nous traduisons en termes discrets dans les sections suivantes les schémas à deux paramètres et les schémas de monotonie imposée par une condition différentielle.
+
+\section{Schémas implicites}
+
+Dans cette section nous nous inspirons de l’approche proposée à la section 1.6.3 du chapitre 1.
+\\Pour se rapprocher du calcul continu, écrivons tout d’abord :
+
+$$ \Re(\check{\chi}^k_{j+1}|e^{-i\mu(\varepsilon^k_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\check{\psi}^k_{j+1}\rangle = (\varepsilon_j^k - \tilde{\varepsilon}_j^k) \Delta T \Im \langle  \check{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j-\tilde{\varepsilon}^k_j)|\check{\psi}^k_{j+1} \rangle$$
+
+et
+
+$$ \Re(\hat{\chi}^k_{j}|e^{-i\mu(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\hat{\psi}^{k+1}_j\rangle = (\varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k) \Delta T \Im \langle  \hat{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)|\hat{\psi}^{k+1}_{j} \rangle$$
+
+avec:
+\begin{equation}
+\mu^*\ :h \mapsto \frac{e^{-i\mu h \Delta T} -Id}{-ih\Delta T}
+\end{equation}
+
+qui appartient donc à $\cc(\R, L^2( \Omega, \R))$. Un résultat analogue à celui du chapitre 1 peut alors être énoncé.
+
+\begin{theorem}
+	
+	Soit $(\delta,\eta) \in [0,2]^2$. Supposons que les suites 
+	$(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ et $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$ vérifient:
+	
+	\begin{align}
+	&\forall j, \ \ 0\leq j\leq N, \forall k \in \N \\ \nonumber
+	&\tilde{\varepsilon}^k_j = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha_j} \Im \langle  \check{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j-\tilde{\varepsilon}^k_j)|\check{\psi}^k_{j+1} \rangle\\
+	&\varepsilon^{k+1}_j = (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha_j} \Im \langle  \hat{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)|\hat{\psi}^{k+1}_{j} \rangle \nonumber
+	\end{align}
+	
+	alors ces suites entraînent une convergence monotone des fonctionnelles $J_{\Delta T,1}$ et $J_{\Delta T,2}$ , dans le sens où :
+	
+	$$ \forall n \in \{1,2\},\  \forall k \in \N, J_{n,\Delta T}(\varepsilon^{k+1}) - J_{n,\Delta T}(\varepsilon^k)\geq 0 $$
+	
+\end{theorem}
+
+\begin{ proof }
+	Grâce aux formules (2.21), nous obtenons les égalités suivantes :
+	$$2\Re(\check{\chi}^k_{j+1}|e^{-i\mu(\varepsilon^k_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\check{\psi}^k_{j+1}\rangle - \alpha_j \Delta T ((\tilde{\varepsilon}^k_j)^2-(\varepsilon^k_j)^2) = \Delta T \alpha_j(\frac{2}{\eta}-1)(\tilde{\varepsilon}_j^k - \varepsilon^k_j)^2,$$
+	$$ 2\Re(\hat{\chi}^k_j|e^{i\mu(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\hat{\psi}^{k+1}_j\rangle - \alpha_j \Delta T ((\varepsilon^{k+1}_j)^2-(\tilde{\varepsilon}^k_j)^2)\Delta T \alpha_j(\frac{2}{\delta}-1)(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)^2$$
+	
+	Les inéquations $(C_d)$ sont donc vérifiées et le théorème est alors démontré d'après le lemme 3. De même que dans le cas continu, un calcul analogue au précédent prouve que le résultat reste valable dans le cas où $ \delta = 0$ ou $\eta = 0$.
+\end{ proof }
+
+\paragraph*{Algorithme}
+$ $\\Sur la base du théorème 2, nous pouvons alors proposer l'algorithme suivant, en conservant la notation $\mu^*$ définie en (2.20). Soit $(\delta, \eta) \in [0, 2]^2$.
+
+\begin{itemize}
+	
+	\item[•] Etant donné $ (\psi^k_j)_{j=0\cdots N}$ et $ (\check{\psi}^k_j)_{j=0\cdots N}$ et donc $\chi^k_N = O\psi^k_N$ ou $ \chi_N^k = \psi_{cible} $ selon que la
+	fonctionnelle considérée soit $J_{\Delta T,1}$ ou $J_{\Delta T,2}$, calculer récursivement $\chi_j^k$ à partir de $ \chi^k_{j+1} $ par les opérations suivantes :
+	
+	\begin{enumerate}
+		\item Calcul de $\check{\chi}_{j+1}$ par:
+		$$ \check{\chi}_{j+1} = e^{iH_0\frac{\Delta T}{2}} \chi^k_{j+1} $$
+		\item Calcul de $\tilde{\varepsilon_j^k}$ par résolution de:
+		\begin{equation}
+		\tilde{\varepsilon}_j^k = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha_j}\Im \langle  \check{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j-\tilde{\varepsilon}^k_j)|\check{\psi}^k_{j+1} \rangle
+		\end{equation}
+		\item Calcul et sauvegarde de $\hat{\chi}^k_j$ par:
+		$$ \hat{\chi}^k_j = e^{i(V-\mu \tilde{\varepsilon}^k_j)\Delta T} \check{\chi}_{j+1} $$
+		\item Calcul de $\varepsilon^k_j$ par:
+		$$ \chi^k_j = e^{iH_0\frac{\Delta T}{2}} \hat{\chi}_j^k  $$
+	\end{enumerate}
+	
+	\item[•] Calculer récursivement $ \psi^{k+1}_{j+1}$ à partir de $\psi_j^k$ par les deux calculs suivants :
+	
+	\begin{enumerate}
+		\item Calcul de $\hat{\psi}_j^{k+1}$ par:
+		$$ \hat{\psi}_j^{k+1} = e^{-iH_0\frac{\Delta T}{2}} \psi^k_j $$
+		\item Calcul de $\varepsilon_j^{k+1}$ par résolution de:
+		$$ \varepsilon_j^{k+1} = (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha_j}\Im \langle  \hat{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)|\hat{\psi}^{k+1}_{j} \rangle $$
+		\item Calcul et sauvegarde de $\check{\psi}^{k+1}_{j+1}$ par:
+		$$ \check{\psi}^{k+1}_{j+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \hat{\psi}_j^{k+1}  $$
+		\item Calcul de $\psi^k_{j+1}$ par:
+		$$ \psi^{k+1}_{j+1} = e^{-iH_0\frac{\Delta T}{2}} \check{\psi}^{k+1}_{j+1} $$
+		
+	\end{enumerate}
+	
+\end{itemize}
+
+Cet algorithme appelle plusieurs commentaires. Les différences avec les codes employés usuellement se situent dans les calculs de champs effectués aux étapes 2 et dans les sauvegardes des étapes 3.
+\\Comme le montrent les équations (2.6) et (2.7), les codes habituels sauvegardent $ (\chi_j^k)_{j = 0\cdots N} $ et $ (\psi_j^k)_{j = 0\cdots N} $ pour calculer les champs et sont donc aussi coûteux du point de vue stockage en mémoire. Notons par contre que les équations (2.22) et (2.23) des étapes 2 sont implicites par rapport aux valeurs recherchées. Par conséquent, ces étapes sont potentiellement plus coûteuses en temps de calcul. Il nous faut de plus nous assurer de l'existence de solutions et chercher des méthodes pour les résoudre. Ces problèmes sont traités dans les sections suivantes. Les théorèmes qui suivent s’appliquent aux schémas monotones implicites liés à $ J_{\Delta T,2} $ . Nous signalons les modifications à apporter dans le cas de $ J_{\Delta T,1} $.
+
+\paragraph*{Existence de solutions}
+$ $\\
+Les équations (2.22) et (2.23) doivent permettre de définir respectivement $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la
+norme d'opérateur de $\mu$ et $\alpha_-$ le réel, supposé strictement positif, défini par :
+
+$$ \alpha_- = \inf_{j = 0\cdots N-1}\{ \alpha_j \} $$
+
+Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
+
+\begin{theorem}
+	Supposons que les équations (2.22) et (2.23) admettent pour solutions $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $. Alors il existe un réel positif $M$ , ne dépendant que de $\delta,\eta,\lVert \mu \rVert_*$ et $\lVert O \rVert_*$ tel que:
+	
+	$$ \forall k \in \N,\  \forall j,\  0 \leq j \leq N-1, |\tilde{\varepsilon^k_j}|\leq M,\ |\varepsilon_j^{k+1}| \leq M$$
+	
+\end{theorem}
+
+\begin{ proof }
+	Définissons M par :
+	
+	\begin{equation}
+	M = \text{max}(\lVert (\tilde{\varepsilon^0_j})_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha_-} )
+	\end{equation}
+	
+	et montrons par récurrence le résultat. Supposons la majoration suivante vraie au rang k :
+	
+	$$ |\tilde{\varepsilon^k_j}| \leq M $$
+	
+	La définition (2.23) entraîne :
+	
+	$$ |\varepsilon_j^{k+1}| \leq |1-\delta|M + |\frac{\delta}{\alpha_j} \Im < \hat{X}^k_j| \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})| \tilde{\psi_j}^{k+1} >|  $$
+	
+	et l'inégalité des accroissements finis donne d’autre part:
+	
+	$$ \lVert \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j}) \rVert = \lVert \frac{e^{-i \mu( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T}-Id}{-i ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T} \rVert \leq \lVert \mu \rVert_*  $$
+	
+	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $ . Puisque les normes des différentes fonctions sont conservées au cours de la propagation, nous avons de plus :
+	$$ \lVert \hat{\psi_j}^{k+1} \rVert = 1  $$
+	$$ \lVert \hat{\chi^k_j} \rVert = \lVert \chi^k_N \rVert = \lVert O \chi_N^{k-1}\rVert \leq \lVert O \rVert_* $$
+	
+	qui permet d'obtenir, d’après l'inégalité de Cauchy-Schwartz :
+	
+	$$ |\varepsilon_j^{k+1} | \leq |1-\delta|M + \delta \frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha_-} $$
+	
+	Si $\delta \leq 1$, alors $|1-\delta| = 1-\delta$ et puisque $\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha_-} \leq M$:
+	
+	$$ |\varepsilon_j^{k+1} | \leq (1-\delta)M + \delta M = M $$
+	
+	Si $\delta \geq 1$, alors $|1-\delta| = \delta - 1$ et puisque $\frac{\delta}{2-\delta} \frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha_-} \leq M$:
+	
+	$$ |\varepsilon_j^{k+1} | \leq (\delta-1)M + (2-\delta) M = M $$
+	
+	Partant de cette majoration sur les termes de la suite $ (\varepsilon_j^{k+1})_{j=0\cdots N-1} $ , un raisonnement analogue permet de déduire :
+	
+	$$ \forall j,\ 0 \leq j \leq N, |\tilde{\varepsilon}_j^{k+1} | \leq M $$
+	ce qui achève la démonstration par récurrence.
+\end{ proof }
+
+Dans le cas des schémas monotones implicites liés à $J_{\Delta T,1}$, un théorème analogue peut être démontré avec comme borne :
+
+$$  M = \text{max}(\lVert (\tilde{\varepsilon^0_j})_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha_-} ) $$
+
+Partant de ce résultat, nous pouvons démontrer l’existence de (2.22) et (2.23).
+
+\begin{theorem}
+	Supposons que les opérateurs $mu$ et $O$ soient bornés, alors il existe une solution $ ( \varepsilon_j^{k+1}, \tilde{\varepsilon}_j^{k+1} ) $ à (2.22) et (2.23).
+\end{theorem}
+
+\begin{ proof }
+	
+	Soit $M$ , le réel défini par (2.24). Etant donné 
+	$(\tilde{\varepsilon^k_j})_{j=0\cdots N-1}$ bornée par $M$ , la preuve du théorème 3 montre que l’image de l'intervalle $[-M, M ]$ par la fonction $f$, définie par :
+	
+	\begin{equation}
+	f: x \mapsto (1-\delta)\tilde{\varepsilon}_j^k + \frac{\delta}{\alpha_j} \Im \langle \hat{X}^k_j| \mu^* (x - \tilde{\varepsilon^k_j})| \tilde{\psi_j}^{k+1} \rangle
+	\end{equation}
+	
+	est contenue dans $[-M, M ]$. La fonction $f$ étant continue, le théorème des valeurs intermédiaires permet alors de conclure à l'existence d’un point fixe pour cette fonction et donc d’une solution à (2.23). Un raisonnement analogue peut être mené pour prouver l'existence d’une solution à (2.22). Ceci achève la preuve par récurrence.
+	
+\end{ proof }
+
+Le schéma exposé en 2.4.2 est donc bien défini et produit des champs bornés par le réel $M$ . Un théorème identique peut bien entendu être montré dans le cas de $ J_{\Delta T,1} $ .
+
+\paragraph*{Unicité et itérations de Picard}
+$ $\\Continuons de noter $M$ le réel défini dans (2.24). Pour résoudre (2.22) et (2.23) une méthode de Picard peut être employée. Le théorème suivant en donne les conditions de convergence.
+
+\begin{theorem}
+	Soit $(\tilde{\varepsilon}_j^k)_{j = 0\cdots N-1}$ une solution de (2.22). Si:
+	
+	\begin{equation}
+	\frac{\delta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert^2_* \Delta T < 1,
+	\end{equation}
+	alors la solution de (2.23) est unique et est la limite de la suite $(u_n )_n$ définie par :
+	
+	\begin{equation}
+	\begin{cases}
+	u_0 \in [-M,M]\\
+	u_{n+1} = f(u_n),
+	\end{cases}
+	\end{equation}
+	
+	où $f$ est la fonction définie à l'équation (2.25).
+	
+\end{theorem}
+
+\begin{ proof }
+	
+	Pour alléger les notations dans les calculs qui suivent, $\mu$ désigne dans cette preuve aussi bien la fonction précédemment définie sur $\Omega$ que son évaluation $\mu(x)$ en un point quelconque de $\Omega$.
+	$ $
+	\\Soit $h$ la fonction continue définie par :
+	
+	\begin{equation}
+	h(\theta) = \begin{cases}
+	\quad i \quad si \quad\theta = 0\\
+	\ \frac{e^{i\theta}-1}{\theta}\ si\quad \theta \neq 0
+	\end{cases}
+	\end{equation}
+	
+	Avec cette définition $\mu^*$ défini en (2.20) vérifie:
+	
+	$$ \mu^*(x-\tilde{\varepsilon^k_j}) = -i\mu h (\mu(x-\tilde{\varepsilon^k_j}) \Delta T )$$
+	
+	Notons de plus que pour tout réel $ \theta, h'(\theta) \leq 1 $.
+	\\Puisque $ \frac{d\mu^* (x-\tilde{\varepsilon^k_j})}{dx} = -i\mu^2 \Delta T h' (\mu(x-\tilde{\varepsilon^k_j})\Delta T) $, l'inégalité des accroissements finis donne :
+	
+	$$ |\mu^* (x-\tilde{\varepsilon^k_j}) - \mu^* (y-\tilde{\varepsilon^k_j})| \leq \lVert \mu \rVert _*^2 \Delta T |x-y|,  $$
+	
+	ce qui conduit à:
+	
+	$$ |f(x) - f(y)| \leq \frac{\delta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T |x-y| $$
+	
+	et donne la conclusion annoncée.
+\end{ proof }
+
+Un résultat analogue peut bien entendu être obtenu pour l'existence de solution à (2.22) sous la condition :
+
+\begin{equation}
+\frac{\eta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T < 1
+\end{equation}
+
+Dans le cas de $J_{\Delta T,1}$ , les conditions (2.26) et (2.27) deviennent :
+
+$$ \frac{\delta}{\alpha_-} \lVert \mu \rVert _*^2 \Delta T <1 \ \text{et}\  \frac{\eta}{\alpha_-} \lVert \mu \rVert _*^2 \Delta T <1 $$
+
+Nous déduisons de cette manière une condition suffisante d'unicité des solutions des équations (2.22) et (2.23) et une méthode de résolution.
+
+\paragraph*{Méthode de Newton}
+$ $\\
+Considérons que les conditions (2.26) et (2.27) sont vérifiées. Plutôt que de considérer des itérations sur la fonction $f$ définie par (2.25), la méthode de Newton prescrit de calculer des itérations sur la fonction $g$ définie par :
+
+$$ g(x) = x -\frac{f(x) - x}{f'(x) - 1} $$
+
+Si $x_0$ est solution de cette dernière et $x$ un réel quelconque, il existe une valeur $c_x$ comprise entre $x$ et $x_0$ telle que :
+
+$$ g(x)-g(x_0) = g^n(c_x) \frac{(x-x_0)^2}{2} $$
+
+Une estimation grossière de $g''(c_x)$ peut être faite à partir de la continuité de $g''$ . Nous pouvons par exemple approcher $g''(c_x)$  par $g''(x_0)$  . Un calcul permet d'obtenir :
+
+\begin{equation}
+|g''(x_0)| \leq \frac{\frac{\delta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\delta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T}
+\end{equation}
+
+Notons que le dénominateur de cette fonction n'est pas nul lorsque la condition du théorème 5 est vérifiée. La majoration (2.28) peut être utilisée pour estimer la vitesse de convergence de la méthode de Newton.
+
+L'estimation (2.28) devient dans le calcul de $\tilde{\varepsilon}$:
+\begin{equation}
+|g''(x_0)| \leq \frac{\frac{\eta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\eta}{\alpha_-} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T}
+\end{equation}
+
+Dans le cas de $ J_{\Delta T,1} $ , (2.28) et (2.29) deviennent :
+
+$$ |g''(x_0)| \leq \frac{\frac{\delta}{\alpha_-}  \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\delta}{\alpha_-}  \lVert \mu \rVert _*^2 \Delta T}    \ \text{et}\    |g''(x_0)| \leq \frac{\frac{\eta}{\alpha_-} \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\eta}{\alpha_-} \lVert \mu \rVert _*^2 \Delta T} $$ 
+
+\section{Schémas explicites}
+Des schémas explicites peuvent également être dégagés à partir des critères établis
+à la section 2.4.1. Rappelons que les champs doivent être calculés de telle sorte que les
+équations $(C_d )$ du lemme 3 soient vérifiées.
+
+\subsection{Monotonie imposée par une condition différentielle}
+La méthode explicite décrite ci-dessous présente l’avantage par rapport au schéma implicite d’être plus simple à mettre en œuvre. Elle diminue en outre le coût de calcul. Reprenons la démarche exposée au chapitre 1 sur l’exemple du calcul de $\tilde{\varepsilon}_j^k$ à partir de $\varepsilon_j^k$. Le terme de gauche de l'inéquation $(C_d)$, qui nous guide dans notre détermination de $\tilde{\varepsilon}_j^k$, est nul pour le choix $\tilde{\varepsilon}_j^k$, est nul pour le choix $\tilde{\varepsilon}_j^{k+1} = \tilde{\varepsilon}_j^k$. Considérons alors les fonctions $l_{\varepsilon^k,j}$:
+
+$$ \tilde{l}_{\varepsilon^k,j}: x \mapsto 2\mathfrak{R} \langle \check{\chi}_{j+1}^k \mid e^{-i\mu(-x)\Delta T}-Id \mid \check{\psi}_{j+1}^k\rangle - \alpha_j \Delta Tx(x+2\varepsilon_j^k)$$
+et $l_{\tilde{\varepsilon}^k,j}$:
+
+$$ l_{\tilde{\varepsilon}^k,j}: x \mapsto 2\mathfrak{R} \langle \widehat{\chi}_{j}^k \mid e^{-i\mu x\Delta T}-Id \mid \widehat{\psi}_{j}^{k+1}\rangle - \alpha_j \Delta Tx(x+2 \tilde{\varepsilon}_j^k)$$
+
+Puisque  $\tilde{l}'_{\varepsilon^k,j}(0) = 0$ et $l_{\tilde{\varepsilon}^k,j}(0)=0$, l'idée sur laquelle nous nous appuyons dans cette section est de chercher localement des valeurs  $\tilde{h}_j^k$ et $h_j^k$ telles que $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k) >0$ et $l_{\tilde{\varepsilon}^k,j}(h_j^k)>0$. Par la suite, nous aurons besoin des dérivées des fonctions $\tilde{l}_{\varepsilon^k,j}$ et $l_{\tilde{\varepsilon}^k,j}$. Donnons les expressions de leurs deux premières dérivées:
+
+\begin{align*}
+	\tilde{l}'_{\varepsilon^k,j} :& \ \ x \mapsto 2 \mathfrak{J} \langle \check{\chi}_{j+1}^k \mid \mu \Delta T e^{-i \mu (-x)\Delta T} \mid \check{\psi}_{j+1}^k \rangle - 2 \alpha_j\Delta T (x + \varepsilon_j^k)\\
+	\tilde{l}''_{\varepsilon^k,j} :& \ \ x \mapsto -2 \mathfrak{R} \langle \check{\chi}_{j+1}^k \mid \mu^2 \Delta T^2 e^{-i \mu (-x)\Delta T} \mid \check{\psi}_{j+1}^k \rangle - 2 \alpha_j\Delta T\\
+	\l'_{\tilde{\varepsilon}^k,j} :& \ \ x \mapsto 2 \mathfrak{J} \langle \widehat{\chi}_{j}^k \mid \mu \Delta T e^{-i \mu x\Delta T} \mid \widehat{\psi}_{j}^{k+1} \rangle - 2 \alpha_j\Delta T (x + \tilde{\varepsilon}_j^k)\\
+	\l''_{\tilde{\varepsilon}^k,j} :& \ \ x \mapsto -2 \mathfrak{R} \langle \widehat{\chi}_{j}^k \mid \mu^2 \Delta T^2 e^{-i \mu x\Delta T} \mid \widehat{\psi}_{j}^{k+1} \rangle - 2 \alpha_j\Delta T\\	
+\end{align*}
+
+\subsection{Méthode du premier pas}
+
+Les fonctions $\tilde{l}_{\varepsilon^k,j}$ et $l_{\tilde{\varepsilon}^k,j}$ permettent de déterminer des valeurs convenables de $\tilde{h}_j^k$ et $h_j^{k+1}$. Le schéma obtenu est le suivant:
+\\
+\\
+
+Soit $(h_j^*)_{j = 1\cdots N-1}$ une suite arbitraire de réels positifs.
+
+\begin{itemize}
+	\item[\textbullet] Etant donné $(\psi_j^k)_j$ et $(\check{\psi}_j^k)_j$ et donc $\chi_N^k = O\psi_N^k$ ou $\chi_N^k = \psi_{cible}$ selon que la fonctionnelle considérée soit $J_{\Delta T,1}$ ou $J_{\Delta T, 2}$, calculer récursivement $\chi_{j}^k$ selon les étapes suivantes:
+	
+	\begin{enumerate}
+		\item Calcul de $\check{\chi}_{j+1}^k $ par: $$\check{\chi}_{j+1}^k= e^{iH_0 \dfrac{\Delta T}{2}} \chi_{j+1}^k$$
+		\item Calcul de $\tilde{s}_j^k$ par :
+		$$\tilde{s}_j^k = sign(\tilde{l'}_j^{k}(0))$$
+		\item Calcul de $\tilde{\varepsilon}_j^k$ par:
+		
+		\begin{enumerate}
+			\item Assignation $\tilde{h}_j^k= \tilde{s}_j^k h_j^*$
+			\item Assignation $\tilde{\varepsilon}_j^k = \varepsilon_j^k + \tilde{h}_j^k$
+			\item Si $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k)<0$, assignation $\tilde{h}_j^k = \dfrac{\tilde{h_j^k}}{2}$ et retour à la sous-étape 3b,
+		\end{enumerate}
+		
+		\item Calcul et sauvegarde de $\widehat{\chi}_j^k$ par: $$\widehat{\chi}_j^k = e^{i(V-\mu \tilde{\varepsilon}_j^k)\Delta T} \check{\chi}_{j+1}^k$$
+		
+		\item Calcul de $\chi_j^k$ par:
+		$$\chi_j^k = e^{iH_0 \dfrac{\Delta T}{2}} \widehat{\chi}_j^k$$.		
+	\end{enumerate}
+	\item[\textbullet] Calculer récursivement $\psi_{j+1}^{k+1}$ à partir de $\psi_j^k$ selon les étapes suivantes:
+	
+	\begin{enumerate}
+		\item Calcul de $\widehat{\psi}_j^{k+1}$ par : $$ \widehat{\psi}_j^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2} \psi_j^k} $$
+		\item Calcul de $s_j^k$ par:
+		$$s_j^{k+1} = sign({l'}_j^{k+1}(0))$$
+	
+	
+	\item Calcul de $\varepsilon_j^{k+1}$ par :
+	
+		\begin{enumerate}
+		\item Assignation $h_j^{k+1} = s_j^{k+1} h_j^*$
+		\item Assignation $\varepsilon_j^{k+1} = \tilde{\varepsilon}_j^k + h_j^{k+1}$
+		\item Si $l_{\tilde{\varepsilon}^k,j} (h_j^{k+1}) < 0$, assignation $h_j^{k+1} = \dfrac{h_j^{k+1}}{2}$ et retour à la sous-étape 3b,
+		\end{enumerate}
+	\item Calcul et sauvegarde de $\check{\psi}_{j+1}^{k+1}$ par:
+	$$\check{\psi}_{j+1}^{k+1} = e^{-i(V- \mu \varepsilon_j^{k+1}) \Delta T} \widehat{\psi}_j^{k+1}$$
+	
+	\item Calcul de $\psi_{j+1}^k$ par: 
+	
+	$$\psi_{j+1}^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \check{\psi}_{j+1}^{k+1}$$
+	
+\end{enumerate}
+\end{itemize}
+
+où $sign$ est la fonction à valeurs dans $\{-1,1\}$ qui renvoie le signe de sa variable. Ce schéma conduit nécessairement à un accroissement des valeurs de la fonctionnelle, puisque pour $\tilde{h}_j^k$ et $h_j^{k+1}$ suffisamment petits, $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k) \geq 0$ et $l_{\tilde{\varepsilon}^k,j}(h_j^{k+1})\geq0$.
+
+
+\subsection{Méthode du second ordre}
+
+Suivant une démarche analogue à la précédente, nous pouvons diminuer la complexité du calcul en choisissant pour valeurs de $\tilde{\varepsilon}_j^k$ et de $\varepsilon_j^{k+1}$ des maxima locaux de $\tilde{l}_{\varepsilon^k},j$ et de $l_{\tilde{\varepsilon}^k,j}$ dans des voisinages de $\varepsilon_j^k$ et de $\tilde{\varepsilon}_j^k$. Ces maxima sont calculés approximativement par une itération de la méthode de Newton appliquée à $\tilde{l}_{\varepsilon^k, j}$ et $l_{\tilde{\epsilon}^k,j}$. L'algorithme qui découle de cette démarche est le suivant:
+
+\begin{enumerate}
+	\item Calcul de $\check{\chi}_{j+1}^k$ par: $$ \check{\chi}_{j+1}^k = e^{iH_0 \dfrac{\Delta T}{2}} \chi_{j+1}^k$$
+	
+	
+	\item Calcul de $\tilde{\varepsilon}_j^k$ par: $$\tilde{\varepsilon}_j^k = \varepsilon_j^k - \dfrac{\tilde{l'}_{\varepsilon^k,j}(0)}{l''_{\varepsilon^k,j}(0)}$$
+	
+	\item Calcul et sauvegarde de $\widehat{\chi}_j^k$ par:
+	
+	$$\widehat{\chi_j}^k = e^{i(V-\mu \tilde{\varepsilon}_j^k)\Delta T} \check{\chi}_{j+1}^k$$
+	\item Calcul de $\chi_j^k$ par :
+	
+	$$\chi_j^k = e^{i H_0 \dfrac{\Delta T}{2}}\widehat{\chi}_j^k$$
+\end{enumerate}
+
+\begin{enumerate}
+	\item[\textbullet] Calculer récursivement $\psi_{j+1}^{k+1}$ à partir de $\psi_j^k$ selon les étapes suivantes:
+\end{enumerate}
+\begin{enumerate}
+	\item Calcul de $\widehat{\psi}_j^{k+1}$ par :
+	
+	$$\widehat{\psi}_j^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \psi_j^k$$,
+	\item Calcul de $\varepsilon_j^{k+1}$ par: $$\varepsilon_j^{k+1} = \tilde{\tilde{\varepsilon}}_j^k - \dfrac{\tilde{l'}_{\tilde{\varepsilon}^k,j}(0)}{l''_{\tilde{\varepsilon}^k,j}(0)}$$
+	\item Calcul et sauvegarde de $\check{\psi}_{j+1}^{k+1}$ par:
+	$$\check{\psi}_{j+1}^{k+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \widehat{\psi}_j^{k+1}$$
+	\item Calcul de $\psi_{j+1}^k$ par:
+	$$\psi_{j+1}^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \check{\psi}_{j+1}^{k+1}$$
+\end{enumerate}
+
+Cet algorithme ne conduit pas nécessairement à un algorithme monotone puisque les contraintes imposées par le lemme 3 ne sont pas forcément vérifiées. Elles le sont cependant lorsque les coefficients $\alpha_j$ sont suffisamment grands. En effet une interprétation des sous-étapes 2 est de considérer que $\tilde{\varepsilon}_j^k$ et $\varepsilon_j^k$ sont comme les maxima des développements limités d'ordre 2 des fonctions $l_{\tilde{\varepsilon}^k,j}$ et $\tilde{l}_{{\varepsilon^k},j}$. Lorsque les coefficients $(\alpha_j)_j=0, \cdots N-1$ sont grands ces polynômes sont alors des fonctions concaves et admettent bien un maximum positif.
+Dans les différentes applications traitées au chapitre 3, les contraintes du lemme 3 n'ont d'autre part jamais été violées par ce schéma.
+
