@@ -1,13 +1,14 @@
 \chapter{Schémas monotones discrets}
 
-Appliquons les calculs précédents aux problèmes de contrôle quantique présentés à la section 1.6 du chapitre 1. Les fonctionnelles à considérer dans ce cadre sont :
+\section{Introduction}
+Les fonctionnelles à considérer ici sont :
 
 \begin{equation}
-J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
 
 \begin{equation}
-J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \int_0^T \alpha(t)\varepsilon^2(t)dt
+J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
 
 Rappelons que l'opérateur $O$ est défini positif et que $\psi_{cible}$ représente une fonction de $L_2(\Omega,\C)$ de norme $1$, où $\Omega$ est l'espace des configurations. Rappelons également que les équations d'Euler-Lagrange associées à ces fonctionnelles sont dans le cas de $J_1$ :
@@ -27,7 +28,7 @@ i \frac{\partial}{\partial t} \chi (x,t) = (H - \varepsilon(t)\mu(x))\chi(x,t)\\
 \end{equation}
 
 \begin{equation}
-\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\alpha\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
 \end{equation}
 
 et dans le cas de $J_2$ par:
@@ -47,7 +48,7 @@ i \frac{\partial}{\partial t} \chi (x,t) = (H - \varepsilon(t)\mu(x))\chi(x,t)\\
 \end{equation}
 
 \begin{equation}
-\alpha(t)\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
+\alpha\varepsilon(t) = -\Im \langle \chi(t)|\mu|\psi(t)\rangle 
 \end{equation}
 
 où:
@@ -59,23 +60,22 @@ où:
 	électrique.
 \end{itemize}
 
-Sans perdre beaucoup de généralité au regard des différentes applications traitées par le contrôle quantique, supposons que l’Hamiltonien s'écrit sous la forme usuelle :
+Sans perte de généralité supposons que l’Hamiltonien s'écrit sous la forme usuelle :
 $$ H = H_0+V(x)$$
 
-où $H_0$ est l'opérateur $-\Delta$, opposé du Laplacien et $V(x)$ est le potentiel électrostatique interne. Nous présentons plus précisément différents modèles et les paramètres qui leurs sont associés au chapitre 3.
+où $H_0$ est l'opérateur $-\Delta$, opposé du Laplacien et $V(x)$ est le potentiel électrostatique interne.\\
 
-
-De même qu'à la section 2.3, notons $(\psi_j)_{j = 0\cdots N}, (\chi_j)_{j = 0\cdots N}, (\varepsilon_j)_{j = 0\cdots N-1}, (\tilde{\varepsilon}_j)_{j = 0\cdots N-1}$ et $(\alpha_j)_{j = 0\cdots N-1},$ les différentes grandeurs discrétisées à un pas de temps $\Delta T$ . Les discrétisations des deux fonctionnelles conduisent à l'introduction de :
+Notons $(\psi_j)_{j = 0\cdots N}, (\chi_j)_{j = 0\cdots N}, (\varepsilon_j)_{j = 0\cdots N-1}, $ et $(\tilde{\varepsilon}_j)_{j = 0\cdots N-1}$ les différentes grandeurs discrétisées à un pas de temps $\Delta T$ . Les discrétisations des deux fonctionnelles conduisent à :
 
 \begin{equation}
-J_{\Delta T,1}(\varepsilon) = \langle \psi(T)|O|\psi(T)\rangle - \Delta T \sum_{j=0}^{N -1} \alpha_j\varepsilon_j^2
+J_{\Delta T,1}(\varepsilon) = \langle \psi(T)|O|\psi(T)\rangle - \alpha \Delta T \sum_{j=0}^{N -1} \varepsilon_j^2
 \end{equation}
 
 \begin{equation}
-J_{\Delta T,2}(\varepsilon) = 2\Re \langle \psi_{cible}|\psi(T)\rangle - \Delta T \sum_{j=0}^{N -1} \alpha_j\varepsilon_j^2
+J_{\Delta T,2}(\varepsilon) = 2\Re \langle \psi_{cible}|\psi(T)\rangle - \alpha \Delta T \sum_{j=0}^{N -1} \varepsilon_j^2
 \end{equation}
 
-Les propagations sont effectuées suivant les formules de splitting d'opérateur présentées au chapitre 1 :
+Les propagations sont effectuées suivant les formules de splitting d'opérateur présentées au Chapitre Un :
 
 \begin{equation}
 \chi_j(x) = e^{iH_0\frac{\Delta T}{2}} e^{i(V(x)-\mu(x)\tilde{\varepsilon}_j)\Delta T} e^{iH_0\frac{\Delta T}{2}} \chi_{j+1}(x)
@@ -90,49 +90,43 @@ avec la condition $\chi_N = O\psi_N$ dans le cas de $J_{\Delta T,1}$ et $\chi_N 
 avec un état initial $\psi_0$ fixé.
 
 \section{Calcul de variation}
-
-Les résultats de la section 2.3 peuvent être appliqués aux deux fonctionnelles $J_{\Delta T,1}$ et $J_{\Delta T,2}$. Quelques précautions sont nécessaires puisque les formules de splitting (2.17) et (2.18) ne sont pas tout à fait les mêmes que (2.9) et (2.10) puisque les opérateurs rencontrés dans le cadre de l’équation Schrödinger ne commutent pas. Cette restriction n'est cependant pas contraignante et il suffit d'effectuer formellement les remplacements suivants :
-
-$$ e ^{A^*(\overline{u}^k_j)\Delta T} \longleftarrow  e^{iH_0\frac{\Delta T}{2}} e^{i(V(x)-\mu(x)\tilde{\varepsilon}_j^k)\Delta T} e^{iH_0\frac{\Delta T}{2}}$$
-
-$$ e ^{-A(u_j^{k+1})\Delta T} \longleftarrow  e^{-iH_0\frac{\Delta T}{2}} e^{-i(V(x)-\mu(x)\varepsilon_j^{k+1})\Delta T} e^{-iH_0\frac{\Delta T}{2}}$$
-
-dans les formules (2.14). De plus, comme au chapitre 1, l'adjoint des fonction d'un facteur 12 de l'adjoint des sections précédentes. Les correspondances suivantes s'appliquent :
-
+Nous reprenons le calcul de variation effectue au Chapitre Deux avec nos fonctionnelles discretes
 \begin{align*}
-\Re(Y^k_{j+1} &+ \Delta T \nabla f(X^k_{j+1})|e^{A(u^k_j)\Delta T} e^{-A(\overline{u}^k_j)\Delta T}-Id|X^k_{j+1}\rangle\\
-& = 2 \Re(\chi^k_{j+1}| e^{ -iH_0 \frac{\Delta T}{2}} e^{-i\mu (\varepsilon^k_j - \tilde{\varepsilon}^k_j)\Delta T} e^{ iH_0 \frac{\Delta T}{2}} -Id|\psi^k_{j+1}\rangle
+J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon) &= \langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle + 2\Re \langle \psi'_N-\psi_N |O|\psi_N \rangle\\
+&\quad +\alpha \Delta T (\sum_{j=0}^{N -1} \varepsilon_j^2-{\varepsilon'}_j^{2})
 \end{align*}
-
+Etudions le terme $\langle \psi'_N-\psi_N |O|\psi_N \rangle$ nous obtenons:
 \begin{align*}
-\Re(Y^k_j |& e^{A(\overline{u}^k_j)\Delta T} e^{-A(u^{k+1}_j)\Delta T}-Id|X^{k+1}_j\rangle\\
-& = 2 \Re(\chi^k_j| e^{iH_0 \frac{\Delta T}{2}} e^{-i\mu (\tilde{\varepsilon}^k_j - \varepsilon^{k+1}_j)\Delta T} e^{ -iH_0 \frac{\Delta T}{2}} -Id|\psi^{k+1}_j\rangle
+\langle \psi'_N-\psi_N |O|\psi_N \rangle &= \langle \psi'_N-\psi_N , \chi_N \rangle\\
+&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , \chi_{j+1}-\chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1}-\psi_{j+1}+\psi_{j}, \chi_{j} \rangle\\
+&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , (e^{\frac{H_0\Delta T}{2i}} e^{\frac{V-\mu\tilde{\varepsilon_j}}{i}} e^{\frac{H_0\Delta T}{2i}}-1)\chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi'_{j+1}, \chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi_{j+1}, \chi_{j} \rangle\\
 \end{align*}
-
 Posons alors:
 
 \begin{equation}
-\hat{\psi^I_m} = e^{-iH_0 \frac{\Delta T}{2}} \psi^I_m, \check{\psi^I_m} = e^{iH_0 \frac{\Delta T}{2}} \psi^I_m,\hat{\chi^I_m} = e^{-iH_0 \frac{\Delta T}{2}} \chi^I_m, \check{\chi^I_m} = e^{iH_0 \frac{\Delta T}{2}} \chi^I_m
+\tilde{\psi_j} = e^{-iH_0 \frac{\Delta T}{2}} \psi_j
 \end{equation}
+\begin{equation}
+\breve{\psi_j} = e^{iH_0 \frac{\Delta T}{2}} \psi_j
+\end{equation}
+\begin{equation}
+\breve{\chi_j} = e^{-iH_0 \frac{\Delta T}{2}} \chi_j
+\end{equation}
+et
+\begin{equation}
+\tilde{\chi_j} = e^{iH_0 \frac{\Delta T}{2}} \chi_j
+\end{equation}
+Par suite:
+\begin{align*}
+\langle \psi'_N-\psi_N |O|\psi_N \rangle &= \sum_{j=0}^{N-1} \langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
+&\quad \sum_{j=0}^{N-1} \langle \tilde{\psi_{j+1}} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi_{j+1}} \rangle
+\end{align*}
+Alors, on defini une approximation de $\mu$ par:
 
-pour finalement obtenir une version du lemme 2 adaptée au contrôle quantique :
-
-\begin{lemme}
-	Soit $(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ et $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$ deux suites de champs discrets vérifiant :
-	
-	\begin{align*}
-	\forall j,& \quad 0\leq j\leq N,\\
-	& 2\Re(\check{\chi}^k_{j+1}|e^{-i\mu(\varepsilon^k_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\check{\psi}^k_{j+1}\rangle - \alpha_j \Delta T ((\tilde{\varepsilon}^k_j)^2-(\varepsilon^k_j)^2) \geq 0,\quad (C_d)\\
-	& 2\Re(\hat{\chi}^k_j|e^{i\mu(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)\Delta T}-Id|\hat{\psi}^{k+1}_j\rangle - \alpha_j \Delta T ((\varepsilon^{k+1}_j)^2-(\tilde{\varepsilon}^k_j)^2) \geq 0
-	\end{align*}
-	
-	où $(\check{\chi}_j^k)^{k\in\N}_{j = 0\cdots N}$ et $(\hat{\chi}_j^k)^{k\in\N}_{j = 0\cdots N}$ désignent les adjoints associés à $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$   par (2.19) et (2.17) et $(\hat{\psi}_j^k)^{k\in\N}_{j = 0\cdots N}$, $(\check{\psi}_j^k)^{k\in\N}_{j = 0\cdots N}$ désignent les états associés à $(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ par (2.19) et (2.18). Alors ces suites entraînent une convergence monotone des fonctionnelles $J_{\Delta T,1}$ et $J_{\Delta T,2}$  définies par (2.15) et (2.16), c’est-à-dire :
-	
-	$$ \forall n \in \{1,2\},\  \forall k \in \N, J_{n,\Delta T}(\varepsilon^{k+1}) - J_{n,\Delta T}(\varepsilon^k)\geq 0 $$
-	
-\end{lemme}
-
-Nous pouvons alors concevoir des schémas monotones discrets en suivant les idées présentées au chapitre 1. Nous traduisons en termes discrets dans les sections suivantes les schémas à deux paramètres et les schémas de monotonie imposée par une condition différentielle.
+Nous en désuisons un schémas implicite
 
 \section{Schémas implicites}
 
