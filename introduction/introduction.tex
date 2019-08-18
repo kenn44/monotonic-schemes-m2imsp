@@ -8,22 +8,22 @@ A la fin du XIXe siècle, les diverses branches de la physique s'intégraient da
 \end{itemize}
 Le succès de la physique était à cette époque impressionnant et tous les phénomènes connus trouvaient leur explication dans le cadre de ce programme classique.\\\\
 
-A l’aube du XXe siècle et avec l’essor des progrès technologiques, les physiciens se trouvèrent tout a coup confrontés à des phénomènes nouveaux pour lesquels les prévisions de la théorie classique sont en désaccord flagrant avec l'expérience. Il fallait donc jeter les bases d’une nouvelle théorie susceptible de pallier les insuffisances de la conception classique.
+A l’aube du XXe siècle et avec l’essor des progrès technologiques, les physiciens se trouvèrent tout à coup confrontés à des phénomènes nouveaux pour lesquels les prévisions de la théorie classique sont en désaccord flagrant avec l'expérience. Il fallait donc jeter les bases d’une nouvelle théorie susceptible de pallier les insuffisances de la conception classique.
 
 \section*{Contrôle optimal et optimisation numérique}
-L'objet de notre étude est un système quantique, modelisé entre deux mesures par l'équation de Schrödinger:
+L'objet de notre étude est un système quantique, modélisé entre deux mesures par l'équation de Schrödinger:
 \begin{equation} \label{schrodinger}
 i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t)
 \end{equation}
-En vue de modéliser les intéractions onde-matière à l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
-La dynamique du systeme est désormais donnée par:
+En vue de modéliser les interactions onde-matière à l'échelle atomique, nous introduisons un contrôle, généré par un dipôle électrostatique de moment dipolaire $\mu (x)$, émettant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
+La dynamique du système est désormais donnée par:
 \begin{equation} \label{eq1}
 \begin{cases}
 i \hbar \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
 \psi (x,t=0) &= \psi_0(x)
 \end{cases}
 \end{equation}
-$H$ étant un operateur hermitien, défini par:
+$H$ étant un opérateur hermitien, défini par:
 $$
 H = H_0 + V = -\dfrac{1}{2m} \varDelta + V
 $$
@@ -47,13 +47,13 @@ On dit que le système \eqref{chauchy1} est contrôlable (ou commandable) si pou
 Si la condition précédente est remplie, existe-t-il un contrôle joignant $\psi_0$ à $\psi_{cible}$ , et qui de plus
 minimise une certaine fonctionnelle $J(\varepsilon)$ ?
 \subsection*{Contrôle optimal}
-Nous voulons construire un controle d'amplitude "raisonnable" afin d'ammener le système d'un état initial $\psi_0$ à un etat cible $O\psi(T)$. $O$ étant l'observable décrivant l'état cible.\\\\
+Nous voulons construire un contrôle d'amplitude "raisonnable" afin d’amener le système d'un état initial $\psi_0$ à un état cible $O\psi(T)$. $O$ étant l'observable décrivant l'état cible.\\\\
 
 On considère ainsi une fonctionnelle $J$
 \begin{equation}
 J(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_{0}^{T}\varepsilon^2(t)dt \quad \alpha \in \R_+
 \end{equation}
-et on se pose le problème: Trouver $\varepsilon$ tel que $\varepsilon$ resouds
+et on se pose le problème: Trouver $\varepsilon$ tel que $\varepsilon$ résout
 $$ \max_{\varepsilon \in L^2(0,T)} J(\varepsilon)$$
 Au maximum de la fonctionnelle $J(\varepsilon)$, les équations de Euler-Lagrange sont satisfaites. Le Lagrangien du système est donné par :
 \begin{equation} \label{lagrangien}
@@ -65,5 +65,5 @@ Une stratégie éfficace de résolution de ces équations est donnée par une cl
 
 Comment construire une discrétisation temporelle puis spaciale de ces algorithmes qui préserve la propriété de monotonie?\\\\
 
-Dans le Chapitre Un, nous introduisons la mécanique quantique en trois postulats et présentons le cadre général du contrôle quantique. Le Chapitre Deux est dédié aux schémas monotones pour l'équation de Schrödinger.
+Dans le Chapitre Premier, nous introduisons la mécanique quantique en trois postulats et présentons le cadre général du contrôle quantique. Le Chapitre Deux est dédié aux schémas monotones pour l'équation de Schrödinger.
 Différentes discrétisations de ces schémas sont proposées dans le Chapitre Trois.

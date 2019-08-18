@@ -122,9 +122,25 @@ et
 Par suite:
 \begin{align*}
 \langle \psi'_N-\psi_N |O|\psi_N \rangle &= \sum_{j=0}^{N-1} \langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
-&\quad \sum_{j=0}^{N-1} \langle \tilde{\psi_{j+1}} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi_{j+1}} \rangle
+&\quad +\sum_{j=0}^{N-1} \langle \tilde{\psi_{j+1}} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi_{j+1}} \rangle
 \end{align*}
 Alors, on defini une approximation de $\mu$ par:
+\begin{equation}
+\mu^*:(x,y) \mapsto i\dfrac{e^{\frac{\mu (x-y)}{i}\Delta T }-1}{\Delta T (x-y)}
+\end{equation}
+et
+\begin{equation}
+\begin{cases}
+a_j(x,y) &=-\frac{1}{\alpha} \Im \langle \tilde{\chi_j}|\mu^*(x,y)|\breve{\psi'_j} \rangle \\
+b_j(x,y) &= -\frac{1}{\alpha} \Im \langle \breve{\chi_j}|\mu^*(x,y)|\tilde{\psi_j} \rangle
+\end{cases}
+\end{equation}
+Nous avons:
+\begin{align*}
+\Re \langle \psi'_N-\psi_N |O|\psi_N \rangle = \alpha \Delta T &\sum_{j=0}^{N-1} a_j (\tilde{\varepsilon}_j,\varepsilon'_j)(\varepsilon'_j- \tilde{\varepsilon}_j)\\
+&\quad +b_{j+1} (\varepsilon_j,\tilde{\varepsilon}_j)(\tilde{\varepsilon}_j-\varepsilon_j)
+\end{align*}
+Nous obtenons donc
 
 Nous en désuisons un schémas implicite
 

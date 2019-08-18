@@ -12,12 +12,12 @@ $$
 \end{aligned}
 $$
 telles que l'intégrale  $\int _{\mathbb{R} ^{3}}|\psi (\mathbf{r} )|^{2}d\mathbf{r}$ converge. Dans ce cas, $\psi$ est appelée la fonction d'onde du système.
-\subsubsection{Cas d’une particule dans l’espace a une dimension}
+\subsubsection{Cas d’une particule dans l’espace à une dimension}
 La probabilité pour que la particule soit dans l’intervalle $[a,b]$ est donnée par l’aire de la courbe située entre $x=a$ et $x=b$ (figure si possible)
 \begin{equation}
 \int_a^b dP(x)= \int_a^b |\psi(x,t)|^2dx
 \end{equation}
-Il est impossible de connaître avec précision la position de la particule a un instant t. On ne peut que connaître la probabilité $dP(x)$ pour qu’elle soit entre $x$ et $x+dx$, soit:
+Il est impossible de connaître avec précision la position de la particule à un instant t. On ne peut que connaître la probabilité $dP(x)$ pour qu’elle soit entre $x$ et $x+dx$, soit:
 \begin{equation}
 dP(x)=|\psi(x,t)|^2dx=\psi(x,t)\overline{\psi(x,t)}dx
 \end{equation}
@@ -25,8 +25,8 @@ La particule doit être quelque part sur l’axe $X’OX$, par conséquent:
 \begin{equation}
 \int_{-\infty}^{+\infty}|\psi(x,t)|^2dx=1
 \end{equation}
-pour tout $t$. $\psi$ est donc de carre sommable.
-La densite de probabilite est donnee par
+pour tout $t$. $\psi$ est donc de carré sommable.
+La densité de probabilité est donnée par
 \begin{equation}
 \dfrac{dP(x,t)}{dx}=|\psi(x,t)|^2=\rho(x,t)
 \end{equation}
@@ -37,7 +37,7 @@ On a
 \int dP(\vec{r},t)=\iiint_{espace}|\psi(x,t)|^2d^3r=1
 \end{equation}
 
-Ou $d^3r$ représente l'élément de volume donnée par: $$d^3r=dxdydz=r^2sin\theta dr d\theta d\varphi$$
+Où $d^3r$ représente l'élément de volume donnée par: $$d^3r=dxdydz=r^2sin\theta dr d\theta d\varphi$$
 
 \subsubsection{Cas de N particules}
 L’espace le mieux adapté à la description des systèmes en physique quantique est un espace $\Omega$, nommé espace des configurations qui représente l’ensemble de toutes les configurations possibles du système. Par exemple, dans le cas d’un système à $N$ particules isolées et sans contraintes, l’espace des configurations est $\Omega = \R^{3N}$ et $\psi(x,t) \in L^2(\Omega, \C)$.
@@ -57,7 +57,7 @@ Une observable est l'équivalent en mécanique quantique d'une grandeur physique
 		\item la quantité de mouvement: $P=-i\hbar \nabla$
 		\item l'énergie cinétique:
 		$H_0=\dfrac{P \cdot P}{2m}=-\dfrac{\hbar ^{2}}{2m}\nabla^{2}$
-		\item l'énergie totale, appelé hamiltonien:
+		\item l'énergie totale, appelée hamiltonien:
 		$H=H_0+V$
 	\end{enumerate}
 \end{ex}
@@ -81,7 +81,7 @@ La moyenne des mesures de $\mathcal{A}$ est quant à elle égale à $\langle\psi
 \end{equation}
 %ou $\psi$ et $\chi$ sont des fonctions de $L^2(\Omega, \C)$ et $A$ un opérateur arbitraire défini de $L^2(\Omega, \C)$ dans lui-même.
 \begin{ex}
-	La position moyenne sur l’axe des abcisses:
+	La position moyenne sur l’axe des abscisses:
 	\begin{equation*}
 	\langle X \rangle = \int_{- \infty}^{- \infty} x |\psi(x,t)|^2 dx
 	\end{equation*}
@@ -96,26 +96,26 @@ L'équation de Schrödinger, proposée par le physicien autrichien Erwin Schröd
 	\end{equation}
 \end{Post}
 %\subsubsection{Exemple de resolution de \eqref{sch1}: cas d'une particule libre}
-Considerons le cas d'une particule libre ($V=0$) et menons notre étude sur $\R^m$ $(m \geq 1)$ nous étudions alors l'équation
+Considérons le cas d'une particule libre ($V=0$) et menons notre étude sur $\R^m$ $(m \geq 1)$ nous étudions alors l'équation
 \begin{equation} \label{chauchy2}
 u'(t)=Au(t)
 \end{equation}
-où $A$ est un opérateur sur $E=L^2(R^m)$ defini par 
+où $A$ est un opérateur sur $E=L^2(R^m)$ défini par 
 $$
 Au=ik\Delta u=ik(\partial_{1}^2u+...+\partial_{m}^2u)
 $$
 $k$ une constante réelle. Le domaine de $A$ est l'ensemble des $u \in L^2(R^m)$ tel que $\Delta u$ (au sens des distributions) appartient à $L^2$.
 \begin{definition}
-	On dit que le problème de Cauchy pour l'équation \eqref{chauchy2} est bien posé si les deux hypotheses suivantes sont satisfaites:
+	On dit que le problème de Cauchy pour l'équation \eqref{chauchy2} est bien posé si les deux hypothèses suivantes sont satisfaites:
 	\begin{enumerate}
-		\item[(a)] \textbf{Existance et unicite de solutions}: Il existe un sous espace dense $D$ de $E$ tel que, pour tout $u_0 \in D$, il existe une unique solution $u(.)$ de \eqref{chauchy2} avec $u(0)=u_0$
+		\item[(a)] \textbf{Existence et unicité de solutions}: Il existe un sous-espace dense $D$ de $E$ tel que, pour tout $u_0 \in D$, il existe une unique solution $u(.)$ de \eqref{chauchy2} avec $u(0)=u_0$
 		\item[(b)] \textbf{La solution dépend de façon continue des données} Il existe une fonction non décroissante, non négative $C(t)$ tel que
 		$$
 		||u(t)||\leq C(t) ||u(0)||
 		$$
 	\end{enumerate}
 \end{definition}
-En appliquant la transformée de Fourier a \eqref{chauchy2}, nous obtenons
+En appliquant la transformée de Fourier à \eqref{chauchy2}, nous obtenons
 \begin{align*} 
 \mathcal{F}[Au](\xi) &= \mathcal{F}[ik\Delta u](\xi) \\ 
 &= ik\mathcal{F}[\Delta u](\xi) \\
@@ -126,7 +126,7 @@ Alors si $u_0 \in D(A)$ nous obtenons une solution:
 \begin{equation}
 u(t)=\mathcal{F}^{-1}(exp(-ik|\xi|^2 t)\mathcal{F}[u_0](\xi))
 \end{equation}
-Puisque $D(A)$ est dense dans $E$, on deduis que \eqref{chauchy2} admet une unique solution sur $E$.\\
+Puisque $D(A)$ est dense dans $E$, on déduit que \eqref{chauchy2} admet une unique solution sur $E$.\\
 Ensuite, observons que si $u \in D(A)$, alors
 \begin{align*}
 (Au,u) &= (\mathcal{F}[Au],\mathcal{F}[u])\\
@@ -144,24 +144,24 @@ Ainsi, $||u(t)||$ est constante:
 ||u(t)||=||u(0)|| \quad \forall t \in \R
 \end{equation}
 En conclusion, le problème de Cauchy pour \eqref{chauchy2} est bien posé pour tout $t$.\\
-En outre, \cite{Fattorini} generalise ce resultat sur $E=L^p (\R^m)$ avec $1 \leq p < m$.
+En outre, \cite{Fattorini} généralise ce résultat sur $E=L^p (\R^m)$ avec $1 \leq p < m$.
 
-\section{Controle quantique}
-On rappelle que l'état $\psi(t)$ d'un systeme quantique evolue conformement a l'équation de Schrödinger:
+\section{Contrôle quantique}
+On rappelle que l'état $\psi(t)$ d'un système quantique évolue conformément à l'équation de Schrödinger:
 \begin{equation}
 i \hbar \dfrac{\partial }{\partial t} \psi (x,t) = H\psi (x,t),\quad \quad \psi(t=0)=\psi_0
 \end{equation}
-ou $H$ est un endomorphisme auto-adjoint sur $\mathcal{H}$ appelé Hamiltonien interne du système. $\hbar$ est la constante de Planck. Dans la suite, nous travaillons en unités atomiques, c'est-a-dire $\hbar=1$ et l'état initial a une norme unitaire, $||\psi_0||^2 \equiv \langle \psi_0|\psi_0 \rangle =1$.
-\subsection{Exemple de modele bilineaire (BLM)}
-Pour simplifier, nous considerons un systeme quantique de dimension finie. C'est une approximation appropriée dans de nombreuses situations pratiques. Pour un systeme quantique de dimension $N$, $\mathcal{H}$ est un espace de Hilbert complexe de dimension $N$. Les valeurs propres $(\phi_{i})_{1 \leq i \leq N}$ de $H$ forment une base orthogonale de $\mathcal{H}$.\\
-Dans de nombreuses situations, le controle du systeme peut-etre realise par un ensemble de fonctions de contrôle $\varepsilon_{k}(t) \in \R$ couplées au systeme via une famille d'opérateurs hermitions indépendants du temps $\{H_k, k=1,2,...\}$. L'Hamiltonien total $H+\sum_{k} \varepsilon_{k}(t)H_k$ détermine alors la nouvelle dynamique du systeme.
+où $H$ est un endomorphisme auto-adjoint sur $\mathcal{H}$ appelé Hamiltonien interne du système. $\hbar$ est la constante de Planck. Dans la suite, nous travaillons en unités atomiques, c'est-à-dire $\hbar=1$ et l'état initial a une norme unitaire, $||\psi_0||^2 \equiv \langle \psi_0|\psi_0 \rangle =1$.
+\subsection{Exemple de modèle bilinéaire (BLM)}
+Pour simplifier, nous considérons un système quantique de dimension finie. C'est une approximation appropriée dans de nombreuses situations pratiques. Pour un système quantique de dimension $N$, $\mathcal{H}$ est un espace de Hilbert complexe de dimension $N$. Les valeurs propres $(\phi_{i})_{1 \leq i \leq N}$ de $H$ forment une base orthogonale de $\mathcal{H}$.\\
+Dans de nombreuses situations, le contrôle du système peut être réalisé par un ensemble de fonctions de contrôle $\varepsilon_{k}(t) \in \R$ couplées au système via une famille d'opérateurs hermitiens indépendants du temps $\{H_k, k=1,2,...\}$. L'Hamiltonien total $H+\sum_{k} \varepsilon_{k}(t)H_k$ détermine alors la nouvelle dynamique du système.
 \begin{equation} \label{schcon}
 i \dfrac{\partial }{\partial t} \psi (x,t) = (H+\sum_{k} \varepsilon_{k}(t)H_k)\psi (x,t)
 \end{equation}
-Le but typique d'un probleme de conrole quantique defini sur le systeme \eqref{schcon} est de trouver en temps fini $T > 0$ un ensemble de controles admissibles $u_k(t) \in \R$ qui conduit le systeme d'un etat initial $\psi_0$ a un etat prescrit $\psi_{cible}$.
+Le but typique d'un problème de contrôle quantique défini sur le système \eqref{schcon} est de trouver en temps fini $T > 0$ un ensemble de contrôles admissibles $u_k(t) \in \R$ qui conduit le système d'un état initial $\psi_0$ à un état prescrit $\psi_{cible}$.
 \subsection{Cas d'un champs laser}
-En vue de modéliser les intéractions onde-matière a l'échelle atomique, nous introduisons un contrôle, généré par un dipole électrostatique de moment dipolaire $\mu (x)$, émetant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
-La dynamique du systeme est désormais donnée par:
+En vue de modéliser les interactions onde-matière à l'échelle atomique, nous introduisons un contrôle, généré par un dipôle électrostatique de moment dipolaire $\mu (x)$, émettant un champs (électrique) laser, d'amplitude $\varepsilon (t)$ dépendant du temps.\\
+La dynamique du système est désormais donnée par:
 \begin{equation} \label{schcon2}
 \begin{cases}
 i \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\psi (x,t) \\
@@ -170,18 +170,18 @@ i \dfrac{\partial }{\partial t} \psi (x,t) &= H\psi (x,t)-\mu(x)\varepsilon(t)\p
 \end{equation}
 
 \section{Discrétisation temporelle}
-Choisissons deux paramètres de discrétisation temporelle $N$ et $\Delta T$ tel que $N \Delta T = T$ et notons $\psi_j$ l'approximation de $\psi(j\Delta T)$, $0 \leq j \leq N$.
+Choisissons deux paramètres de discrétisation temporelle $N$ et $\Delta T$ tels que $N \Delta T = T$ et notons $\psi_j$ l'approximation de $\psi(j\Delta T)$, $0 \leq j \leq N$.
 \subsection{Méthode du splitting d’opérateur}
-Considerons l’equation differentielle ordinaire scalaire
+Considérons l’équation différentielle ordinaire scalaire
 \begin{equation} \label{edo1}
 \dot{x}=(a+b)x, \quad \quad x(0)=x_0
 \end{equation}
-ou $a$ et $b$ sont des scalaires. On connaıt la solution exacte de cette equation :
+où $a$ et $b$ sont des scalaires. On connaît la solution exacte de cette equation :
 \begin{align*}
 x(t)=exp((a+b)t)x_0 &= exp(at)exp(bt)x_0 \quad \mbox{(methode 1)}\\
 &= exp(bt)exp(at)x_0 \quad \mbox{(methode 2)}
 \end{align*}
-Nous pouvons ainsi separer l'evolution selon \eqref{edo1} en deux temps :
+Nous pouvons ainsi séparer l'évolution selon \eqref{edo1} en deux temps :
 $$\mbox{(L1)}
 \begin{cases}
 \dot{y}=by,\quad y(0)=x_0\\
@@ -194,18 +194,18 @@ $$\mbox{(L2)}
 \dot{x}=bx,\quad x(0)=y(t)
 \end{cases}
 $$
-Pour le systeme (L1), on a clairement
+Pour le système (L1), on a clairement
 \begin{align*}
 x(t) &= exp(at)x_0\\
 &= exp(at)y(t)\\
 &= exp(at)exp(bt)y(0)\\
 &= exp(at)exp(bt)x_0
 \end{align*}
-Pour (L2), le calcul se fait de la meme maniere et donne le meme resultat.\\\\
-On appelle \textbf{splitting de Lie} ou methode a pas fractionnaire les deux methodes (L1) et (L2). Pour une equation scalaire, ces deux methodes sont identiques et reviennent au meme que de traiter l’equation en une seule fois.
-Pour exprimer le splitting dans notre exemple, nous avons ete obliges d’introduire une variable intermediaire $y$. Ceci s’avererait a l’usage peu pratique pour des contextes plus compliques. Nous introduisons donc les semi-groupes.
+Pour (L2), le calcul se fait de la même manière et donne le même résultat.\\\\
+On appelle \textbf{splitting de Lie} ou méthode à pas fractionnaire les deux méthodes (L1) et (L2). Pour une equation scalaire, ces deux méthodes sont identiques et reviennent au même que de traiter l’équation en une seule fois.
+Pour exprimer le splitting dans notre exemple, nous avons été obligés d’introduire une variable intermédiaire $y$. Ceci s’avérerait à l’usage peu pratique pour des contextes plus compliqués. Nous introduisons donc les semi-groupes.
 \begin{definition}
-Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs lineaires bornes de $X$ dans $X$ est un semi-groupe fortement continu d'opérateurs linéaires bornés si
+Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'opérateurs linéaires bornés de $X$ dans $X$ est un semi-groupe fortement continu d'opérateurs linéaires bornés si
 \begin{enumerate}
 	\item[(i)] $T(0)=id_X$;
 	\item[(ii)] $T(t+s)=T(t)T(s), \: \forall t, s \geq 0$;
@@ -213,16 +213,16 @@ Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'operateurs linea
 \end{enumerate}
 \end{definition}
 \begin{remark}
-	Un semi-groupe d'operateurs lineaires bornes $(T(t))_{t\geq 0}$, est uniformement continue si
+	Un semi-groupe d'opérateurs linéaires bornés $(T(t))_{t\geq 0}$, est uniformément continue si
 	$$
 	\lim_{t \rightarrow 0} ||T(t)-I||=0
 	$$
 \end{remark}
-Un semi-groupe fortement continu d'opérateurs linéaires bornés sur $X$ sera appele semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
+Un semi-groupe fortement continu d'opérateurs linéaires bornés sur $X$ sera appelé semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
 
 Si seulement (i) et (ii) sont satisfaits, on dit que la famille $(T(t))_{t\geq 0}$ est un semi-groupe.
 \begin{definition}
-	L'operateur lineaire $A$ defini par
+	L'opérateur linéaire $A$ défini par
 	\begin{equation}
 	D(A)= \left \{ x \in X : \lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \mbox{ existe} \right \}
 	\end{equation}
@@ -230,18 +230,18 @@ Si seulement (i) et (ii) sont satisfaits, on dit que la famille $(T(t))_{t\geq 0
 	\begin{equation}
 	Ax=\lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \quad \mbox{pour } x \in D(A)
 	\end{equation}
-	est le generateur infinitesimal du semi-groupe $(T(t))_{t\geq 0}$; $D(A)$ est le domaine de $A$
+	est le générateur infinitésimal du semi-groupe $(T(t))_{t\geq 0}$; $D(A)$ est le domaine de $A$
 \end{definition}
 \subsubsection{Splittings de Strang}
-L’application qui a $x_0$ associe $x(t)$par le flot de l’EDO est le semi-groupe que nous noterons $S(t)$
+L’application qui à $x_0$ associe $x(t)$ par le flot de l’EDO est le semi-groupe que nous noterons $S(t)$
 \begin{equation}
 x(t)=S(t)x_0=exp((a+b)t)x_0
 \end{equation}
-On note $A(t)$ et $B(t)$ les semi-groupes associes aux deux parties de l’equation, a savoir
+On note $A(t)$ et $B(t)$ les semi-groupes associés aux deux parties de l’équation, à savoir
 $$
 A(t)x_0=exp(at)x_0, \quad \quad B(t)x_0=exp(bt)x_0
 $$
-Les deux splittings de Lie (L1) et (L2) consistent donc a ecrire
+Les deux splittings de Lie (L1) et (L2) consistent donc à écrire
 $$
 \mbox{(L1) } x(t)=A(t)B(t)x_0, \quad \quad \mbox{(L2) } x(t)=B(t)A(t)x_0
 $$
@@ -249,16 +249,16 @@ On definit sans effort deux nouveaux types de splitting : les \textbf{splittings
 $$
 \mbox{(S1) } x(t)=A(\dfrac{t}{2})B(t)A(\dfrac{t}{2})x_0, \quad \quad \mbox{(S2) } x(t)=B(\dfrac{t}{2})A(t)B(\dfrac{t}{2})x_0
 $$
-Les methodes de Lie et de Strang sont respectivement d’ordre 1 et 2.
+Les méthodes de Lie et de Strang sont respectivement d’ordre 1 et 2.
 \subsubsection{Splitting de Strang pour l'équation de Schrödinger}
-Afin de presenter le schema de splitting, on considere un probleme d'evolution general. Soit $A$ et $B$, deux operateurs auto-adjoints, tels que : $D(A) \subset \mathcal{H}$, $D(B) \subset \mathcal{H}$ et $A+B$ est un operateur auto-adjoint sur $D(A) \cap D(B)$. On note ici $D(A)$ et $D(B)$ les domaines respectifs des operateurs $A$ et $B$. Considerons le probleme d'evolution
+Afin de présenter le schéma de splitting, on considère un problème d'évolution général. Soit $A$ et $B$, deux opérateurs auto-adjoints, tels que : $D(A) \subset \mathcal{H}$, $D(B) \subset \mathcal{H}$ et $A+B$ est un opérateur auto-adjoint sur $D(A) \cap D(B)$. On note ici $D(A)$ et $D(B)$ les domaines respectifs des opérateurs $A$ et $B$. Considérons le problème d'évolution
 \begin{equation}
 \begin{cases}
 i \partial_t \psi (x,t) &= A\psi (x,t)+B\psi (x,t), \quad x \in \Omega, t>0 \\
 \psi (x,t=0) &= \psi_0(x) \in \mathcal{H}
 \end{cases}
 \end{equation}
-et notons $\psi(x,t)=e^{-i(A+B)t}\psi_0(x)$ sa solution pour $t>0$, et $x\in \Omega$. Le schema de splitting consiste a approcher la solution $\psi$ du probleme d'evolution via une approximation de l'operateur $e^{-i(A+B)t}$ a travers les operateurs $e^{-iA}$ et $e^{-iA}$. Ceci permet alors d'avoir a resoudre successivement deux equations plus simples. 
+et notons $\psi(x,t)=e^{-i(A+B)t}\psi_0(x)$ sa solution pour $t>0$, et $x\in \Omega$. Le schéma de splitting consiste à approcher la solution $\psi$ du problème d'évolution via une approximation de l'opérateur $e^{-i(A+B)t}$ à travers les opérateurs $e^{-iA}$ et $e^{-iA}$. Ceci permet alors d'avoir à résoudre successivement deux equations plus simples. 
 \\Ici, $A=H_0$ et $B=V(x)-\mu(x)\varepsilon(t)$ est la partie potentielle. On obtient l'approximation
 \begin{equation}
 \psi(x,t+\Delta T) \approx e^{-iH_0 \frac{\Delta T}{2}}e^{-i(V(x)-\mu\varepsilon)\Delta T}e^{-iH_0 \frac{\Delta T}{2}} \psi(x,t)

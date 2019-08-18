@@ -15,7 +15,7 @@ Le moment dipolaire $\mu$ est supposé connu et indépendant du temps.
 
 \section{Fonctionnelles de coût}
 Soit $\alpha \in \R^+$, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega \times [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
-\\Nous considerons deux fonctionnelles de coût:
+\\Nous considérons deux fonctionnelles de coût:
 
 \begin{equation}
 J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsilon^2(t)dt
@@ -25,7 +25,7 @@ J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsil
 J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
 
-$\psi_{cible}$ représente une fonction d’onde cible. $J_1$ releve du formalisme attaché aux observables tandis que $J_2$ est plus simple a manipuler.
+$\psi_{cible}$ représente une fonction d’onde cible. $J_1$ relève du formalisme attaché aux observables tandis que $J_2$ est plus simple à manipuler.
 %Les deux permettent de réaliser un compromis entre la recherche d'une grande valeur de l’observable et une norme $L_2$ du champ $\varepsilon$ raisonnable.
 Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est bien atteint pour $\psi(T) = \psi_{cible}$ puisque $\lVert \psi_{cible} \rVert = 1$ et que $2\Re\langle \psi_{cible}|\psi(T)\rangle = -\lVert \psi_{cible} - \psi(T)\rVert ^2+2$.\\
 
@@ -94,14 +94,14 @@ i \frac{\partial }{\partial t} \chi^k (x,t) = (H(x)-\mu(x)\tilde{\varepsilon}^k 
 \begin{equation} \label{maday4}
 \tilde{\varepsilon}^k (t) = (1-\eta)\varepsilon^{k}(t)-\frac{\eta}{\alpha} \Im\langle\chi^{k}|\mu|\psi^{k}\rangle(t)
 \end{equation}
-où $\delta$ et $\eta$ sont deux parametres reels. Le schéma Tannor \cite{Tannor} correspond au cas où $(\delta,\eta)= (1, 0)$ tandis que celui de Zhu et Rabitz \cite{Zhu} correspond au cas où $(\delta,\eta)= (1, 1)$.\\\\
+où $\delta$ et $\eta$ sont deux paramètres réels. Le schéma Tannor \cite{Tannor} correspond au cas où $(\delta,\eta)= (1, 0)$ tandis que celui de Zhu et Rabitz \cite{Zhu} correspond au cas où $(\delta,\eta)= (1, 1)$.\\\\
 La propriété la plus importante de cet algorithme est donnée dans le théorème suivant \cite{Maday}        
 \begin{theorem}[Maday, Y., Turinici, G. (2003)]
 Supposons que $O$ soit un opérateur semi-défini positif auto-adjoint. Alors, pour tout $\eta$, $\delta$ $\in [0,2]$ l'algorithme donné par les équations \eqref{maday1} à \eqref{maday4} converge de façon monotone dans le sens où $J(\varepsilon^{k+1}) \geq J(\varepsilon^{k})$.
 \end{theorem}
 
 \begin{ proof }
-Evaluons la difference entre deux valeur de la fonctionnelle $J_1$ entre deux iterations successives. Supposons que $\eta \neq 0$, $\delta \neq 0$. Alors,
+Evaluons la différence entre deux valeurs de la fonctionnelle $J_1$ entre deux itérations successives. Supposons que $\eta \neq 0$, $\delta \neq 0$. Alors,
 \begin{align*}
 J(\varepsilon^{k+1})-J(\varepsilon^{k}) &= \langle \psi^{k+1}(T)|O| \psi^{k+1}(T) \rangle-\alpha \int_{0}^{T} \varepsilon^{k+1}(t)^2 dt - \langle \psi^{k}(T)|O| \psi^{k}(T) \rangle\\
 &\quad + \alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt \\
@@ -129,5 +129,5 @@ nous obtenons donc
 J(\varepsilon^{k+1})-J(\varepsilon^{k}) &= \langle \psi^{k+1}(T) - \psi^{k}(T)|O| \psi^{k+1}(T) - \psi^{k}(T) \rangle\\
 & \quad + \alpha \int_{0}^{T} (\frac{2}{\delta}-1)(\varepsilon^{k+1}-\tilde{\varepsilon}^k)^2 + (\frac{2}{\eta}-1)(\tilde{\varepsilon}^k-\varepsilon^{k})^2 dt
 \end{align*}
-qui est positif sous les hypotheses du theoreme. Notons que le cas $\delta=0$ entraine $\varepsilon^{k+1}=\tilde{\varepsilon}^k$ et $\eta=0$ entraine $\tilde{\varepsilon}^{k}=\varepsilon^k$ et la meme conclusion est obtenue.
+qui est positif sous les hypothèses du théorème. Notons que le cas $\delta=0$ entraîne $\varepsilon^{k+1}=\tilde{\varepsilon}^k$ et $\eta=0$ entraîne $\tilde{\varepsilon}^{k}=\varepsilon^k$ et la même conclusion est obtenue.
 \end{ proof }
