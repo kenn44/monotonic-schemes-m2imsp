@@ -1,0 +1,109 @@
+Des schémas explicites peuvent également être dégagés à partir des critères établis à la section 2.4.1. Rappelons que les champs doivent être calculés de telle sorte que les équations $(C_d )$ du lemme 3 soient vérifiées.
+
+\subsection{Monotonie imposée par une condition différentielle}
+La méthode explicite décrite ci-dessous présente l’avantage par rapport au schéma implicite d’être plus simple à mettre en œuvre. Elle diminue en outre le coût de calcul. Reprenons la démarche exposée au chapitre 1 sur l’exemple du calcul de $\tilde{\varepsilon}_j^k$ à partir de $\varepsilon_j^k$. Le terme de gauche de l'inéquation $(C_d)$, qui nous guide dans notre détermination de $\tilde{\varepsilon}_j^k$, est nul pour le choix $\tilde{\varepsilon}_j^k$, est nul pour le choix $\tilde{\varepsilon}_j^{k+1} = \tilde{\varepsilon}_j^k$. Considérons alors les fonctions $l_{\varepsilon^k,j}$:
+
+$$ \tilde{l}_{\varepsilon^k,j}: x \mapsto 2\mathfrak{R} \langle \tilde{\chi}_{j+1}^k \mid e^{-i\mu(-x)\Delta T}-Id \mid \breve{\psi}_{j+1}^k\rangle - \alpha \Delta Tx(x+2\varepsilon_j^k)$$
+et $l_{\tilde{\varepsilon}^k,j}$:
+
+$$ l_{\tilde{\varepsilon}^k,j}: x \mapsto 2\mathfrak{R} \langle \widehat{\chi}_{j}^k \mid e^{-i\mu x\Delta T}-Id \mid \widehat{\psi}_{j}^{k+1}\rangle - \alpha \Delta Tx(x+2 \tilde{\varepsilon}_j^k)$$
+
+Puisque  $\tilde{l}'_{\varepsilon^k,j}(0) = 0$ et $l_{\tilde{\varepsilon}^k,j}(0)=0$, l'idée sur laquelle nous nous appuyons dans cette section est de chercher localement des valeurs  $\tilde{h}_j^k$ et $h_j^k$ telles que $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k) >0$ et $l_{\tilde{\varepsilon}^k,j}(h_j^k)>0$. Par la suite, nous aurons besoin des dérivées des fonctions $\tilde{l}_{\varepsilon^k,j}$ et $l_{\tilde{\varepsilon}^k,j}$. Donnons les expressions de leurs deux premières dérivées:
+
+\begin{align*}
+	\tilde{l}'_{\varepsilon^k,j} :& \ \ x \mapsto 2 \mathfrak{J} \langle \tilde{\chi}_{j+1}^k \mid \mu \Delta T e^{-i \mu (-x)\Delta T} \mid \breve{\psi}_{j+1}^k \rangle - 2 \alpha\Delta T (x + \varepsilon_j^k)\\
+	\tilde{l}''_{\varepsilon^k,j} :& \ \ x \mapsto -2 \mathfrak{R} \langle \tilde{\chi}_{j+1}^k \mid \mu^2 \Delta T^2 e^{-i \mu (-x)\Delta T} \mid \breve{\psi}_{j+1}^k \rangle - 2 \alpha\Delta T\\
+	\l'_{\tilde{\varepsilon}^k,j} :& \ \ x \mapsto 2 \mathfrak{J} \langle \widehat{\chi}_{j}^k \mid \mu \Delta T e^{-i \mu x\Delta T} \mid \widehat{\psi}_{j}^{k+1} \rangle - 2 \alpha\Delta T (x + \tilde{\varepsilon}_j^k)\\
+	\l''_{\tilde{\varepsilon}^k,j} :& \ \ x \mapsto -2 \mathfrak{R} \langle \widehat{\chi}_{j}^k \mid \mu^2 \Delta T^2 e^{-i \mu x\Delta T} \mid \widehat{\psi}_{j}^{k+1} \rangle - 2 \alpha\Delta T\\	
+\end{align*}
+
+\subsection{Méthode du premier pas}
+
+Les fonctions $\tilde{l}_{\varepsilon^k,j}$ et $l_{\tilde{\varepsilon}^k,j}$ permettent de déterminer des valeurs convenables de $\tilde{h}_j^k$ et $h_j^{k+1}$. Le schéma obtenu est le suivant:
+\\
+\\
+
+Soit $(h_j^*)_{j = 1\cdots N-1}$ une suite arbitraire de réels positifs.
+
+\begin{itemize}
+	\item[\textbullet] Etant donné $(\psi_j^k)_j$ et $(\breve{\psi}_j^k)_j$ et donc $\chi_N^k = O\psi_N^k$ ou $\chi_N^k = \psi_{cible}$ selon que la fonctionnelle considérée soit $J_{\Delta T,1}$ ou $J_{\Delta T, 2}$, calculer récursivement $\chi_{j}^k$ selon les étapes suivantes:
+	
+	\begin{enumerate}
+		\item Calcul de $\tilde{\chi}_{j+1}^k $ par: $$\tilde{\chi}_{j+1}^k= e^{iH_0 \dfrac{\Delta T}{2}} \chi_{j+1}^k$$
+		\item Calcul de $\tilde{s}_j^k$ par :
+		$$\tilde{s}_j^k = sign(\tilde{l'}_j^{k}(0))$$
+		\item Calcul de $\tilde{\varepsilon}_j^k$ par:
+		
+		\begin{enumerate}
+			\item Assignation $\tilde{h}_j^k= \tilde{s}_j^k h_j^*$
+			\item Assignation $\tilde{\varepsilon}_j^k = \varepsilon_j^k + \tilde{h}_j^k$
+			\item Si $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k)<0$, assignation $\tilde{h}_j^k = \dfrac{\tilde{h_j^k}}{2}$ et retour à la sous-étape 3b,
+		\end{enumerate}
+		
+		\item Calcul et sauvegarde de $\widehat{\chi}_j^k$ par: $$\widehat{\chi}_j^k = e^{i(V-\mu \tilde{\varepsilon}_j^k)\Delta T} \tilde{\chi}_{j+1}^k$$
+		
+		\item Calcul de $\chi_j^k$ par:
+		$$\chi_j^k = e^{iH_0 \dfrac{\Delta T}{2}} \widehat{\chi}_j^k$$.		
+	\end{enumerate}
+	\item[\textbullet] Calculer récursivement $\psi_{j+1}^{k+1}$ à partir de $\psi_j^k$ selon les étapes suivantes:
+	
+	\begin{enumerate}
+		\item Calcul de $\widehat{\psi}_j^{k+1}$ par : $$ \widehat{\psi}_j^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2} \psi_j^k} $$
+		\item Calcul de $s_j^k$ par:
+		$$s_j^{k+1} = sign({l'}_j^{k+1}(0))$$
+	
+	
+	\item Calcul de $\varepsilon_j^{k+1}$ par :
+	
+		\begin{enumerate}
+		\item Assignation $h_j^{k+1} = s_j^{k+1} h_j^*$
+		\item Assignation $\varepsilon_j^{k+1} = \tilde{\varepsilon}_j^k + h_j^{k+1}$
+		\item Si $l_{\tilde{\varepsilon}^k,j} (h_j^{k+1}) < 0$, assignation $h_j^{k+1} = \dfrac{h_j^{k+1}}{2}$ et retour à la sous-étape 3b,
+		\end{enumerate}
+	\item Calcul et sauvegarde de $\breve{\psi}_{j+1}^{k+1}$ par:
+	$$\breve{\psi}_{j+1}^{k+1} = e^{-i(V- \mu \varepsilon_j^{k+1}) \Delta T} \widehat{\psi}_j^{k+1}$$
+	
+	\item Calcul de $\psi_{j+1}^k$ par: 
+	
+	$$\psi_{j+1}^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \breve{\psi}_{j+1}^{k+1}$$
+	
+\end{enumerate}
+\end{itemize}
+
+où $sign$ est la fonction à valeurs dans $\{-1,1\}$ qui renvoie le signe de sa variable. Ce schéma conduit nécessairement à un accroissement des valeurs de la fonctionnelle, puisque pour $\tilde{h}_j^k$ et $h_j^{k+1}$ suffisamment petits, $\tilde{l}_{\varepsilon^k,j}(\tilde{h}_j^k) \geq 0$ et $l_{\tilde{\varepsilon}^k,j}(h_j^{k+1})\geq0$.
+
+
+\subsection{Méthode du second ordre}
+
+Suivant une démarche analogue à la précédente, nous pouvons diminuer la complexité du calcul en choisissant pour valeurs de $\tilde{\varepsilon}_j^k$ et de $\varepsilon_j^{k+1}$ des maxima locaux de $\tilde{l}_{\varepsilon^k},j$ et de $l_{\tilde{\varepsilon}^k,j}$ dans des voisinages de $\varepsilon_j^k$ et de $\tilde{\varepsilon}_j^k$. Ces maxima sont calculés approximativement par une itération de la méthode de Newton appliquée à $\tilde{l}_{\varepsilon^k, j}$ et $l_{\tilde{\epsilon}^k,j}$. L'algorithme qui découle de cette démarche est le suivant:
+
+\begin{enumerate}
+	\item Calcul de $\tilde{\chi}_{j+1}^k$ par: $$ \tilde{\chi}_{j+1}^k = e^{iH_0 \dfrac{\Delta T}{2}} \chi_{j+1}^k$$
+	
+	
+	\item Calcul de $\tilde{\varepsilon}_j^k$ par: $$\tilde{\varepsilon}_j^k = \varepsilon_j^k - \dfrac{\tilde{l'}_{\varepsilon^k,j}(0)}{l''_{\varepsilon^k,j}(0)}$$
+	
+	\item Calcul et sauvegarde de $\widehat{\chi}_j^k$ par:
+	
+	$$\widehat{\chi_j}^k = e^{i(V-\mu \tilde{\varepsilon}_j^k)\Delta T} \tilde{\chi}_{j+1}^k$$
+	\item Calcul de $\chi_j^k$ par :
+	
+	$$\chi_j^k = e^{i H_0 \dfrac{\Delta T}{2}}\widehat{\chi}_j^k$$
+\end{enumerate}
+
+\begin{enumerate}
+	\item[\textbullet] Calculer récursivement $\psi_{j+1}^{k+1}$ à partir de $\psi_j^k$ selon les étapes suivantes:
+\end{enumerate}
+\begin{enumerate}
+	\item Calcul de $\widehat{\psi}_j^{k+1}$ par :
+	
+	$$\widehat{\psi}_j^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \psi_j^k$$,
+	\item Calcul de $\varepsilon_j^{k+1}$ par: $$\varepsilon_j^{k+1} = \tilde{\tilde{\varepsilon}}_j^k - \dfrac{\tilde{l'}_{\tilde{\varepsilon}^k,j}(0)}{l''_{\tilde{\varepsilon}^k,j}(0)}$$
+	\item Calcul et sauvegarde de $\breve{\psi}_{j+1}^{k+1}$ par:
+	$$\breve{\psi}_{j+1}^{k+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \widehat{\psi}_j^{k+1}$$
+	\item Calcul de $\psi_{j+1}^k$ par:
+	$$\psi_{j+1}^{k+1} = e^{-i H_0 \dfrac{\Delta T}{2}} \breve{\psi}_{j+1}^{k+1}$$
+\end{enumerate}
+
+Cet algorithme ne conduit pas nécessairement à un algorithme monotone puisque les contraintes imposées par le lemme 3 ne sont pas forcément vérifiées. Elles le sont cependant lorsque le coefficient $\alpha$ est suffisamment grand. En effet une interprétation des sous-étapes 2 est de considérer que $\tilde{\varepsilon}_j^k$ et $\varepsilon_j^k$ sont comme les maxima des développements limités d'ordre 2 des fonctions $l_{\tilde{\varepsilon}^k,j}$ et $\tilde{l}_{{\varepsilon^k},j}$. Lorsque les coefficients $(\alpha)_j=0, \cdots N-1$ sont grands ces polynômes sont alors des fonctions concaves et admettent bien un maximum positif.
+Dans les différentes applications traitées au chapitre 3, les contraintes du lemme 3 n'ont d'autre part jamais été violées par ce schéma.
