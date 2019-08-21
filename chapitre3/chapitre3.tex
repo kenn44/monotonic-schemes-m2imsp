@@ -250,35 +250,35 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 
 \begin{itemize}
 	
-	\item[•] Etant donné $ (\psi^k_j)_{j=0\cdots N}$ et $ (\breve{\psi}^k_j)_{j=0\cdots N}$ et donc $\chi^k_N = O\psi^k_N$ ou $ \chi_N^k = \psi_{cible} $ selon que la
+	\item[•] Etant donné $ (\psi^k_j)_{j=0\cdots N}$ et $ (\tilde{\psi}^k_j)_{j=0\cdots N}$ et donc $\chi^k_N = O\psi^k_N$ ou $ \chi_N^k = \psi_{cible} $ selon que la
 	fonctionnelle considérée soit $J_{\Delta T,1}$ ou $J_{\Delta T,2}$, calculer récursivement $\chi_j^k$ à partir de $ \chi^k_{j+1} $ par les opérations suivantes :
 	
 	\begin{enumerate}
-		\item Calcul de $\tilde{\chi}_{j+1}$ par:
-		$$ \tilde{\chi}_{j+1} = e^{iH_0\frac{\Delta T}{2}} \chi^k_{j+1} $$
+		\item Calcul de $\breve{\chi}_{j+1}$ par:
+		$$ \breve{\chi}_{j+1} = e^{iH_0\frac{\Delta T}{2}} \chi^k_{j+1} $$
 		\item Calcul de $\tilde{\varepsilon_j^k}$ par résolution de:
 		\begin{equation} \label{implepst}
 		\tilde{\varepsilon}_j^k = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha}\Im \langle  \breve{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j,\tilde{\varepsilon}^k_j)|\tilde{\psi}^k_{j+1} \rangle
 		\end{equation}
-		\item Calcul et sauvegarde de $\breve{\chi}^k_j$ par:
-		$$ \breve{\chi}^k_j = e^{i(V-\mu \tilde{\varepsilon}^k_j)\Delta T} \tilde{\chi}_{j+1} $$
+		\item Calcul et sauvegarde de $\tilde{\chi}^k_j$ par:
+		$$ \tilde{\chi}^k_j = e^{i(V-\mu \tilde{\varepsilon}^k_j)\Delta T} \breve{\chi}_{j+1} $$
 		\item Calcul de $\chi^k_j$ par:
-		$$ \chi^k_j = e^{iH_0\frac{\Delta T}{2}} \breve{\chi}_j^k  $$
+		$$ \chi^k_j = e^{iH_0\frac{\Delta T}{2}} \tilde{\chi}_j^k  $$
 	\end{enumerate}
 	
 	\item[•] Calculer récursivement $ \psi^{k+1}_{j+1}$ à partir de $\psi_j^k$ par les deux calculs suivants :
 	
 	\begin{enumerate}
-		\item Calcul de $\tilde{\psi}_j^{k+1}$ par:
-		$$ \tilde{\psi}_j^{k+1} = e^{-iH_0\frac{\Delta T}{2}} \psi^k_j $$
+		\item Calcul de $\breve{\psi}_j^{k+1}$ par:
+		$$ \breve{\psi}_j^{k+1} = e^{-iH_0\frac{\Delta T}{2}} \psi^k_j $$
 		\item Calcul de $\varepsilon_j^{k+1}$ par résolution de:
 		\begin{equation} \label{impleps}
 		\varepsilon_j^{k+1} = (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha}\Im \langle  \tilde{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j,\tilde{\varepsilon}^k_j)|\breve{\psi}^{k+1}_{j} \rangle
 		\end{equation}
-		\item Calcul et sauvegarde de $\breve{\psi}^{k+1}_{j+1}$ par:
-		$$ \breve{\psi}^{k+1}_{j+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \tilde{\psi}_j^{k+1}  $$
+		\item Calcul et sauvegarde de $\tilde{\psi}^{k+1}_{j+1}$ par:
+		$$ \tilde{\psi}^{k+1}_{j+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \breve{\psi}_j^{k+1}  $$
 		\item Calcul de $\psi^k_{j+1}$ par:
-		$$ \psi^{k+1}_{j+1} = e^{-iH_0\frac{\Delta T}{2}} \breve{\psi}^{k+1}_{j+1} $$
+		$$ \psi^{k+1}_{j+1} = e^{-iH_0\frac{\Delta T}{2}} \tilde{\psi}^{k+1}_{j+1} $$
 		
 	\end{enumerate}
 	
