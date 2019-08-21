@@ -66,6 +66,34 @@ Par suite,
 \begin{equation}
 \partial_{X} L(u,X,Y)=0 \iff \partial_{t} Y - A^{*}(u)Y=- \nabla f(X)
 \end{equation}
+\paragraph*{$\mathbf{u(t)}$}
+\begin{align*}
+L(u+h,X,Y) - L(u,X,Y) &= \int_{0}^{T}h(u+h)dt - \int_{0}^{T}h(u)dt\\
+&\quad -\Re \int_{0}^{T}\langle Y,(\partial_{t}+A(u+h))X \rangle dt\\
+&\quad +\Re \int_{0}^{T}\langle Y,(\partial_{t}+A(u))X \rangle dt\\
+&= \int_{0}^{T}h(u+h)-h(u)dt\\
+&\quad -\Re \int_{0}^{T}\langle Y,(-A(u+h)+A(u))X \rangle dt
+\end{align*}
+Par suite, 
+\begin{equation}
+\partial_{u} L(u,X,Y)=0 \iff \Re \langle Y|\nabla A(u)|X \rangle = \nabla h(u)
+\end{equation}
+\\Au total, nous obtenons:
+\begin{equation}
+\begin{cases}
+\partial_{t}X +A(u)X &= 0\\
+X(0) &=X_0\quad\quad\quad\quad
+\end{cases}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\partial_{t}Y -A^{*}(u)Y &= -\nabla f(X)\\
+Y(T) &=\nabla g(X(T))
+\end{cases}
+\end{equation}
+\begin{equation}
+\Re \langle Y|\nabla A(u)|x \rangle = \nabla h(u) \quad\quad
+\end{equation}
 \section{Application à l'équation de Schrödinger}
 
 Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au \eqref{schcon2}, l’évolution d’un tel système est régie par l’équation:

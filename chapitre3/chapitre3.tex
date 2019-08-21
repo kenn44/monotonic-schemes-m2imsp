@@ -1,12 +1,12 @@
 \chapter{Schémas monotones discrets}
 
 \section{Introduction}
-Les fonctionnelles à considérer ici sont :
+Nous considérons la fonctionnelles :
 
 \begin{equation}
 J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
-
+Pour les simulations numériques, nous considérons
 \begin{equation}
 J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
@@ -104,31 +104,39 @@ Etudions le terme $\langle \psi'_N-\psi_N |O|\psi_N \rangle$ nous obtenons:
 &\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi'_{j+1}, \chi_{j} \rangle\\
 &\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi_{j+1}, \chi_{j} \rangle\\
 \end{align*}
+
 Posons alors:
 
 \begin{equation}
-\tilde{\psi_j} = e^{-iH_0 \frac{\Delta T}{2}} \psi_j
+\tilde{\psi_j} = e^{-\frac{H_0 \Delta T}{2i}} \psi_j=e^{iH_0 \frac{\Delta T}{2}} \psi_j
 \end{equation}
 \begin{equation}
-\breve{\psi_j} = e^{iH_0 \frac{\Delta T}{2}} \psi_j
+\breve{\psi_j} =e^{\frac{H_0 \Delta T}{2i}} \psi_j= e^{-iH_0 \frac{\Delta T}{2}} \psi_j
 \end{equation}
 \begin{equation}
-\breve{\chi_j} = e^{-iH_0 \frac{\Delta T}{2}} \chi_j
+\breve{\chi_j} =e^{-\frac{H_0 \Delta T}{2i}}\chi_j= e^{iH_0 \frac{\Delta T}{2}} \chi_j
 \end{equation}
 et
 \begin{equation}
-\tilde{\chi_j} = e^{iH_0 \frac{\Delta T}{2}} \chi_j
+\tilde{\chi_j} = e^{\frac{H_0 \Delta T}{2i}}\chi_j= e^{-iH_0 \frac{\Delta T}{2}} \chi_j
 \end{equation}
 Par suite:
 \begin{align*}
 \langle \psi'_N-\psi_N |O|\psi_N \rangle &= \sum_{j=0}^{N-1} \langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
 &\quad +\sum_{j=0}^{N-1} \langle \tilde{\psi_{j+1}} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi_{j+1}} \rangle
 \end{align*}
-Alors, on defini une approximation de $\mu$ par:
+
+Le terme $(e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)$ nous invite a definir:
 \begin{equation} \label{mustar}
-\mu^*:(x,y) \mapsto i\dfrac{e^{\frac{\mu (x-y)}{i}\Delta T }-1}{\Delta T (x-y)}
+\begin{aligned}
+\mu^* :\quad \quad \R \times \R &\rightarrow L^2(\Omega, \R) \\(x,y)&\mapsto i\dfrac{e^{\frac{\mu (x-y)}{i}\Delta T }-Id}{\Delta T (x-y)}
+\end{aligned}
 \end{equation}
-et
+On a aussi
+\begin{equation*}
+\mu^*(x,y)=\dfrac{e^{-i\mu (x-y)\Delta T }-Id}{-i(x-y)\Delta T}
+\end{equation*}
+D'autre part, on pose:
 \begin{equation}
 \begin{cases}
 a_j(x,y) &=-\frac{1}{\alpha} \Im \langle \tilde{\chi_j}|\mu^*(x,y)|\breve{\psi'_j} \rangle \\
@@ -250,7 +258,7 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 		$$ \tilde{\chi}_{j+1} = e^{iH_0\frac{\Delta T}{2}} \chi^k_{j+1} $$
 		\item Calcul de $\tilde{\varepsilon_j^k}$ par résolution de:
 		\begin{equation} \label{implepst}
-		\tilde{\varepsilon}_j^k = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha}\Im \langle  \breve{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j-\tilde{\varepsilon}^k_j)|\tilde{\psi}^k_{j+1} \rangle
+		\tilde{\varepsilon}_j^k = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha}\Im \langle  \breve{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j,\tilde{\varepsilon}^k_j)|\tilde{\psi}^k_{j+1} \rangle
 		\end{equation}
 		\item Calcul et sauvegarde de $\breve{\chi}^k_j$ par:
 		$$ \breve{\chi}^k_j = e^{i(V-\mu \tilde{\varepsilon}^k_j)\Delta T} \tilde{\chi}_{j+1} $$
@@ -265,7 +273,7 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 		$$ \tilde{\psi}_j^{k+1} = e^{-iH_0\frac{\Delta T}{2}} \psi^k_j $$
 		\item Calcul de $\varepsilon_j^{k+1}$ par résolution de:
 		\begin{equation} \label{impleps}
-		\varepsilon_j^{k+1} = (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha}\Im \langle  \tilde{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j-\tilde{\varepsilon}^k_j)|\breve{\psi}^{k+1}_{j} \rangle
+		\varepsilon_j^{k+1} = (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha}\Im \langle  \tilde{\chi}^k_{j}|\mu^*(\varepsilon^{k+1}_j,\tilde{\varepsilon}^k_j)|\breve{\psi}^{k+1}_{j} \rangle
 		\end{equation}
 		\item Calcul et sauvegarde de $\breve{\psi}^{k+1}_{j+1}$ par:
 		$$ \breve{\psi}^{k+1}_{j+1} = e^{-i(V-\mu \varepsilon_j^{k+1})\Delta T} \tilde{\psi}_j^{k+1}  $$
