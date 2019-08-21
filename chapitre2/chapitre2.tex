@@ -1,19 +1,85 @@
 \chapter{Schémas monotones pour l'équation de Schrödinger}
 
-\section{Introduction}
+\section{Cadre général}
+Considérons un système décrit par une variable d’état X appartenant à un espace de Hilbert complexe $\mathcal{H}$ et dont l’évolution est décrite par l'équation :
+\begin{equation} \label{cadregeneral}
+\begin{cases}
+\partial_{t}X +A(u)X &= 0\\
+X(0) &=X_0
+\end{cases}
+\end{equation}
+où $X_0$ est un état initial, $u$ un paramètre du modèle appartenant à un ensemble $\mathcal{U}$, sur lequel un expérimentateur peut agir et où $A(u)$ est un opérateur défini sur $\mathcal{H}$. Supposons maintenant que l’on souhaite que le système adopte une configuration prescrite. Pour atteindre cet objectif, l’expérimentateur peut jouer sur le paramètre $u$ auquel il soumet le système. Le processus qui consiste à transférer le système d’un état initial $X_0$ donné à un état final $X(T)$ convenable vis-à-vis de critères prédéfinis, portant sur $X(t)$ ou des caractéristiques du paramètre $u$, est appelé contrôle. Par extension, le terme contrôle désigne également la fonction $u$ par laquelle est réalisée ce processus. L’espace $\mathcal{U}$ est appelé ensemble des contrôles admissibles.
+\subsection{Fonctionnelle de coût}
+Pour transformer le problème de contrôle en un problème d’optimisation, il nous faut introduire une fonctionnelle. Cette fonctionnelle doit d’une part rendre compte, de l’écart entre l'état final et l'état cible et d’autre part pénaliser le champ de contrôle de sorte qu’il reste physiquement raisonnable. Un cas général fonctionnelle est :
+\begin{equation}
+J(u)=g(X(T))+\int_{0}^{T} f(X(t))dt+\int_{0}^{T} h(u(t))dt
+\end{equation}
+Dans cette fonctionnelle $g$, $f$ , $h$ sont des fonctions définies sur $\mathcal{H}$. Le problème peut alors se formuler de la manière suivante.\\\\
+Chercher $u^*$ tel que :
+\begin{equation*}
+u^*=argmaxJ(u)
+\end{equation*}
+sous les contraintes:
+\begin{equation*}
+\begin{cases}
+\partial_{t}X +A(u)X &= 0\\
+X(0) &=X_0\\
+u &\in \mathcal{U}
+\end{cases}
+\end{equation*}
+Plusieures méthodes d'optimisation numérique permettent de résoudre ce problème. Nous nous interressons sans ce mémoire, a classe d’algorithmes, appelés \textbf{schémas monotones} ou encore \textbf{algorithmes monotones}. Cette dénomination est due au fait qu’à chaque itération, le champ de contrôle produit par l’algorithme augmente la valeur de la fonctionnelle.
+\subsection{Equations critiques, mutiplicateur de Lagrange}
+Au maximum de la fonctionnelle $J(u)$, les équations de Euler-Lagrange sont satisfaites. Le Lagrangien du système \eqref{cadregeneral} est donné par :
+\begin{equation}
+L(u,X,Y)= J(u) -\Re \bigg\{ \int_{0}^{T}\langle Y (t)|\partial_{t}+A(u(t))|X(t) \rangle dt \bigg\}
+\end{equation}
+Ainsi,
+\begin{align*}
+L(u,X,Y)&= g(X(T))+\int_{0}^{T} f(X(t))dt+\int_{0}^{T} h(u(t))dt\\
+&\quad -\Re \bigg\{ \int_{0}^{T}\langle Y (t)|\partial_{t}+A(u(t))|X(t) \rangle dt \bigg\}
+\end{align*}
+ou encore,
+\begin{align*}
+L(u,X,Y)&= g(X(T))+\int_{0}^{T} f(X(t))dt+\int_{0}^{T} h(u(t))dt\\
+&\quad -\Re \bigg\{ \int_{0}^{T}\langle [\partial_{t}-A^*(u(t))]Y (t)|X(t) \rangle dt \bigg\}
+\end{align*}
+Afin d'obtenir les équations de Euler-Lagrange, il nous faut calculer la variation par rapport a $Y$, $X$, $X(T)$ et $u$.
+\paragraph*{$\mathbf{Y(t)}$}
+\begin{align*}
+L(u,X,Y+h) - L(u,X,Y) &= -\Re \int_{0}^{T}\langle Y (t)+h,(\partial_{t}+A(u(t)))X(t) \rangle dt\\
+&\quad +\Re \int_{0}^{T}\langle Y (t),(\partial_{t}+A(u(t)))X(t) \rangle dt\\
+&= \Re \int_{0}^{T}\langle h,(\partial_{t}+A(u(t)))X(t) \rangle dt
+\end{align*}
+Par suite, 
+\begin{equation}
+\partial_{Y} L(u,X,Y)=0 \iff \partial_{t} X + A(u)X=0
+\end{equation}
+\paragraph*{$\mathbf{X(t)}$}
+\begin{align*}
+L(u,X+h,Y) - L(u,X,Y) &= \int_{0}^{T}f(X+h)dt - \int_{0}^{T}f(X)dt\\
+&\quad -\Re \int_{0}^{T}\langle (\partial_{t}-A^{*}(u(t)))Y,X+h \rangle dt\\
+&\quad +\Re \int_{0}^{T}\langle (\partial_{t}-A^{*}(u(t)))Y,X \rangle dt\\
+&= \int_{0}^{T}f(X+h)-f(X)dt\\
+&\quad -\Re \int_{0}^{T}\langle (\partial_{t}-A^{*}(u(t)))Y,h \rangle dt
+\end{align*}
+Par suite, 
+\begin{equation}
+\partial_{X} L(u,X,Y)=0 \iff \partial_{t} Y - A^{*}(u)Y=- \nabla f(X)
+\end{equation}
+\section{Application à l'équation de Schrödinger}
 
 Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au \eqref{schcon2}, l’évolution d’un tel système est régie par l’équation:
 
 \begin{equation}
 \begin{cases}
-i \frac{\partial}{\partial t} \psi (x,t) = H\psi(x,t) - \mu(x)\varepsilon(t)\psi(x,t)\\
-\psi(x,t=0)=\psi_0(x)
+i \frac{\partial}{\partial t} \psi (x,t) &= H\psi(x,t) - \mu(x)\varepsilon(t)\psi(x,t)\\
+\psi(x,t=0) &=\psi_0(x)
 \end{cases}
 \end{equation}
 
 Le moment dipolaire $\mu$ est supposé connu et indépendant du temps.
 
-\section{Fonctionnelles de coût}
+\subsection{Fonctionnelles de coût}
 Soit $\alpha \in \R^+$, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega \times [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
 \\Nous considérons deux fonctionnelles de coût:
 
@@ -25,11 +91,14 @@ J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsil
 J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \alpha \int_0^T \varepsilon^2(t)dt
 \end{equation}
 
-$\psi_{cible}$ représente une fonction d’onde cible. $J_1$ relève du formalisme attaché aux observables tandis que $J_2$ est plus simple à manipuler.
-%Les deux permettent de réaliser un compromis entre la recherche d'une grande valeur de l’observable et une norme $L_2$ du champ $\varepsilon$ raisonnable.
-Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est bien atteint pour $\psi(T) = \psi_{cible}$ puisque $\lVert \psi_{cible} \rVert = 1$ et que $2\Re\langle \psi_{cible}|\psi(T)\rangle = -\lVert \psi_{cible} - \psi(T)\rVert ^2+2$.\\
-
-les méthodes numérique d’optimisation reposent sur la résolution des équations d’Euler-Lagrange de la fonctionnelle traitée. Les équations d'Euler-Lagrange sont alors pour $J_1$ :\\\\
+$\psi_{cible}$ représente une fonction d’onde cible. $J_1$ relève du formalisme attaché aux observables tandis que $J_2$ est plus simple à utiliser au cours des simulations.
+\begin{align*}
+\lVert \psi_{cible} - \psi(T)\rVert^2 &= \int_{0}^{T} |\psi_{cible}-\psi(T)|^2 dt\\
+&=\int_{0}^{T}\lVert \psi_{cible} \rVert^2 dt + \int_{0}^{T}\lVert \psi(T) \rVert^2 dt - 2\Re \int_{0}^{T} \langle \psi_{cible},\psi(T) \rangle dt \\
+&= 2 - 2\Re\langle \psi_{cible}, \psi(T) \rangle
+\end{align*}
+Ainsi $2\Re \langle \psi_{cible},\psi_{cible} \rangle = 2$. Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est bien atteint pour $\psi(T) = \psi_{cible}$.\\\\
+Les méthodes numérique d’optimisation reposent sur la résolution des équations d’Euler-Lagrange de la fonctionnelle traitée. Les équations d'Euler-Lagrange sont alors pour $J_1$ :\\\\
 
 \begin{equation}
 \begin{cases}
