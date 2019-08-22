@@ -246,7 +246,7 @@ On conclu comme dans le cas continu. Aussi, de même que dans le cas continu, un
 \end{ proof }
 
 \paragraph*{Algorithme}
-$ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'algorithme suivant, en conservant la notation $\mu^*$ définie en \ref{mustar}. Soit $(\delta, \eta) \in [0, 2]^2$.
+$ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'algorithme suivant, en conservant la notation $\mu^*$ définie en \eqref{mustar}. Soit $(\delta, \eta) \in [0, 2]^2$.
 
 \begin{itemize}
 	
@@ -283,17 +283,15 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 	\end{enumerate}
 	
 \end{itemize}
-
-Il nous faut nous assurer de l'existence de solutions et chercher des méthodes pour les résoudre. Ces problèmes sont traités dans les sections suivantes. Les théorèmes qui suivent s’appliquent aux schémas monotones implicites liés à $ J_{\Delta T,2} $ . Nous signalons les modifications à apporter dans le cas de $ J_{\Delta T,1} $.
+Il nous faut nous assurer de l'existence de solutions et chercher des méthodes pour les résoudre. Ces problèmes sont traités dans les sections suivantes.
 
 \subsection{Existence de solutions}
-Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la
-norme d'opérateur de $\mu$.\\
+Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la norme de l'opérateur $\mu$.\\
 
 Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 
 \begin{theorem} \label{theoborne}
-	Supposons que les équations \eqref{implepst} et \eqref{impleps} admettent pour solutions $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $. Alors il existe un réel positif $M$ , ne dépendant que de $\delta,\eta,\lVert \mu \rVert_*$ et $\lVert O \rVert_*$ tel que:
+	Supposons que les équations \eqref{implepst} et \eqref{impleps} admettent comme solutions $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $. Alors il existe un réel positif $M$ , ne dépendant que de $\delta,\eta,\lVert \mu \rVert_*$ et $\lVert O \rVert_*$ tel que:
 	
 	$$ \forall k \in \N,\  \forall j,\  0 \leq j \leq N-1, |\tilde{\varepsilon^k_j}|\leq M,\ |\varepsilon_j^{k+1}| \leq M$$
 	
@@ -306,25 +304,63 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	M = \text{max}(\lVert (\tilde{\varepsilon^0_j})_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} )
 	\end{equation}
 	
-	et montrons par récurrence le résultat. Supposons la majoration suivante vraie au rang k :
+	et raisonnons par récurrence.\\
+	Dans un premier temps, on a bien
+	$$
+	|\tilde{\varepsilon_j}^0| \leq M \quad \forall 0 \leq j \leq N-1
+	$$
+	Supposons maintenant que nous ayons a l'ordre $k$ :
 	
 	$$ |\tilde{\varepsilon^k_j}| \leq M $$
 	
-	La définition \eqref{impleps} entraîne :
+	Par suite,
 	
-	$$ |\varepsilon_j^{k+1}| \leq |1-\delta|M + |\frac{\delta}{\alpha} \Im < \hat{X}^k_j| \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})| \tilde{\psi_j}^{k+1} >|  $$
+	$$
+	\eqref{impleps} \Rightarrow |\varepsilon_j^{k+1}| \leq |1-\delta|M + |\frac{\delta}{\alpha} \Im < \tilde{X}^k_j| \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon^k_j})| \breve{\psi_j}^{k+1} >|
+	$$
 	
-	et l'inégalité des accroissements finis donne d’autre part:
+	D’après l'inégalité de Cauchy-Schwartz :
+	
+	$$
+	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert \tilde{X}^k_j\rVert_2 \lVert \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon^k_j}) \breve{\psi_j}^{k+1} \rVert_2
+	$$
+	De plus, puisque les normes des différentes fonctions sont conservées au cours de la propagation, nous avons:
+	$$
+	\lVert \breve{\psi_j}^{k+1} \rVert_2 = 1 
+	$$
+	et
+	\begin{align*}
+	\lVert \tilde{\chi^k_j} \rVert_2 &= \lVert \chi^k_N \rVert_2\\
+	 &= \lVert O \psi_N^{k-1}\rVert_2 \\
+	 &\leq \lVert O \rVert_* \lVert \psi_N^{k-1}\rVert_2 \\
+	 &\leq \lVert O \rVert_*
+	\end{align*}
+	Par consequent,
+	$$
+	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert 0 \rVert_* \lVert \mu^* \rVert_{\infty}
+	$$
+	D’autre part, posons
+	$$
+	f(x)=e^{\mu x}
+	$$
+	$f$ est continue et dérivable sur $\R$.\\
+	On a :
+	$$
+	\mu^* (\varepsilon_j^{k+1}, \tilde{\varepsilon_j}^k)= \dfrac{f(-i (\varepsilon_j^{k+1}- \tilde{\varepsilon_j}^k)\Delta T) - f(0)}{-i (\varepsilon_j^{k+1}- \tilde{\varepsilon_j}^k)\Delta T-0}
+	$$
+	et
+	$$
+	\forall x \in \R, \quad f'(x) \leq \lVert \mu \rVert_*
+	$$
+	Alors, l'inégalité des accroissements finis donne :
 	
 	$$ \lVert \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j}) \rVert = \lVert \frac{e^{-i \mu( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T}-Id}{-i ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T} \rVert \leq \lVert \mu \rVert_*  $$
 	
-	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $ . Puisque les normes des différentes fonctions sont conservées au cours de la propagation, nous avons de plus :
-	$$ \lVert \tilde{\psi_j}^{k+1} \rVert = 1  $$
-	$$ \lVert \breve{\chi^k_j} \rVert = \lVert \chi^k_N \rVert = \lVert O \chi_N^{k-1}\rVert \leq \lVert O \rVert_* $$
+	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $.\\ Qui permet d'obtenir :
 	
-	qui permet d'obtenir, d’après l'inégalité de Cauchy-Schwartz :
-	
-	$$ |\varepsilon_j^{k+1} | \leq |1-\delta|M + \delta \frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} $$
+	$$
+	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert 0 \rVert_* \lVert \mu \rVert_{*}
+	$$
 	
 	Si $\delta \leq 1$, alors $|1-\delta| = 1-\delta$ et puisque $\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} \leq M$:
 	
@@ -339,10 +375,6 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	$$ \forall j,\ 0 \leq j \leq N, |\tilde{\varepsilon}_j^{k+1} | \leq M $$
 	ce qui achève la démonstration par récurrence.
 \end{ proof }
-
-Dans le cas des schémas monotones implicites liés à $J_{\Delta T,1}$, un théorème analogue peut être démontré avec comme borne :
-
-$$  M = \text{max}(\lVert (\tilde{\varepsilon^0_j})_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} ) $$
 
 Partant de ce résultat, nous pouvons démontrer l’existence de \eqref{implepst} et \eqref{impleps}.
 
