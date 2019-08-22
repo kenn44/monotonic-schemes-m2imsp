@@ -384,18 +384,18 @@ Partant de ce résultat, nous pouvons démontrer l’existence de \eqref{impleps
 
 \begin{ proof }
 	
-	Soit $M$ , le réel défini par \eqref{M}. Etant donné 
-	$(\tilde{\varepsilon^k_j})_{j=0\cdots N-1}$ bornée par $M$ , la preuve du théorème \ref{theoborne} montre que l’image de l'intervalle $[-M, M ]$ par la fonction $f$, définie par :
-	
+	Soit $M$ , le réel défini par \eqref{M}. Raisonnons par reccurence en supposant  
+	$(\tilde{\varepsilon_j}^k)_{j=0\cdots N-1}$ bornée par $M$.\\
+	Définissons la fonction $f$ par:
 	\begin{equation} \label{f}
-	f: x \mapsto (1-\delta)\tilde{\varepsilon}_j^k + \frac{\delta}{\alpha} \Im \langle \hat{X}^k_j| \mu^* (x - \tilde{\varepsilon^k_j})| \tilde{\psi_j}^{k+1} \rangle
+	f: x \mapsto (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha}\Im \langle  \tilde{\chi}^k_{j}|\mu^*(x,\tilde{\varepsilon}^k_j)|\breve{\psi}^{k+1}_{j} \rangle
 	\end{equation}
-	
-	est contenue dans $[-M, M ]$. La fonction $f$ étant continue, le théorème des valeurs intermédiaires permet alors de conclure à l'existence d’un point fixe pour cette fonction et donc d’une solution à \eqref{impleps}. Un raisonnement analogue peut être mené pour prouver l'existence d’une solution à \eqref{implepst}. Ceci achève la preuve par récurrence.
+	La preuve du théorème \ref{theoborne} nous montre que $\forall x \in [-M, M ]$ , $f(x) \in [-M, M ]$ .\\
+	La fonction $f$ étant continue, le théorème des valeurs intermédiaires permet alors de conclure à l'existence d’un point fixe pour cette fonction et donc d’une solution à \eqref{impleps}. Un raisonnement analogue peut être mené pour prouver l'existence d’une solution à \eqref{implepst}. Ceci achève la preuve par récurrence.
 	
 \end{ proof }
 
-Le schéma exposé est donc bien défini et produit des champs bornés par le réel $M$ . Un théorème identique peut bien entendu être montré dans le cas de $ J_{\Delta T,1} $ .
+Le schéma exposé est donc bien défini et produit des champs bornés par le réel $M$ .
 
 \subsection{Unicité et itérations de Picard}
 Continuons de noter $M$ le réel défini dans \eqref{M}. Pour résoudre \eqref{implepst} et \eqref{impleps} une méthode de Picard peut être employée. Le théorème suivant en donne les conditions de convergence.
@@ -420,28 +420,37 @@ Continuons de noter $M$ le réel défini dans \eqref{M}. Pour résoudre \eqref{i
 \end{theorem}
 
 \begin{ proof }
-	
-	Pour alléger les notations dans les calculs qui suivent, $\mu$ désigne dans cette preuve aussi bien la fonction précédemment définie sur $\Omega$ que son évaluation $\mu(x)$ en un point quelconque de $\Omega$.
+	Ici, $\mu$ désigne aussi bien la fonction précédemment définie sur $\Omega$ que son évaluation $\mu(x)$ en un point quelconque de $\Omega$.
 	$ $
 	\\Soit $h$ la fonction continue définie par :
 	
 	\begin{equation}
-	h(\theta) = \begin{cases}
-	\quad i \quad si \quad\theta = 0\\
-	\ \frac{e^{i\theta}-1}{\theta}\ si\quad \theta \neq 0
+	h(x) = \begin{cases}
+	\quad i \quad si \quad x = 0\\
+	\ \frac{e^{ix}-1}{x}\ si\quad x \neq 0
 	\end{cases}
 	\end{equation}
+	Pour tout réel $x$ , $h'(x) \leq 1$
 	
-	Avec cette définition $\mu^*$ défini en \eqref{mustar} vérifie:
+	$\mu^*$ défini en \eqref{mustar} vérifie:
 	
-	$$ \mu^*(x-\tilde{\varepsilon^k_j}) = -i\mu h (\mu(x-\tilde{\varepsilon^k_j}) \Delta T )$$
+	$$ \mu^*(x,\tilde{\varepsilon^k_j}) = -i\mu h (\mu(x-\tilde{\varepsilon^k_j}) \Delta T )$$
+	Posons
+	\begin{align*}
+	\mu^{**}(x-y) &=\mu^*(x,y)\\
+	&= \dfrac{e^{-i\mu (x-y) \Delta T}-Id}{-i(x-y)\Delta T}\\
+	&=-\mu h(\mu (x-y)\Delta T)
+	\end{align*}
+	Par suite, 
+	$$
+	\frac{d\mu^{**} (x-\tilde{\varepsilon^k_j})}{dx} = -i\mu^2 h'(\mu(x-\tilde{\varepsilon^k_j})\Delta T) \Delta T 
+	$$
 	
-	Notons de plus que pour tout réel $ \theta, h'(\theta) \leq 1 $.
-	\\Puisque $ \frac{d\mu^* (x-\tilde{\varepsilon^k_j})}{dx} = -i\mu^2 \Delta T h' (\mu(x-\tilde{\varepsilon^k_j})\Delta T) $, l'inégalité des accroissements finis donne :
+	D'apres l'inégalité des accroissements finis :
 	
-	$$ |\mu^* (x-\tilde{\varepsilon^k_j}) - \mu^* (y-\tilde{\varepsilon^k_j})| \leq \lVert \mu \rVert _*^2 \Delta T |x-y|,  $$
+	$$ |\mu^{**} (x-\tilde{\varepsilon^k_j}) - \mu^{**} (y-\tilde{\varepsilon^k_j})| \leq \lVert \mu \rVert _*^2 \Delta T |x-y|,  $$
 	
-	ce qui conduit à:
+	par conséquent:
 	
 	$$ |f(x) - f(y)| \leq \frac{\delta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T |x-y| $$
 	
@@ -453,10 +462,6 @@ Un résultat analogue peut bien entendu être obtenu pour l'existence de solutio
 \begin{equation} \label{cond2.27}
 \frac{\eta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T < 1
 \end{equation}
-
-Dans le cas de $J_{\Delta T,1}$ , les conditions \label{cond2.26} et \label{cond2.27} deviennent :
-
-$$ \frac{\delta}{\alpha} \lVert \mu \rVert _*^2 \Delta T <1 \ \text{et}\  \frac{\eta}{\alpha} \lVert \mu \rVert _*^2 \Delta T <1 $$
 
 Nous déduisons de cette manière une condition suffisante d'unicité des solutions des équations \eqref{implepst} et \eqref{impleps} et une méthode de résolution.
 
@@ -481,10 +486,6 @@ L'estimation \eqref{est2.28} devient dans le calcul de $\tilde{\varepsilon}$:
 \begin{equation} \label{est2.29}
 |g''(x_0)| \leq \frac{\frac{\eta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\eta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T}
 \end{equation}
-
-Dans le cas de $ J_{\Delta T,1} $ , \eqref{est2.28} et \eqref{est2.29} deviennent :
-
-$$ |g''(x_0)| \leq \frac{\frac{\delta}{\alpha}  \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\delta}{\alpha}  \lVert \mu \rVert _*^2 \Delta T}    \ \text{et}\    |g''(x_0)| \leq \frac{\frac{\eta}{\alpha} \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\eta}{\alpha} \lVert \mu \rVert _*^2 \Delta T} $$ 
 
 \section{Schémas explicites}
 
