@@ -267,7 +267,7 @@ et notons $\psi(x,t)=e^{-i(A+B)t}\psi_0(x)$ sa solution pour $t>0$, et $x\in \Om
 	Cette méthode conserve la norme $L^2$ de la fonction d’onde $\psi$ au cours du temps.
 \end{pro}
 \begin{ proof }
-	Les opérateurs exponentiés étant anti-hermitiens, leurs exponentielles sont en effet unitaires.
+	Les opérateurs exponentiés étant antihermitiens, leurs exponentielles sont unitaires. En effet, notons $X^{T}$, $\overline{X}$ et $X^{\dagger}=(\overline{X})^T$ respectivement la transposée, la conjuguée et l'adjointe de $X$. Puisque $e^{X^T}={(e^X)}^T$ et $e^{\overline{X}}=\overline{e^X}$ alors ${e^X}^{\dagger}={(e^X)}^{\dagger}$. Il s'ensuit que si X est antihermitienne, c'est-à-dire $X^{\dagger}=-X$, alors ${(e^X)}^{-1}={(e^X)}^{\dagger}$ : $e^X$ est unitaire.
 \end{ proof }
 Cette propriété importante \eqref{normecons} est donc conservée après discrétisation.\\
 D’autres méthodes de résolution approchée peuvent être envisagées : schémas d’Euler, Runge-Kutta... Le problème posé par ces schémas est qu’ils ne conservent pas la norme de la solution en général.

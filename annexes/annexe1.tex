@@ -1,0 +1,63 @@
+\addcontentsline{toc}{chapter}{{Annexe A}}
+\lhead{\textsl{Annexe A}}
+\chapter*{Annexe A: Espaces hermitiens complexes et opérateurs hermitiens}
+\section{Espaces hermitiens}
+Dans tout ce chapitre E désigne un espace vectoriel sur $\C$. Les conventions qui suivent imposent un choix de l'argument qui est linéaire. Le choix ci-dessous (forme sesquilinéaire à gauche : première variable semi-linéaire, deuxième variable linéaire) est utilisé par les physiciens, ceci étant dû à l'origine à l'utilisation de la notation bra-ket introduite par Dirac \footnote{Paul Dirac, Les Principes de la mécanique quantique [« The Principles of Quantum Mechanics »] (1re éd. 1930) }, mais le choix opposé est courant en mathématiques.
+\begin{definition}
+Une forme sesquilinéaire à gauche est une application $b: E \times E \mapsto \C$ telle que
+\begin{itemize}
+	\item pour tout $x \in E$, $b_1: y \mapsto b(x,y)$ est linéaire;
+	\item pour tout $y \in E$, $b_2: x \mapsto b(x,y)$ est semi-linéaire:
+	\begin{itemize}
+		\item[*] pour tous $x_1$, $x_2 \in E$, on a $b_2(x_1+x_2)=b_2(x_1)+b_2(x_2)$
+		\item[*] pour tous $x \in E$ et $\lambda \in \C$, on a $b_2(\lambda x)=\bar{\lambda} b_2(x)$
+	\end{itemize}
+\end{itemize}
+Une telle forme est dite hermitienne (ou à symétrie hermitienne) si pour tous $x$, $y \in E$, on a $b(y,x)=\bar{b(x,y)}$
+\end{definition}
+\begin{remark}
+	Remarquons que pour une forme hermitienne, on a $b(x,x)=\overline{b(x,x)}$ donc $b(x,x) \in \R$
+\end{remark}
+\begin{remark}
+	Une application $f : E \times E \rightarrow \C$ est une forme sesquilinéaire à droite, si et seulement si, l'application $b : E \times E \rightarrow \C$, définie par $b (x, y) = f (y, x)$ est sesquilinéaire à gauche. 
+\end{remark}
+On note $q(x)=b(x,x)$ et on dit que $q$ est la forme quadratique associée a $b$. On a la $q(\lambda x)= |\lambda|^2 q(x)$ pour $\lambda \in \C$.\\
+
+On peut retrouver $b$ à partir de $q$ avec la formule de polarisation
+\begin{equation}
+b(x,y)=\frac{1}{4}(q(x+y)-q(x-y)+iq(x+iy)-iq(x-iy))
+\end{equation}
+\begin{definition}
+	Un produit scalaire hermitien est une forme sesquilinéaire définie positive, c’est-à-dire qu’on a $q(x) \geq 0$ pour tout $x \in E$ et $q(x)=0$ seulement si $x=0$.
+\end{definition}
+\begin{definition}
+	Un espace hermitien est un espace vectoriel sur $\C$ muni d'un produit scalaire hermitien. On note le produit scalaire $b(x,y)=\langle x, y \rangle$
+\end{definition}
+\begin{ex}
+	L'espace $\C^n$ avec
+	\begin{equation*}
+	b(u,v)=\sum_{i=1}^{n} \overline{u_i}v_i
+	\end{equation*}
+\end{ex}
+\begin{ex}
+	L'espace $L^2(I)$ avec $I \subset \R$
+	\begin{equation*}
+	b(g,h)=\int_{I} \overline{g(t)}h(t)dt
+	\end{equation*}
+\end{ex}
+
+\section{Opérateur hermitien}
+\begin{definition}
+	Soit $u$ un opérateur sur un espace hermitien $E$, on appelle adjoint de $u$, que l'on note $u^*$, l'endomorphisme tel que, pour tous $x$, $y \in E$,
+	\begin{equation*}
+	\langle u(x), y \rangle = \langle x, u^*(y)\rangle
+	\end{equation*}
+	
+	On dit que $u$ est auto-adjoint ou hermitien si $u=u^*$, antihermitien si $u=-u^*$ et unitaire si $uu^*=Id$.\\
+	Si l'opérateur $a$ est borné, alors l'adjoint l'est aussi et sa norme est égale à celle de $a$.
+\end{definition}
+(definitions de norme d'un operateur)
+(operateur borne, continu)
+\begin{equation*}
+\lVert uu^* \rVert=\lVert u\rVert^2
+\end{equation*}
