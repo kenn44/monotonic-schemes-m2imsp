@@ -1,8 +1,10 @@
 \addcontentsline{toc}{chapter}{{Annexe A}}
 \lhead{\textsl{Annexe A}}
-\chapter*{Annexe A: Espaces hermitiens complexes et opérateurs hermitiens}
-\section{Espaces hermitiens}
-Dans tout ce chapitre E désigne un espace vectoriel sur $\C$. Les conventions qui suivent imposent un choix de l'argument qui est linéaire. Le choix ci-dessous (forme sesquilinéaire à gauche : première variable semi-linéaire, deuxième variable linéaire) est utilisé par les physiciens, ceci étant dû à l'origine à l'utilisation de la notation bra-ket introduite par Dirac \footnote{Paul Dirac, Les Principes de la mécanique quantique [« The Principles of Quantum Mechanics »] (1re éd. 1930) }, mais le choix opposé est courant en mathématiques.
+\chapter*{Annexe A: Espaces de Hilbert complexes et opérateurs hermitiens}
+\section{Rappels sur les espaces de Hilbert}
+\subsection{Produit scalaire hermitien}
+Les conventions qui suivent imposent un choix de l'argument qui est linéaire. Le choix ci-dessous (forme sesquilinéaire à gauche : première variable semi-linéaire, deuxième variable linéaire) est utilisé par les physiciens, ceci étant dû à l'origine à l'utilisation de la notation bra-ket introduite par Dirac \footnote{Paul Dirac, Les Principes de la mécanique quantique [« The Principles of Quantum Mechanics »] (1re éd. 1930) }, mais le choix opposé est courant en mathématiques.\\
+Soit E un espace vectoriel sur $\C$.
 \begin{definition}
 Une forme sesquilinéaire à gauche est une application $b: E \times E \mapsto \C$ telle que
 \begin{itemize}
@@ -13,7 +15,10 @@ Une forme sesquilinéaire à gauche est une application $b: E \times E \mapsto \
 		\item[*] pour tous $x \in E$ et $\lambda \in \C$, on a $b_2(\lambda x)=\bar{\lambda} b_2(x)$
 	\end{itemize}
 \end{itemize}
-Une telle forme est dite hermitienne (ou à symétrie hermitienne) si pour tous $x$, $y \in E$, on a $b(y,x)=\bar{b(x,y)}$
+
+\end{definition}
+\begin{definition}
+	Une forme sesquilinéaire est dite hermitienne (ou à symétrie hermitienne) si pour tous $x$, $y \in E$, on a $b(y,x)=\overline{b(x,y)}$
 \end{definition}
 \begin{remark}
 	Remarquons que pour une forme hermitienne, on a $b(x,x)=\overline{b(x,x)}$ donc $b(x,x) \in \R$
@@ -21,17 +26,40 @@ Une telle forme est dite hermitienne (ou à symétrie hermitienne) si pour tous 
 \begin{remark}
 	Une application $f : E \times E \rightarrow \C$ est une forme sesquilinéaire à droite, si et seulement si, l'application $b : E \times E \rightarrow \C$, définie par $b (x, y) = f (y, x)$ est sesquilinéaire à gauche. 
 \end{remark}
-On note $q(x)=b(x,x)$ et on dit que $q$ est la forme quadratique associée a $b$. On a la $q(\lambda x)= |\lambda|^2 q(x)$ pour $\lambda \in \C$.\\
+\begin{proposition}
+L’ensemble des formes sesquilinéaires hermitiennes sur $E$ est un espace vectoriel complexe.
+\end{proposition}
+On note $q(x)=b(x,x)$ et on dit que $q$ est la forme quadratique associée a $b$. On a $q(\lambda x)= |\lambda|^2 q(x)$ pour $\lambda \in \C$.
 
-On peut retrouver $b$ à partir de $q$ avec la formule de polarisation
+\paragraph*{Identités de polarisation}
+$ $\\
+Soit $b$ une forme hermitienne. Soit $x$, $y \in E$.
 \begin{equation}
-b(x,y)=\frac{1}{4}(q(x+y)-q(x-y)+iq(x+iy)-iq(x-iy))
+b(x+y, x+y)=b(x,x)+b(y,y)+2\Re (b(x,y))
+\end{equation}
+\begin{equation}
+b(x+iy,x+iy)=b(x,x)+b(y,y)-2\Im (b(x,y))
+\end{equation}
+\begin{equation}
+b(x,y)=\frac{1}{4}[b(x+y,x+y)-b(x-y,x-y)+ib(x+iy,x+iy)-ib(x-iy,x-iy)]
+\end{equation}
+\begin{equation}
+\Re (b(x,y))=\frac{1}{4} [b(x+y,x+y)-b(x-y,x-y)]
+\end{equation}
+\begin{equation}
+\Im (b(x,y))=-\frac{1}{4} [b(x+iy,x+iy)-b(x-iy,x-iy)]
 \end{equation}
 \begin{definition}
-	Un produit scalaire hermitien est une forme sesquilinéaire définie positive, c’est-à-dire qu’on a $q(x) \geq 0$ pour tout $x \in E$ et $q(x)=0$ seulement si $x=0$.
+	Un produit scalaire hermitien est une forme sesquilinéaire hermitienne définie positive, c’est-à-dire toute application $b$ de $E \times E$ dans $\C$ telle que :
+	\begin{enumerate}
+		\item $b$ est une forme sesquilinéaire hermitienne
+		\item $\forall x \in E, \:\: b(x,x)\geq 0$
+		\item $\forall x \in E, \:\: b(x,x)=0 \Rightarrow x=0$
+	\end{enumerate}
 \end{definition}
 \begin{definition}
-	Un espace hermitien est un espace vectoriel sur $\C$ muni d'un produit scalaire hermitien. On note le produit scalaire $b(x,y)=\langle x, y \rangle$
+	Un $\C-$espace vectoriel muni d'un produit scalaire est appelé espace préhilbertien complexe.\\
+	Si, de plus, il est de dimension finie, on dira que c’est un espace hermitien. On note le produit scalaire $b(x,y)=\langle x, y \rangle$
 \end{definition}
 \begin{ex}
 	L'espace $\C^n$ avec
@@ -45,19 +73,56 @@ b(x,y)=\frac{1}{4}(q(x+y)-q(x-y)+iq(x+iy)-iq(x-iy))
 	b(g,h)=\int_{I} \overline{g(t)}h(t)dt
 	\end{equation*}
 \end{ex}
-
-\section{Opérateur hermitien}
+\subsection{Norme hermitienne}
 \begin{definition}
-	Soit $u$ un opérateur sur un espace hermitien $E$, on appelle adjoint de $u$, que l'on note $u^*$, l'endomorphisme tel que, pour tous $x$, $y \in E$,
-	\begin{equation*}
-	\langle u(x), y \rangle = \langle x, u^*(y)\rangle
-	\end{equation*}
-	
-	On dit que $u$ est auto-adjoint ou hermitien si $u=u^*$, antihermitien si $u=-u^*$ et unitaire si $uu^*=Id$.\\
-	Si l'opérateur $a$ est borné, alors l'adjoint l'est aussi et sa norme est égale à celle de $a$.
+	Soit $E$ un espace préhilbertien complexe. On pose $\lVert x \rVert= \sqrt{\langle x,x \rangle}$ On définit ainsi une norme sur
+	$E$ dite norme hermitienne
 \end{definition}
-(definitions de norme d'un operateur)
-(operateur borne, continu)
+\paragraph*{Relations entre norme et produit scalaire : identités de polarisation}
+$ $\\Soit $E$ un espace préhilbertien complexe. $x$, $y \in E$.
+\begin{equation}
+||x+y||^2=||x||^2+||y||^2 +2\Re (\langle x,y\rangle)
+\end{equation}
+\begin{equation}
+||x+iy||^2=||x||^2+||y||^2 -2\Im (\langle x,y\rangle)
+\end{equation}
+\begin{equation}
+\langle x,y \rangle=\frac{1}{4}[||x+y||^2-||x-y||^2-i||x+iy||^2-i||x-iy||^2]
+\end{equation}
+\begin{equation}
+||x+y||^2+||x-y||^2=2(|||x||^2+|y||^2)
+\end{equation}
+\begin{definition}
+	Un espace préhilbertien complet pour la norme associée au produit scalaire est
+	appelé espace de Hilbert.
+\end{definition}
+\section{Opérateur hermitien}
+Dans toute cette section, $H_1$ et $H_2$ désignent deux espaces de Hilbert. On dira que $T : H_1 \rightarrow
+H_2$ est un opérateur borné de $H_1$ dans $H_2$ si $T$ est une application linéaire continue de $H_1$
+dans $H_2$. La définition ci-dessous généralise aux espaces de Hilbert la notion d’endomorphisme adjoint vue en L2 dans le cadre des espaces euclidiens.
+\begin{theorem}
+Soit $T$ un opérateur borné de $H_1$ dans $H_2$. Il existe un et un seul opérateur borné $T^*$ de $H_2$ dans $H_1$ vérifiant
 \begin{equation*}
-\lVert uu^* \rVert=\lVert u\rVert^2
+\forall (f,g) \in H_1 \times H_2, \langle Tf,g \rangle_{H_2} = \langle f,T^* g \rangle_{H_1}
 \end{equation*}
+L’opérateur $T^*$ est appelé opérateur adjoint de $T$, et l'on a $||T||_{\mathcal{L}(H_1,H_2)} = ||T^*||_{\mathcal{L}(H_2,H_1)}$
+\end{theorem}
+\begin{definition}
+	On dit que $T\in \mathcal{L}(H)$ est un opérateur auto-adjoint ou hermitien si$T=T^*$, c’est-à-dire : pour tous $x$, $y \in H$,
+	\begin{equation*}
+	\langle Tx, y \rangle = \langle x, Ty \rangle
+	\end{equation*} Antihermitien si $A=-A^*$.\\
+	Unitaire si $AA^*=Id$.
+\end{definition}
+Si $T$ est auto-adjoint alors pour tout $x \in H$, $\langle Tx , x\rangle$ est réel (même si $H$ est un espace de Hilbert complexe).\\
+Comme en dimension finie avec les endomorphismes symétriques, on peut définir les notions de positivité et de négativité pour les opérateurs auto-adjoints.
+\begin{definition}
+On dit qu’un opérateur auto-adjoint $T$ est positif si\begin{equation*}
+\forall x \in H, \langle Tx,x \rangle \geq 0
+\end{equation*}
+\end{definition}
+On dit qu’il est défini positif si l’inégalité ci-dessus est stricte pour $x \neq 0$.\\
+On dit que $T$ est négatif (resp. défini négatif) si $-T$ est positif (resp. défini positif).
+\begin{proposition}
+Si $T$ est opérateur auto-adjoint alors toutes ses valeurs propres sont réelles. Si de plus il est positif (resp. défini positif) alors toutes ses valeurs propres sont positives (resp. strictement positives).
+\end{proposition}
