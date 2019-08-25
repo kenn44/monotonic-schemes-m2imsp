@@ -625,7 +625,13 @@ Nous considérons d'abord le problème simplifié.
 \begin{equation}
 i\dot y(t)= (A+c(t)B)y(t),
 \end{equation}
-avec un état initial $y_0$ fixé. $A$ et $B$ deux matrices symetriques. Données
+avec un état initial $y_0$ fixé. $A$ et $B$ deux matrices symetriques. 
+\\Données
+\begin{figure}[H]
+	\caption{Evolution de la fonctionnelle}
+	\centering
+	\includegraphics[scale=0.6]{images/implicit_func.png}
+\end{figure}
 
 \section{Schémas explicites}
 Considérons toujours
@@ -676,8 +682,13 @@ Ce qui nous donne
 \end{equation}
 Sachant que $\tilde{\varepsilon}_j^k$ a été déterminé à l'étape 1 de façon similaire.
 \subsection{Résultats numériques}
-Todo: 1-verifier les propagations, 2-reprendre entierement explicite, 3-remettre le produit hermitien\\
+Todo: 1-verifier les propagations, \\2-reprendre entierement explicite, \\3-remettre le produit hermitien\\
 Nous considérons a nouveau 
 \begin{equation}
 i\dot y(t)= (A+c(t)B)y(t),
 \end{equation}
+\begin{figure}[H]
+	\caption{Evolution de la fonctionnelle}
+	\centering
+	\includegraphics[scale=0.6]{images/explicit_func.png}
+\end{figure}
