@@ -198,6 +198,10 @@ Six\or Sept\or Huit\or Neuf\or Dix\or Onze\fi}
 \newcommand{\0}{/ \! \! \! 0}
 \newcommand{\g}{\mathfrak g}
 \newcommand{\h}{\mathfrak h}
+%textcircled numbers
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 \usepackage{amssymb,textcomp}
 

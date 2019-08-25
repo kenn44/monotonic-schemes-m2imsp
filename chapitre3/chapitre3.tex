@@ -89,24 +89,37 @@ avec la condition $\chi_N = O\psi_N$ dans le cas de $J_{\Delta T,1}$ et $\chi_N 
 
 avec un état initial $\psi_0$ fixé.
 
-\section{Calcul de variation}
-Nous reprenons le calcul de variation effectue au Chapitre Deux avec nos fonctionnelles discretes
+\section{Variation entre deux itérations successives}
+Nous reprenons le calcul de variation effectué au Chapitre Deux avec nos fonctionnelles discrètes. Pour commencer, considérons deux contrôles $\varepsilon$ et $\varepsilon'$, le cas particulier qui va nous intéresser est au final est $\varepsilon' = \varepsilon^{k+1}$ et $\varepsilon = \varepsilon^k$. On note $\psi'$ et $\chi'$ respetivement, l'état et l'adjoint associé à $\varepsilon'$.
 \begin{align*}
-J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon) &= \langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle + 2\Re \langle \psi'_N-\psi_N |O|\psi_N \rangle\\
+J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon) 
+&=\langle \psi'_N |O|\psi'_N \rangle -\alpha \Delta T (\sum_{j=0}^{N -1} {\varepsilon'}_j^{2})\\
+&\quad -\langle \psi_N |O|\psi_N \rangle +\alpha \Delta T (\sum_{j=0}^{N -1} {\varepsilon}_j^{2})\\
+&=\langle \psi'_N |O|\psi'_N \rangle -\langle \psi_N |O|\psi_N \rangle \\
+&\quad  +\alpha \Delta T (\sum_{j=0}^{N -1} {\varepsilon}_j^{2}-{\varepsilon'}_j^{2})\\
+&= \Re\langle \psi'_N-\psi_N |O|\psi'_N+\psi_N \rangle +\alpha \Delta T (\sum_{j=0}^{N -1} \varepsilon_j^2-{\varepsilon'}_j^{2})
+\end{align*}
+Ainsi
+\begin{align*}
+J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon)
+&= \Re\langle \psi'_N-\psi_N |O|\psi'_N -\psi_N +\psi_N +\psi_N \rangle +\alpha \Delta T (\sum_{j=0}^{N -1} \varepsilon_j^2-{\varepsilon'}_j^{2})\\
+&= \langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle + 2\Re \langle \psi'_N-\psi_N |O|\psi_N \rangle\\
 &\quad +\alpha \Delta T (\sum_{j=0}^{N -1} \varepsilon_j^2-{\varepsilon'}_j^{2})
 \end{align*}
-Etudions le terme $\langle \psi'_N-\psi_N |O|\psi_N \rangle$ nous obtenons:
+Puisque l'opérateur $O$ est semi-défini positif
+$$
+\langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle \geq 0
+$$ 
+Etudions le terme $2\Re \langle \psi'_N-\psi_N |O|\psi_N \rangle$
 \begin{align*}
-\langle \psi'_N-\psi_N |O|\psi_N \rangle &= \langle \psi'_N-\psi_N , \chi_N \rangle\\
-&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , \chi_{j+1}-\chi_{j} \rangle\\
-&\quad + \sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1}-\psi_{j+1}+\psi_{j}, \chi_{j} \rangle\\
-&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , (e^{\frac{H_0\Delta T}{2i}} e^{\frac{V-\mu\tilde{\varepsilon}_j}{i}} e^{\frac{H_0\Delta T}{2i}}-1)\chi_{j} \rangle\\
-&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi'_{j+1}, \chi_{j} \rangle\\
-&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi_{j+1}, \chi_{j} \rangle\\
+\langle \psi'_N-\psi_N |O|\psi_N \rangle 
+&= \langle \psi'_N-\psi_N , O\psi_N \rangle\\
+&= \langle \psi'_N-\psi_N , \chi_N \rangle\\
+&= \langle \psi'_N , \chi_N \rangle - \langle \psi_N , \chi_N \rangle\\
+&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}, \chi_{j+1} - \chi_{j} \rangle + \langle \psi'_{j+1}-\psi'_{j}, \chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} -\langle \psi_{j+1},\chi_{j+1}- \chi_{j} \rangle -\langle \psi_{j+1}-\psi_{j}, \chi_{j} \rangle
 \end{align*}
-
-Posons alors:
-
+Posons:
 \begin{equation}
 \tilde{\psi_j} = e^{-\frac{H_0 \Delta T}{2i}} \psi_j=e^{iH_0 \frac{\Delta T}{2}} \psi_j
 \end{equation}
@@ -120,35 +133,146 @@ et
 \begin{equation}
 \tilde{\chi_j} = e^{\frac{H_0 \Delta T}{2i}}\chi_j= e^{-iH_0 \frac{\Delta T}{2}} \chi_j
 \end{equation}
-Par suite:
+Alors
 \begin{align*}
-\langle \psi'_N-\psi_N |O|\psi_N \rangle &= \sum_{j=0}^{N-1} \langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
-&\quad +\sum_{j=0}^{N-1} \langle \tilde{\psi_{j+1}} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi_{j+1}} \rangle
+\langle \psi'_N-\psi_N |O|\psi_N \rangle
+&=\sum_{j=0}^{N-1} \langle \tilde{\psi'}_{j+1}, \breve{\chi}_{j+1} - \breve{\chi}_{j} \rangle + \langle \breve{\psi'}_{j+1} - \breve{\psi'}_{j}, \tilde{\chi}_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} -\langle \tilde{\psi}_{j+1},\breve{\chi}_{j+1} - \breve{\chi}_{j} \rangle -\langle \breve{\psi}_{j+1} - \breve{\psi}_{j}, \tilde{\chi}_{j} \rangle
 \end{align*}
-
-Le terme $(e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)$ nous invite a definir:
+car en effet,
+\begin{align*}
+\langle x,y \rangle &= e^{-iA}e^{iA}\langle x,y \rangle\\
+&= \langle \overline{e^{-iA}}x,e^{iA}y \rangle\\
+\langle x,y \rangle &= \langle e^{iA}x,e^{iA}y \rangle
+\end{align*}
+Par suite, posons:
+\begin{equation}
+\circled{1}=\langle \tilde{\psi'}_{j+1}, \breve{\chi}_{j+1} - \breve{\chi}_{j} \rangle + \langle \breve{\psi'}_{j+1} - \breve{\psi'}_{j}, \tilde{\chi}_{j} \rangle
+\end{equation}
+et
+\begin{equation}
+\circled{2}=-\langle \tilde{\psi}_{j+1},\breve{\chi}_{j+1} - \breve{\chi}_{j} \rangle -\langle \breve{\psi}_{j+1} - \breve{\psi}_{j}, \tilde{\chi}_{j} \rangle
+\end{equation}
+Developpons \circled{2}
+\begin{align*}
+\circled{2} 
+&=-\langle \tilde{\psi}_{j+1},\breve{\chi}_{j+1} \rangle + \langle \tilde{\psi}_{j+1}, \breve{\chi}_{j} \rangle\\
+&\quad -\langle \breve{\psi}_{j+1}, \tilde{\chi}_{j} \rangle + \langle \breve{\psi}_{j}, \tilde{\chi}_{j} \rangle
+\end{align*}
+Mais
+\begin{align*}
+-\langle \breve{\psi}_{j+1}, \tilde{\chi}_{j} \rangle + \langle \tilde{\psi}_{j+1}, \breve{\chi}_{j} \rangle
+&= -\langle \psi_{j+1}, \chi_{j} \rangle + \langle \psi_{j+1}, \chi_{j} \rangle\\
+&=0
+\end{align*}
+\circled{2} devient
+$$
+\circled{2} =-\langle \tilde{\psi}_{j+1},\breve{\chi}_{j+1} \rangle + \langle \breve{\psi}_{j}, \tilde{\chi}_{j} \rangle
+$$
+Mais puisque,
+\begin{align}
+\nonumber
+&\quad\psi_{j+1} = e^{-iH_0\frac{\Delta T}{2}} e^{-i(V-\mu\varepsilon_j)\Delta T} e^{-iH_0\frac{\Delta T}{2}} \psi_j\\
+&\Leftrightarrow \psi_{j+1} = e^{\frac{H_0\Delta T}{2i}} e^{\frac{V-\mu\varepsilon_j}{i}\Delta T} e^{\frac{H_0\Delta T}{2i}} \psi_j\\
+\nonumber
+&\Leftrightarrow e^{-\frac{H_0\Delta T}{2i}}\psi_{j+1} =  e^{\frac{V-\mu\varepsilon_j}{i}\Delta T} e^{\frac{H_0\Delta T}{2i}} \psi_j\\
+&\Leftrightarrow \tilde{\psi}_{j+1} =  e^{\frac{V-\mu\varepsilon_j}{i}\Delta T}  \breve{\psi}_j\\
+\nonumber
+\end{align}
+on obtient,
+\begin{align*}
+\circled{2} 
+&=-\langle \tilde{\psi}_{j+1},\breve{\chi}_{j+1} \rangle + \langle e^{\frac{-V+\mu\varepsilon_j}{i}\Delta T}\tilde{\psi}_{j+1}, \tilde{\chi}_{j} \rangle\\
+&=\langle \tilde{\psi}_{j+1},-\breve{\chi}_{j+1} \rangle + \langle \tilde{\psi}_{j+1}, e^{\frac{V-\mu\varepsilon_j}{i}\Delta T}\tilde{\chi}_{j} \rangle\\
+&= \langle \tilde{\psi}_{j+1}, e^{\frac{V-\mu\varepsilon_j}{i}\Delta T}\tilde{\chi}_{j} - \breve{\chi}_{j+1} \rangle
+\end{align*}
+En utilisant
+\begin{equation}
+\tilde{\chi}_j = e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}\Delta T}  \breve{\chi}_{j+1}
+\end{equation}
+On obtient:
+\begin{align*}
+\circled{2} 
+&= \langle \tilde{\psi}_{j+1}, e^{\frac{V-\mu\varepsilon_j}{i}\Delta T} e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}\Delta T}  \breve{\chi}_{j+1} - \breve{\chi}_{j+1} \rangle\\
+&= \langle \tilde{\psi}_{j+1}, (e^{\frac{\mu (\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T} -1) \breve{\chi}_{j+1} \rangle
+\end{align*}
+En utilisant la meme demarche, nous obtenons pour \circled{1}
+$$
+\circled{1} = \langle (e^{\frac{\mu (\tilde{\varepsilon}_j-{\varepsilon'}_j)}{i}\Delta T} -1) \breve{\psi}_{j},  \tilde{\chi}_{j} \rangle
+$$
+Au total:
+\begin{align*}
+\langle \psi'_N-\psi_N |O|\psi_N \rangle 
+&=\sum_{j=0}^{N-1} \circled{1}+\circled{2}\\
+&= \sum_{j=0}^{N-1} \langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-1)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
+&\quad +\sum_{j=0}^{N-1} \langle \tilde{\psi}_{j+1} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-1)\breve{\chi}_{j+1} \rangle
+\end{align*}
+Considerons toujours le terme \circled{2} et posons $h=-i(\tilde{\varepsilon}_j-\varepsilon_j)\Delta T$.\\
+Alors,
+$$
+\circled{2}=\langle \tilde{\psi}_{j+1},(e^{\mu h}-1)\breve{\chi}_{j+1} \rangle
+$$
+$S(h)=e^{\mu h}$ est le $C_0$-semi groupe trivial de générateur infinitésimal $\mu$. C'est-a-dire:
+$$
+D(\mu)=\{x\in L^2(\Omega. \R), \: \lim_{h \rightarrow 0} \dfrac{S(h)x-x}{h} \: \mbox{existe}\}
+$$
+et
+$$
+\mu x = \lim_{h \rightarrow 0} \dfrac{S(h)x-x}{h}
+$$
+Nous utiliserons pour la suite, l'application $\mu^{**}(h)= \dfrac{S(h)-Id}{h}$. C'est-a-dire
+\begin{align*}
+\mu^{**}(h) &= \dfrac{e^{\mu h}-Id}{h}\\
+\mu^{**}(-i(\tilde{\varepsilon}_j-\varepsilon_j)\Delta T) &= \dfrac{e^{-i\mu (\tilde{\varepsilon}_j-\varepsilon_j)\Delta T}-Id}{-i(\tilde{\varepsilon}_j-\varepsilon_j)\Delta T}
+\end{align*}
+Le relation entre $\mu$ et $\mu^{**}$ est $\mu x = \lim_{h \rightarrow 0} \mu^{**}(h)x, \quad \forall x \in D(\mu)$.\\
+Posons d'une part $\mu^{**}(h)=\dfrac{e^{-i\mu h\Delta T}-Id}{-ih\Delta T}$ et d'autre part,
+\begin{align*}
+\mu^{*}(x,y) 
+&= \mu ^{**}(x-y)\\
+&= \dfrac{e^{-i\mu (x-y)\Delta T}-Id}{-i(x-y)\Delta T}\\
+\end{align*}
+Ainsi
 \begin{equation} \label{mustar}
 \begin{aligned}
 \mu^* :\quad \quad \R \times \R &\rightarrow L^2(\Omega, \R) \\(x,y)&\mapsto i\dfrac{e^{\frac{\mu (x-y)}{i}\Delta T }-Id}{\Delta T (x-y)}
 \end{aligned}
 \end{equation}
-On a aussi
-\begin{equation*}
-\mu^*(x,y)=\dfrac{e^{-i\mu (x-y)\Delta T }-Id}{-i(x-y)\Delta T}
-\end{equation*}
-D'autre part, on pose:
+Revenons a $\langle \psi'_N-\psi_N |O|\psi_N \rangle$.
+\begin{align*}
+\Re\langle \psi'_N-\psi_N |O|\psi_N \rangle 
+&= \sum_{j=0}^{N-1} \{\Re\langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-Id)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
+&\quad + \Re\langle \tilde{\psi}_{j+1} (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon_j)}{i}\Delta T}-Id)\breve{\chi}_{j+1} \rangle \}\\
+&= \sum_{j=0}^{N-1} \{\Re\langle (e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-Id)\breve{\psi'_j} , \tilde{\chi_j} \rangle\\
+&\quad + \Re\langle (e^{\frac{\mu(\varepsilon_j-\tilde{\varepsilon}_j)}{i}\Delta T}-Id) \tilde{\psi}_{j+1} , \breve{\chi}_{j+1} \rangle \}
+\end{align*}
+or
+\begin{align*}
+\Re \langle x,y \rangle 
+&= \Im \overline{\langle x,iy \rangle}, \quad (z=a+ib \Rightarrow \Re(z)=\Im(i\bar{z}))\\
+&= -\Im \langle y,ix \rangle\\
+\end{align*}
+donc
+\begin{align*}
+\Re\langle \psi'_N-\psi_N |O|\psi_N \rangle 
+&= \sum_{j=0}^{N-1} \{\Im\langle \tilde{\chi_j} |i(e^{\frac{\mu(\tilde{\varepsilon}_j-\varepsilon'_j)}{i}\Delta T}-Id)| \breve{\psi'_j} \rangle\\
+&\quad + \Im\langle \breve{\chi}_{j+1} |i(e^{\frac{\mu(\varepsilon_j-\tilde{\varepsilon}_j)}{i}\Delta T}-Id)| \tilde{\psi}_{j+1} \rangle \}\\
+&= \alpha \Delta T\sum_{j=0}^{N-1} \{ -\frac{1}{\alpha}\Im\langle \tilde{\chi_j} |\mu^{*}(\tilde{\varepsilon}_j,\varepsilon'_j)| \breve{\psi'_j} \rangle (\varepsilon'_j-\tilde{\varepsilon}_j)\\
+&\quad -\frac{1}{\alpha} \Im\langle \breve{\chi}_{j+1} |\mu^{*}(\varepsilon_j,\tilde{\varepsilon}_j)| \tilde{\psi}_{j+1} \rangle (\tilde{\varepsilon}_j-\varepsilon_j) \}
+\end{align*}
+On pose:
 \begin{equation}
 \begin{cases}
 a_j(x,y) &=-\frac{1}{\alpha} \Im \langle \tilde{\chi_j}|\mu^*(x,y)|\breve{\psi'_j} \rangle \\
 b_j(x,y) &= -\frac{1}{\alpha} \Im \langle \breve{\chi_j}|\mu^*(x,y)|\tilde{\psi_j} \rangle
 \end{cases}
 \end{equation}
-Nous avons:
+Par consequent:
 \begin{align*}
 \Re \langle \psi'_N-\psi_N |O|\psi_N \rangle = \alpha \Delta T &\sum_{j=0}^{N-1} a_j (\tilde{\varepsilon}_j,\varepsilon'_j)(\varepsilon'_j- \tilde{\varepsilon}_j)\\
 &\quad +b_{j+1} (\varepsilon_j,\tilde{\varepsilon}_j)(\tilde{\varepsilon}_j-\varepsilon_j)
 \end{align*}
-Nous obtenons ainsi
+Nous obtenons au total
 \begin{align*}
 J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon) &= \langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle \\
 &\quad +\alpha \Delta T \sum_{j=0}^{N -1}[(\tilde{\varepsilon}_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2\\
@@ -171,7 +295,16 @@ Etant donne la suite $(\varepsilon^{k})$:
 Nous en désuisons des schémas implicites.
 
 \section{Schémas implicites}
-Une première idée simple consiste à annuler les parties négatives de $\phi$ et $\tilde{\phi}$. L'algorithme suivant est ainsi obtenu.
+Une première idée simple consiste à annuler les parties négatives de $\phi$ et $\tilde{\phi}$. C'est-a-dire, connaissant $(\varepsilon^k)$
+\begin{equation*}
+\circled{1} \quad \tilde{\varepsilon}_j - b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j) = 0
+\Leftrightarrow \tilde{\varepsilon}_j^k = b_{j+1}(\varepsilon_j^k,\tilde{\varepsilon}_j^k)
+\end{equation*}
+puis
+\begin{equation*}
+\circled{2} \quad \varepsilon'_j - a_j(\tilde{\varepsilon}_j,\varepsilon'_j) = 0 \Leftrightarrow \varepsilon_j^{k+1} = a_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})
+\end{equation*}
+\\L'algorithme suivant est ainsi obtenu.
 \paragraph*{Algorithme}
 $ $\\Etant donne les suites $(\varepsilon^0)$, $(\tilde{\varepsilon}^0)$ leurs etat $(\psi^0)$ et adjoint associes $(\chi^0)$, supposons que l'on connais $(\psi^{k})$, $(\chi^{k})$, $(\varepsilon^{k})$ et $(\tilde{\varepsilon}^{k})$ . Definissons:
 \begin{equation}
@@ -488,5 +621,16 @@ L'estimation \eqref{est2.28} devient dans le calcul de $\tilde{\varepsilon}$:
 \end{equation}
 
 \section{Schémas explicites}
-
-
+Considerons toujours
+\begin{equation}
+\phi_j(\tilde{\varepsilon}_j,\varepsilon'_j) = (\tilde{\varepsilon}_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2
+\end{equation}
+et
+\begin{equation}
+\tilde{\phi}_j(\varepsilon_j,\tilde{\varepsilon}_j) = (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2 - (\tilde{\varepsilon}_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2
+\end{equation}
+Et rappelons que, etant donne la suite $(\varepsilon^{k})$:
+\begin{enumerate}
+	\item l'analyse de la partie negative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de definir la suite $(\tilde{\varepsilon}^k)$
+	\item l'analyse de la partie negative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de definir la suite $(\varepsilon^{k+1})$
+\end{enumerate}
