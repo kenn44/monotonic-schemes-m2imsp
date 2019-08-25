@@ -203,35 +203,8 @@ x(t) &= exp(at)x_0\\
 \end{align*}
 Pour (L2), le calcul se fait de la même manière et donne le même résultat.\\\\
 On appelle \textbf{splitting de Lie} ou méthode à pas fractionnaire les deux méthodes (L1) et (L2). Pour une equation scalaire, ces deux méthodes sont identiques et reviennent au même que de traiter l’équation en une seule fois.
-Pour exprimer le splitting dans notre exemple, nous avons été obligés d’introduire une variable intermédiaire $y$. Ceci s’avérerait à l’usage peu pratique pour des contextes plus compliqués. Nous introduisons donc les semi-groupes.
-\begin{definition}
-Soit $X$ un espace de Banach. Une famille $(T(t))_{t \geq 0}$ d'opérateurs linéaires bornés de $X$ dans $X$ est un semi-groupe fortement continu d'opérateurs linéaires bornés si
-\begin{enumerate}
-	\item[(i)] $T(0)=id_X$;
-	\item[(ii)] $T(t+s)=T(t)T(s), \: \forall t, s \geq 0$;
-	\item[(iii)] $\forall x \in X, \:\: \R \ni t \mapsto T(t)x \in X$ est continue en $0$.  
-\end{enumerate}
-\end{definition}
-\begin{remark}
-	Un semi-groupe d'opérateurs linéaires bornés $(T(t))_{t\geq 0}$, est uniformément continu si
-	$$
-	\lim_{t \rightarrow 0} ||T(t)-I||=0
-	$$
-\end{remark}
-Un semi-groupe fortement continu d'opérateurs linéaires bornés sur $X$ sera appelé semi-groupe de classe $C_0$ ou simplement $C_0$ semi-groupe.\\
+Pour exprimer le splitting dans notre exemple, nous avons été obligés d’introduire une variable intermédiaire $y$. Ceci s’avérerait à l’usage peu pratique pour des contextes plus compliqués. Nous introduisons donc le semi-groupe $S(t)$.
 
-Si seulement (i) et (ii) sont satisfaits, on dit que la famille $(T(t))_{t\geq 0}$ est un semi-groupe.
-\begin{definition}
-	L'opérateur linéaire $A$ défini par
-	\begin{equation}
-	D(A)= \left \{ x \in X : \lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \mbox{ existe} \right \}
-	\end{equation}
-	et
-	\begin{equation}
-	Ax=\lim_{t \rightarrow 0^+} \dfrac{T(t)x-x}{t} \quad \mbox{pour } x \in D(A)
-	\end{equation}
-	est le générateur infinitésimal du semi-groupe $(T(t))_{t\geq 0}$; $D(A)$ est le domaine de $A$
-\end{definition}
 \subsubsection{Splittings de Strang}
 L’application qui à $x_0$ associe $x(t)$ par le flot de l’EDO est le semi-groupe que nous noterons $S(t)$
 \begin{equation}

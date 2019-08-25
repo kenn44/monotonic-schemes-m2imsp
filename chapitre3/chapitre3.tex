@@ -100,9 +100,9 @@ Etudions le terme $\langle \psi'_N-\psi_N |O|\psi_N \rangle$ nous obtenons:
 \langle \psi'_N-\psi_N |O|\psi_N \rangle &= \langle \psi'_N-\psi_N , \chi_N \rangle\\
 &=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , \chi_{j+1}-\chi_{j} \rangle\\
 &\quad + \sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1}-\psi_{j+1}+\psi_{j}, \chi_{j} \rangle\\
-&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , (e^{\frac{H_0\Delta T}{2i}} e^{\frac{V-\mu\tilde{\varepsilon_j}}{i}} e^{\frac{H_0\Delta T}{2i}}-1)\chi_{j} \rangle\\
-&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi'_{j+1}, \chi_{j} \rangle\\
-&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon_j}}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi_{j+1}, \chi_{j} \rangle\\
+&=\sum_{j=0}^{N-1} \langle \psi'_{j+1}-\psi_{j+1} , (e^{\frac{H_0\Delta T}{2i}} e^{\frac{V-\mu\tilde{\varepsilon}_j}{i}} e^{\frac{H_0\Delta T}{2i}}-1)\chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi'_{j+1}, \chi_{j} \rangle\\
+&\quad + \sum_{j=0}^{N-1} \langle (1-e^{-\frac{H_0\Delta T}{2i}} e^{\frac{-V+\mu\tilde{\varepsilon}_j}{i}} e^{-\frac{H_0\Delta T}{2i}}) \psi_{j+1}, \chi_{j} \rangle\\
 \end{align*}
 
 Posons alors:
@@ -151,22 +151,22 @@ Nous avons:
 Nous obtenons ainsi
 \begin{align*}
 J_{\Delta T}(\varepsilon')-J_{\Delta T}(\varepsilon) &= \langle \psi'_N-\psi_N |O|\psi'_N-\psi_N \rangle \\
-&\quad +\alpha \Delta T \sum_{j=0}^{N -1}[(\tilde{\varepsilon_j}-a_j(\tilde{\varepsilon_j},\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon_j},\varepsilon'_j))^2\\
-&\quad + (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon_j}))^2 - (\tilde{\varepsilon_j}-b_{j+1}(\varepsilon_j,\tilde{\varepsilon_j}))^2]
+&\quad +\alpha \Delta T \sum_{j=0}^{N -1}[(\tilde{\varepsilon}_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2\\
+&\quad + (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2 - (\tilde{\varepsilon}_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2]
 \end{align*}
 Cette formule nous aidera à concevoir des schémas qui restent monotones après la discrétisation dans le temps. En effet, une partie négative des composantes de chaque somme apparaît explicitement. Annuler ou minimiser ces termes nous permettra de concevoir des schémas monotones. \\
 Posons donc
 \begin{equation}
-\phi_j(\tilde{\varepsilon_j},\varepsilon'_j) = (\tilde{\varepsilon_j}-a_j(\tilde{\varepsilon_j},\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon_j},\varepsilon'_j))^2
+\phi_j(\tilde{\varepsilon}_j,\varepsilon'_j) = (\tilde{\varepsilon}_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2
 \end{equation}
 et
 \begin{equation}
-\tilde{\phi}_j(\varepsilon_j,\tilde{\varepsilon_j}) = (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon_j}))^2 - (\tilde{\varepsilon_j}-b_{j+1}(\varepsilon_j,\tilde{\varepsilon_j}))^2
+\tilde{\phi}_j(\varepsilon_j,\tilde{\varepsilon}_j) = (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2 - (\tilde{\varepsilon}_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2
 \end{equation}
 Etant donne la suite $(\varepsilon^{k})$:
 \begin{enumerate}
-	\item l'analyse de la partie negative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon_j}^k)$ pour chaque $j$ permet de definir la suite $(\tilde{\varepsilon}^k)$
-	\item l'analyse de la partie negative de $\phi_j(\tilde{\varepsilon_j}^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de definir la suite $(\varepsilon^{k+1})$
+	\item l'analyse de la partie negative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de definir la suite $(\tilde{\varepsilon}^k)$
+	\item l'analyse de la partie negative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de definir la suite $(\varepsilon^{k+1})$
 \end{enumerate}
 Nous en désuisons des schémas implicites.
 
@@ -214,7 +214,7 @@ Une procédure plus générale, correspondant à la discrétisation implicite de
 \begin{theorem} \label{theoimpl}
 	
 	Soit $(\delta,\eta) \in [0,2]^2$. Supposons que les suites 
-	$(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ et $(\tilde{\varepsilon_j^k})^{k\in\N}_{j = 0\cdots N-1}$ vérifient:
+	$(\varepsilon_j^k)^{k\in\N}_{j = 0\cdots N-1}$ et $(\tilde{\varepsilon}_j^k)^{k\in\N}_{j = 0\cdots N-1}$ vérifient:
 	
 	\begin{align} \label{impl2}
 	&\forall j, \ \ 0\leq j\leq N, \forall k \in \N \\ \nonumber
@@ -256,7 +256,7 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 	\begin{enumerate}
 		\item Calcul de $\breve{\chi}_{j+1}$ par:
 		$$ \breve{\chi}_{j+1} = e^{iH_0\frac{\Delta T}{2}} \chi^k_{j+1} $$
-		\item Calcul de $\tilde{\varepsilon_j^k}$ par résolution de:
+		\item Calcul de $\tilde{\varepsilon}_j^k$ par résolution de:
 		\begin{equation} \label{implepst}
 		\tilde{\varepsilon}_j^k = (1-\eta)\varepsilon^k_j - \frac{\eta}{\alpha}\Im \langle  \breve{\chi}^k_{j+1}|\mu^*(\varepsilon^k_j,\tilde{\varepsilon}^k_j)|\tilde{\psi}^k_{j+1} \rangle
 		\end{equation}
@@ -286,14 +286,14 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 Il nous faut nous assurer de l'existence de solutions et chercher des méthodes pour les résoudre. Ces problèmes sont traités dans les sections suivantes.
 
 \subsection{Existence de solutions}
-Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la norme de l'opérateur $\mu$.\\
+Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon}_j^k $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la norme de l'opérateur $\mu$.\\
 
 Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 
 \begin{theorem} \label{theoborne}
-	Supposons que les équations \eqref{implepst} et \eqref{impleps} admettent comme solutions $ \tilde{\varepsilon^k_j} $ et $ \varepsilon_j^{k+1} $. Alors il existe un réel positif $M$ , ne dépendant que de $\delta,\eta,\lVert \mu \rVert_*$ et $\lVert O \rVert_*$ tel que:
+	Supposons que les équations \eqref{implepst} et \eqref{impleps} admettent comme solutions $ \tilde{\varepsilon}_j^k $ et $ \varepsilon_j^{k+1} $. Alors il existe un réel positif $M$ , ne dépendant que de $\delta,\eta,\lVert \mu \rVert_*$ et $\lVert O \rVert_*$ tel que:
 	
-	$$ \forall k \in \N,\  \forall j,\  0 \leq j \leq N-1, |\tilde{\varepsilon^k_j}|\leq M,\ |\varepsilon_j^{k+1}| \leq M$$
+	$$ \forall k \in \N,\  \forall j,\  0 \leq j \leq N-1, |\tilde{\varepsilon}_j^k|\leq M,\ |\varepsilon_j^{k+1}| \leq M$$
 	
 \end{theorem}
 
@@ -301,28 +301,28 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	Définissons M par :
 	
 	\begin{equation} \label{M}
-	M = \text{max}(\lVert (\tilde{\varepsilon^0_j})_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} )
+	M = \text{max}(\lVert (\tilde{\varepsilon}_j^0)_{j=0\cdots N-1}\lVert_{\infty}, \text{max}(1,\frac{\delta}{2-\delta}, \frac{\eta}{2-\eta})\frac{\lVert O \rVert_* \lVert \mu \rVert_* }{\alpha} )
 	\end{equation}
 	
 	et raisonnons par récurrence.\\
 	Dans un premier temps, on a bien
 	$$
-	|\tilde{\varepsilon_j}^0| \leq M \quad \forall 0 \leq j \leq N-1
+	|\tilde{\varepsilon}_j^0| \leq M \quad \forall 0 \leq j \leq N-1
 	$$
 	Supposons maintenant que nous ayons a l'ordre $k$ :
 	
-	$$ |\tilde{\varepsilon^k_j}| \leq M $$
+	$$ |\tilde{\varepsilon}_j^k| \leq M $$
 	
 	Par suite,
 	
 	$$
-	\eqref{impleps} \Rightarrow |\varepsilon_j^{k+1}| \leq |1-\delta|M + |\frac{\delta}{\alpha} \Im < \tilde{X}^k_j| \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon^k_j})| \breve{\psi_j}^{k+1} >|
+	\eqref{impleps} \Rightarrow |\varepsilon_j^{k+1}| \leq |1-\delta|M + |\frac{\delta}{\alpha} \Im < \tilde{X}^k_j| \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon}_j^k)| \breve{\psi_j}^{k+1} >|
 	$$
 	
 	D’après l'inégalité de Cauchy-Schwartz :
 	
 	$$
-	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert \tilde{X}^k_j\rVert_2 \lVert \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon^k_j}) \breve{\psi_j}^{k+1} \rVert_2
+	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert \tilde{X}^k_j\rVert_2 \lVert \mu^* ( \varepsilon_j^{k+1}, \tilde{\varepsilon}_j^k) \breve{\psi_j}^{k+1} \rVert_2
 	$$
 	De plus, puisque les normes des différentes fonctions sont conservées au cours de la propagation, nous avons:
 	$$
@@ -346,7 +346,7 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	$f$ est continue et dérivable sur $\R$.\\
 	On a :
 	$$
-	\mu^* (\varepsilon_j^{k+1}, \tilde{\varepsilon_j}^k)= \dfrac{f(-i (\varepsilon_j^{k+1}- \tilde{\varepsilon_j}^k)\Delta T) - f(0)}{-i (\varepsilon_j^{k+1}- \tilde{\varepsilon_j}^k)\Delta T-0}
+	\mu^* (\varepsilon_j^{k+1}, \tilde{\varepsilon}_j^k)= \dfrac{f(-i (\varepsilon_j^{k+1}- \tilde{\varepsilon}_j^k)\Delta T) - f(0)}{-i (\varepsilon_j^{k+1}- \tilde{\varepsilon}_j^k)\Delta T-0}
 	$$
 	et
 	$$
@@ -354,7 +354,7 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	$$
 	Alors, l'inégalité des accroissements finis donne :
 	
-	$$ \lVert \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j}) \rVert = \lVert \frac{e^{-i \mu( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T}-Id}{-i ( \varepsilon_j^{k+1} - \tilde{\varepsilon^k_j})\Delta T} \rVert \leq \lVert \mu \rVert_*  $$
+	$$ \lVert \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k) \rVert = \lVert \frac{e^{-i \mu( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k)\Delta T}-Id}{-i ( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k)\Delta T} \rVert \leq \lVert \mu \rVert_*  $$
 	
 	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $.\\ Qui permet d'obtenir :
 	
@@ -385,7 +385,7 @@ Partant de ce résultat, nous pouvons démontrer l’existence de \eqref{impleps
 \begin{ proof }
 	
 	Soit $M$ , le réel défini par \eqref{M}. Raisonnons par reccurence en supposant  
-	$(\tilde{\varepsilon_j}^k)_{j=0\cdots N-1}$ bornée par $M$.\\
+	$(\tilde{\varepsilon}_j^k)_{j=0\cdots N-1}$ bornée par $M$.\\
 	Définissons la fonction $f$ par:
 	\begin{equation} \label{f}
 	f: x \mapsto (1-\delta)\tilde{\varepsilon}^k_j - \frac{\delta}{\alpha}\Im \langle  \tilde{\chi}^k_{j}|\mu^*(x,\tilde{\varepsilon}^k_j)|\breve{\psi}^{k+1}_{j} \rangle
@@ -434,7 +434,7 @@ Continuons de noter $M$ le réel défini dans \eqref{M}. Pour résoudre \eqref{i
 	
 	$\mu^*$ défini en \eqref{mustar} vérifie:
 	
-	$$ \mu^*(x,\tilde{\varepsilon^k_j}) = -i\mu h (\mu(x-\tilde{\varepsilon^k_j}) \Delta T )$$
+	$$ \mu^*(x,\tilde{\varepsilon}_j^k) = -i\mu h (\mu(x-\tilde{\varepsilon}_j^k) \Delta T )$$
 	Posons
 	\begin{align*}
 	\mu^{**}(x-y) &=\mu^*(x,y)\\
@@ -443,12 +443,12 @@ Continuons de noter $M$ le réel défini dans \eqref{M}. Pour résoudre \eqref{i
 	\end{align*}
 	Par suite, 
 	$$
-	\frac{d\mu^{**} (x-\tilde{\varepsilon^k_j})}{dx} = -i\mu^2 h'(\mu(x-\tilde{\varepsilon^k_j})\Delta T) \Delta T 
+	\frac{d\mu^{**} (x-\tilde{\varepsilon}_j^k)}{dx} = -i\mu^2 h'(\mu(x-\tilde{\varepsilon}_j^k)\Delta T) \Delta T 
 	$$
 	
 	D'apres l'inégalité des accroissements finis :
 	
-	$$ |\mu^{**} (x-\tilde{\varepsilon^k_j}) - \mu^{**} (y-\tilde{\varepsilon^k_j})| \leq \lVert \mu \rVert _*^2 \Delta T |x-y|,  $$
+	$$ |\mu^{**} (x-\tilde{\varepsilon}_j^k) - \mu^{**} (y-\tilde{\varepsilon}_j^k)| \leq \lVert \mu \rVert _*^2 \Delta T |x-y|,  $$
 	
 	par conséquent:
 	

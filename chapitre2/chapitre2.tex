@@ -121,8 +121,8 @@ J_2(\varepsilon) = 2\Re\langle \psi_{cible}|\psi(T)\rangle - \alpha \int_0^T \va
 
 $\psi_{cible}$ représente une fonction d’onde cible. $J_1$ relève du formalisme attaché aux observables tandis que $J_2$ est plus simple à utiliser au cours des simulations.
 \begin{align*}
-\lVert \psi_{cible} - \psi(T)\rVert^2 &= \int_{0}^{T} |\psi_{cible}-\psi(T)|^2 dt\\
-&=\int_{0}^{T}\lVert \psi_{cible} \rVert^2 dt + \int_{0}^{T}\lVert \psi(T) \rVert^2 dt - 2\Re \int_{0}^{T} \langle \psi_{cible},\psi(T) \rangle dt \\
+\lVert \psi_{cible} - \psi(T)\rVert^2 &= \lVert \psi_{cible} \rVert^2 + \lVert \psi(T)\rVert^2+ 2 \Re \langle \psi_{cible}, - \psi(T) \rangle\\
+&=\lVert \psi_{cible} \rVert^2 + \lVert \psi(T)\rVert^2- 2 \Re \langle \psi_{cible}, \psi(T) \rangle\\
 &= 2 - 2\Re\langle \psi_{cible}, \psi(T) \rangle
 \end{align*}
 Ainsi $2\Re \langle \psi_{cible},\psi_{cible} \rangle = 2$. Le maximum du terme $2\Re\langle \psi_{cible}|\psi(T)\rangle$ est bien atteint pour $\psi(T) = \psi_{cible}$.\\\\
@@ -198,10 +198,17 @@ Supposons que $O$ soit un opérateur semi-défini positif auto-adjoint. Alors, p
 \end{theorem}
 
 \begin{ proof }
-Evaluons la différence entre deux valeurs de la fonctionnelle $J_1$ entre deux itérations successives. Supposons que $\eta \neq 0$, $\delta \neq 0$. Alors,
+Evaluons la différence entre deux valeurs de la fonctionnelle $J_1$ entre deux itérations successives $k$, $k+1$. Supposons que $\eta \neq 0$, $\delta \neq 0$. Alors,
+
 \begin{align*}
 J(\varepsilon^{k+1})-J(\varepsilon^{k}) &= \langle \psi^{k+1}(T)|O| \psi^{k+1}(T) \rangle-\alpha \int_{0}^{T} \varepsilon^{k+1}(t)^2 dt - \langle \psi^{k}(T)|O| \psi^{k}(T) \rangle\\
 &\quad + \alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt \\
+&= \langle \psi^{k+1}(T)|O| \psi^{k+1}(T) \rangle - \langle \psi^{k}(T)|O| \psi^{k}(T) \rangle\\
+&\quad -\alpha \int_{0}^{T} \varepsilon^{k+1}(t)^2 dt + \alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt \\
+&= \Re\langle \psi^{k+1}(T) - \psi^{k}(T)|O| \psi^{k+1}(T) + \psi^{k}(T) \rangle\\
+&\quad -\alpha \int_{0}^{T} \varepsilon^{k+1}(t)^2 dt + \alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt \\
+&= \Re\langle \psi^{k+1}(T) - \psi^{k}(T)|O| \psi^{k+1}(T) - \psi^{k}(T)+ \psi^{k}(T)+ \psi^{k}(T) \rangle\\
+&\quad -\alpha \int_{0}^{T} \varepsilon^{k+1}(t)^2 dt + \alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt \\
 &=\langle \psi^{k+1}(T)-\psi^{k}(T)|O| \psi^{k+1}(T)-\psi^{k}(T)\rangle \\
 &\quad +2\Re \langle \psi^{k+1}(T)-\psi^{k}(T)|O|\psi^{k}(T)\rangle\\ 
 &\quad +\alpha \int_{0}^{T} \varepsilon^{k}(t)^2 dt-\alpha\int_{0}^{T} \varepsilon^{k+1}(t)^2 dt
@@ -226,5 +233,9 @@ nous obtenons donc
 J(\varepsilon^{k+1})-J(\varepsilon^{k}) &= \langle \psi^{k+1}(T) - \psi^{k}(T)|O| \psi^{k+1}(T) - \psi^{k}(T) \rangle\\
 & \quad + \alpha \int_{0}^{T} (\frac{2}{\delta}-1)(\varepsilon^{k+1}-\tilde{\varepsilon}^k)^2 + (\frac{2}{\eta}-1)(\tilde{\varepsilon}^k-\varepsilon^{k})^2 dt
 \end{align*}
-qui est positif sous les hypothèses du théorème. Notons que le cas $\delta=0$ entraîne $\varepsilon^{k+1}=\tilde{\varepsilon}^k$ et $\eta=0$ entraîne $\tilde{\varepsilon}^{k}=\varepsilon^k$ et la même conclusion est obtenue.
+qui est positif sous les hypothèses du théorème.\\ En effet, $\langle \psi^{k+1}(T)-\psi^{k}(T)|O| \psi^{k+1}(T)-\psi^{k}(T)\rangle \in \R$ et puisque $O$ est defini positif 
+$$
+\langle \psi^{k+1}(T)-\psi^{k}(T)|O| \psi^{k+1}(T)-\psi^{k}(T)\rangle \geq 0
+$$\
+Notons que le cas $\delta=0$ entraîne $\varepsilon^{k+1}=\tilde{\varepsilon}^k$ et $\eta=0$ entraîne $\tilde{\varepsilon}^{k}=\varepsilon^k$ et la même conclusion est obtenue.
 \end{ proof }
