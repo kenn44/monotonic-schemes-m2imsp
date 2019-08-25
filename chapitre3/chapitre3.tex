@@ -287,10 +287,10 @@ et
 \begin{equation}
 \tilde{\phi}_j(\varepsilon_j,\tilde{\varepsilon}_j) = (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2 - (\tilde{\varepsilon}_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2
 \end{equation}
-Etant donne la suite $(\varepsilon^{k})$:
+Etant donné la suite $(\varepsilon^{k})$:
 \begin{enumerate}
-	\item l'analyse de la partie negative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de definir la suite $(\tilde{\varepsilon}^k)$
-	\item l'analyse de la partie negative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de definir la suite $(\varepsilon^{k+1})$
+	\item l'analyse de la partie négative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de définir la suite $(\tilde{\varepsilon}^k)$
+	\item l'analyse de la partie négative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de définir la suite $(\varepsilon^{k+1})$
 \end{enumerate}
 Nous en désuisons des schémas implicites.
 
@@ -620,8 +620,15 @@ L'estimation \eqref{est2.28} devient dans le calcul de $\tilde{\varepsilon}$:
 |g''(x_0)| \leq \frac{\frac{\eta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^3 \Delta T^2 }{1-\frac{\eta}{\alpha} \lVert O\rVert_* \lVert \mu \rVert _*^2 \Delta T}
 \end{equation}
 
+\subsection{Résultats numériques}
+Nous considérons d'abord le problème simplifié.
+\begin{equation}
+i\dot y(t)= (A+c(t)B)y(t),
+\end{equation}
+avec un état initial $y_0$ fixé. $A$ et $B$ deux matrices symetriques. Données
+
 \section{Schémas explicites}
-Considerons toujours
+Considérons toujours
 \begin{equation}
 \phi_j(\tilde{\varepsilon}_j,\varepsilon'_j) = (\tilde{\varepsilon}_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2 - (\varepsilon'_j-a_j(\tilde{\varepsilon}_j,\varepsilon'_j))^2
 \end{equation}
@@ -629,8 +636,48 @@ et
 \begin{equation}
 \tilde{\phi}_j(\varepsilon_j,\tilde{\varepsilon}_j) = (\varepsilon_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2 - (\tilde{\varepsilon}_j-b_{j+1}(\varepsilon_j,\tilde{\varepsilon}_j))^2
 \end{equation}
-Et rappelons que, etant donne la suite $(\varepsilon^{k})$:
+Et rappelons que, étant donné la suite $(\varepsilon^{k})$:
 \begin{enumerate}
-	\item l'analyse de la partie negative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de definir la suite $(\tilde{\varepsilon}^k)$
-	\item l'analyse de la partie negative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de definir la suite $(\varepsilon^{k+1})$
+	\item l'analyse de la partie négative de $\tilde{\phi}_j(\varepsilon_j^k,\tilde{\varepsilon}_j^k)$ pour chaque $j$ permet de définir la suite $(\tilde{\varepsilon}^k)$
+	\item l'analyse de la partie négative de $\phi_j(\tilde{\varepsilon}_j^k,\varepsilon_j^{k+1})$ pour chaque $j$ permet de définir la suite $(\varepsilon^{k+1})$
 \end{enumerate}
+Sans perte de généralité travaillons sur la 2 eme étape. Considérons l'application 
+$$f : x \mapsto \phi_j(\tilde{\varepsilon}_j^k,x)$$
+On remarque que $f(\tilde{\varepsilon}_j^k)=\phi_j(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k)0$.\\ Un choix optimal de $\varepsilon_j^{k+1}$ est $\varepsilon_j^{k+1} = argmax_{\R} f(\cdot)$. Pour determiner ce point, l'on fait le développement limité au voisinage du point $\tilde{\varepsilon}_j^k$. Posons $h=x-\tilde{\varepsilon}_j^k$ et calculons
+\begin{align*}
+a_j^k(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k+h)
+&=-\frac{1}{\alpha} \Im \langle \tilde{\chi}_j^k |\mu^{*}(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k+h)| \breve{\psi}_j^{k+1} \rangle\\
+&=-\frac{1}{\alpha} \Im \langle \tilde{\chi}_j^k |\mu| \breve{\psi}_j^{k+1} \rangle\\
+&\quad -h\frac{\Delta T}{2\alpha} \Im \langle \tilde{\chi}_j^k |\mu^2| \breve{\psi}_j^{k+1} \rangle\\
+&\quad +h^2\frac{\Delta T^2}{6\alpha} \Im \langle \tilde{\chi}_j^k |\mu^3| \breve{\psi}_j^{k+1} \rangle + o(h^2)\\
+\end{align*}
+Posons :
+\begin{equation}
+\varepsilon_0=-\frac{1}{\alpha} \Im \langle \tilde{\chi}_j^k |\mu| \breve{\psi}_j^{k+1} \rangle
+\end{equation}
+\begin{equation}
+\varepsilon_1=\frac{\Delta T}{2\alpha} \Im \langle \tilde{\chi}_j^k |\mu^2| \breve{\psi}_j^{k+1}
+\end{equation}
+et
+\begin{equation}
+\varepsilon_2=\frac{\Delta T^2}{6\alpha} \Im \langle \tilde{\chi}_j^k |\mu^3| \breve{\psi}_j^{k+1} \rangle
+\end{equation}
+On remplace dans $f$ :
+\begin{align*}
+f(\tilde{\varepsilon}_j^k+h)= (\tilde{\varepsilon}_j^k-\varepsilon_0+\varepsilon_1 h-\varepsilon_2 h^2)^2 - (\tilde{\varepsilon}_j^k+h-\varepsilon_0+\varepsilon_1 h-\varepsilon_2 h^2)^2 + o(h^2)
+\end{align*}
+Ce polynôme en $h$ est maximal au point
+\begin{equation}
+h_{max}=\dfrac{\varepsilon_0-\tilde{\varepsilon}_j^k}{2\varepsilon_1+1}
+\end{equation}
+Ce qui nous donne 
+\begin{equation}
+\varepsilon_j^{k+1}= \tilde{\varepsilon}_j^k+h_{max}
+\end{equation}
+Sachant que $\tilde{\varepsilon}_j^k$ a été déterminé à l'étape 1 de façon similaire.
+\subsection{Résultats numériques}
+Todo: 1-verifier les propagations, 2-reprendre entierement explicite, 3-remettre le produit hermitien\\
+Nous considérons a nouveau 
+\begin{equation}
+i\dot y(t)= (A+c(t)B)y(t),
+\end{equation}
