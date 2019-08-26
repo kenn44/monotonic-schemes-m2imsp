@@ -9,7 +9,7 @@ X(0) &=X_0
 \end{cases}
 \end{equation}
 où $X_0$ est un état initial, $u$ un paramètre du modèle appartenant à un ensemble $\mathcal{U}$, sur lequel un expérimentateur peut agir et où $A(u)$ est un opérateur défini sur $\mathcal{H}$. Supposons maintenant que l’on souhaite que le système adopte une configuration prescrite. Pour atteindre cet objectif, l’expérimentateur peut jouer sur le paramètre $u$ auquel il soumet le système. Le processus qui consiste à transférer le système d’un état initial $X_0$ donné à un état final $X(T)$ convenable vis-à-vis de critères prédéfinis, portant sur $X(t)$ ou des caractéristiques du paramètre $u$, est appelé contrôle. Par extension, le terme contrôle désigne également la fonction $u$ par laquelle est réalisée ce processus. L’espace $\mathcal{U}$ est appelé ensemble des contrôles admissibles.
-\subsection{Fonctionnelle de coût}
+\subsection{Fonctionnelle}
 Pour transformer le problème de contrôle en un problème d’optimisation, il nous faut introduire une fonctionnelle. Cette fonctionnelle doit d’une part rendre compte, de l’écart entre l'état final et l'état cible et d’autre part pénaliser le champ de contrôle de sorte qu’il reste physiquement raisonnable. Un cas général fonctionnelle est :
 \begin{equation}
 J(u)=g(X(T))+\int_{0}^{T} f(X(t))dt+\int_{0}^{T} h(u(t))dt
