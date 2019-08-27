@@ -631,6 +631,7 @@ avec un état initial $y_0$ fixé. $A$ et $B$ deux matrices symetriques.\\
 	\centering
 	\includegraphics[scale=0.7]{images/implicit_func.png}
 \end{figure}
+Le schéma est bien monotone et converge de plus très rapidement.
 
 \section{Schémas explicites}
 Considérons toujours
@@ -685,9 +686,28 @@ Nous considérons a nouveau :
 \begin{equation}
 i\dot y(t)= (A+c(t)B)y(t),
 \end{equation}
-
+En dimension2, l'évolution de la fonctionnelle $J(\varepsilon)$ est
 \begin{figure}[H]
 	\caption{Schéma explicite - évolution de la fonctionnelle}
 	\centering
 	\includegraphics[scale=0.7]{images/explicit_func.png}
+\end{figure}
+La fonction d'onde après 10 itération de l'algorithme
+\begin{figure}[H]
+	\caption{Schéma explicite - évolution de la fonctionnelle}
+	\centering
+	\includegraphics[scale=0.7]{images/explicit_state.png}
+\end{figure}
+Et enfin le contrôle obtenu
+\begin{figure}[H]
+	\caption{Schéma explicite - évolution de la fonctionnelle}
+	\centering
+	\includegraphics[scale=0.5]{images/explicit_c.png}
+\end{figure}
+Nous notons aussi que l'exécution du schéma explicite est très rapide par rapport a celle du schéma implicite en considérant les mêmes paramètres.\\
+Pour finir, nous étudions le même problème en dimension 10, l'utilité du schéma est ici plus remarquable
+\begin{figure}[H]
+	\caption{Schéma explicite pour un problème en dimension 10 - évolution de la fonctionnelle}
+	\centering
+	\includegraphics[scale=0.7]{images/explicitdim10_func.png}
 \end{figure}
