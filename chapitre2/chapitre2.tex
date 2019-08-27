@@ -10,7 +10,7 @@ X(0) &=X_0
 \end{equation}
 où $X_0$ est un état initial, $u$ un paramètre du modèle appartenant à un ensemble $\mathcal{U}$, sur lequel un expérimentateur peut agir et où $A(u)$ est un opérateur défini sur $\mathcal{H}$. Supposons maintenant que l’on souhaite que le système adopte une configuration prescrite. Pour atteindre cet objectif, l’expérimentateur peut jouer sur le paramètre $u$ auquel il soumet le système. Le processus qui consiste à transférer le système d’un état initial $X_0$ donné à un état final $X(T)$ convenable vis-à-vis de critères prédéfinis, portant sur $X(t)$ ou des caractéristiques du paramètre $u$, est appelé contrôle. Par extension, le terme contrôle désigne également la fonction $u$ par laquelle est réalisée ce processus. L’espace $\mathcal{U}$ est appelé ensemble des contrôles admissibles.
 \subsection{Fonctionnelle}
-Pour transformer le problème de contrôle en un problème d’optimisation, il nous faut introduire une fonctionnelle. Cette fonctionnelle doit d’une part rendre compte, de l’écart entre l'état final et l'état cible et d’autre part pénaliser le champ de contrôle de sorte qu’il reste physiquement raisonnable. Un cas général fonctionnelle est :
+Pour transformer le problème de contrôle en un problème d’optimisation, il nous faut introduire une fonctionnelle. Cette fonctionnelle doit d’une part rendre compte, de l’écart entre l'état final et l'état cible et d’autre part pénaliser le champ de contrôle de sorte qu’il reste physiquement raisonnable. Un cas général de fonctionnelle est :
 \begin{equation}
 J(u)=g(X(T))+\int_{0}^{T} f(X(t))dt+\int_{0}^{T} h(u(t))dt
 \end{equation}
@@ -27,7 +27,7 @@ X(0) &=X_0\\
 u &\in \mathcal{U}
 \end{cases}
 \end{equation*}
-Plusieures méthodes d'optimisation numérique permettent de résoudre ce problème. Nous nous interressons sans ce mémoire, a une classe d’algorithmes, appelés \textbf{schémas monotones} ou encore \textbf{algorithmes monotones}. Cette dénomination est due au fait qu’à chaque itération, le champ de contrôle produit par l’algorithme augmente la valeur de la fonctionnelle.
+Plusieures méthodes d'optimisation numérique permettent de résoudre ce problème. Nous nous interressons dans ce mémoire, a une classe d’algorithmes, appelés \textbf{schémas monotones} ou encore \textbf{algorithmes monotones}. Cette dénomination est due au fait qu’à chaque itération, le champ de contrôle produit par l’algorithme augmente la valeur de la fonctionnelle.
 \subsection{Equations critiques, mutiplicateur de Lagrange}
 Au maximum de la fonctionnelle $J(u)$, les équations de Euler-Lagrange sont satisfaites. Le Lagrangien du système \eqref{cadregeneral} est donné par :
 \begin{equation}
@@ -96,7 +96,7 @@ Y(T) &=\nabla g(X(T))
 \end{equation}
 \section{Application à l'équation de Schrödinger}
 
-Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au \eqref{schcon2}, l’évolution d’un tel système est régie par l’équation:
+Considérons un système quantique décrit par une fonction d’onde $\psi(x, t)$ soumis à un champ électrique $\varepsilon(t)$ et dont l’état initial $\psi(x, 0) = \psi_0 (x)$ est supposé connu. Comme stipulé au \eqref{schcon2}, l’évolution d’un tel système est régie par :
 
 \begin{equation}
 \begin{cases}
@@ -107,9 +107,9 @@ i \frac{\partial}{\partial t} \psi (x,t) &= H\psi(x,t) - \mu(x)\varepsilon(t)\ps
 
 Le moment dipolaire $\mu$ est supposé connu et indépendant du temps.
 
-\subsection{Fonctionnelles de coût}
-Soit $\alpha \in \R^+$, $O$ un opérateur symétrique borné, $T$ un réel positif, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega \times [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
-\\Nous considérons deux fonctionnelles de coût:
+\subsection{Fonctionnelles}
+Soit $\alpha \in \R^+$, $O$ un opérateur symétrique borné, $T$ un réel positif non nul, $\varepsilon$ une fonction de $L^2 ([0, T ], \R),\  \psi : \Omega \times [0, T ] \longrightarrow \C$ une fonction d’onde dépendant du temps et $\psi_{cible} : \Omega \longrightarrow C$ une fonction d’onde fixée.
+\\Nous considérons deux fonctionnelles:
 
 \begin{equation}
 J_1(\varepsilon) = \langle \psi(T)|O|\psi(T) \rangle - \alpha \int_0^T \varepsilon^2(t)dt

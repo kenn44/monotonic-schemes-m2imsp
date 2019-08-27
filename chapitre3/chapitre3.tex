@@ -416,10 +416,10 @@ $ $\\Sur la base du théorème \ref{theoimpl}, nous pouvons alors proposer l'alg
 	\end{enumerate}
 	
 \end{itemize}
-Il nous faut nous assurer de l'existence de solutions et chercher des méthodes pour les résoudre. Ces problèmes sont traités dans les sections suivantes.
+Il nous faut nous assurer de l'existence de solutions et chercher des méthodes pour les obtenir. Ces problèmes sont traités dans les sections suivantes.
 
 \subsection{Existence de solutions}
-Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon}_j^k $ et $ \varepsilon_j^{k+1} $ .Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la norme de l'opérateur $\mu$.\\
+Les équations \eqref{implepst} et \eqref{impleps} doivent permettre de définir respectivement $ \tilde{\varepsilon}_j^k $ et $ \varepsilon_j^{k+1} $. Pour dégager des conditions d'existence de solutions à ces équations, montrons tout d'abord que si elles existent, ces solutions sont nécessairement bornées. Notons $ \lVert \mu \rVert_* $ la norme de l'opérateur $\mu$.\\
 
 Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 
@@ -489,7 +489,7 @@ Nous supposons à partir de maintenant que $\delta \neq 2$ et $\eta \neq 2$
 	
 	$$ \lVert \mu^* ( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k) \rVert = \lVert \frac{e^{-i \mu( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k)\Delta T}-Id}{-i ( \varepsilon_j^{k+1} - \tilde{\varepsilon}_j^k)\Delta T} \rVert \leq \lVert \mu \rVert_*  $$
 	
-	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $.\\ Qui permet d'obtenir :
+	De cette dernière inégalité nous déduisons $ \lVert \mu^* \rVert_{\infty} \leq  \lVert \mu \rVert_*  $.\\ Ce qui permet d'obtenir :
 	
 	$$
 	|\varepsilon_j^{k+1}| \leq |1-\delta|M + \frac{\delta}{\alpha} \lVert 0 \rVert_* \lVert \mu \rVert_{*}
@@ -528,7 +528,13 @@ Partant de ce résultat, nous pouvons démontrer l’existence de \eqref{impleps
 	
 \end{ proof }
 
-Le schéma exposé est donc bien défini et produit des champs bornés par le réel $M$ .
+Le schéma exposé est do
+Home
+Questions
+Tags
+Users
+Unanswered
+nc bien défini et produit des champs bornés par le réel $M$ .
 
 \subsection{Unicité et itérations de Picard}
 Continuons de noter $M$ le réel défini dans \eqref{M}. Pour résoudre \eqref{implepst} et \eqref{impleps} une méthode de Picard peut être employée. Le théorème suivant en donne les conditions de convergence.
@@ -649,7 +655,7 @@ Et rappelons que, étant donné la suite $(\varepsilon^{k})$:
 \end{enumerate}
 Sans perte de généralité travaillons sur la 2 eme étape. Considérons l'application 
 $$f : x \mapsto \phi_j(\tilde{\varepsilon}_j^k,x)$$
-On remarque que $f(\tilde{\varepsilon}_j^k)=\phi_j(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k)0$.\\ Un choix optimal de $\varepsilon_j^{k+1}$ est $\varepsilon_j^{k+1} = argmax_{\R} f(\cdot)$. Pour determiner ce point, l'on fait le développement limité au voisinage du point $\tilde{\varepsilon}_j^k$. Posons $h=x-\tilde{\varepsilon}_j^k$ et calculons
+On remarque que $f(\tilde{\varepsilon}_j^k)=\phi_j(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k)=0$.\\ Un choix optimal de $\varepsilon_j^{k+1}$ est $\varepsilon_j^{k+1} = argmax_{\R} f(\cdot)$. Pour determiner ce point, l'on fait le développement limité au voisinage du point $\tilde{\varepsilon}_j^k$. Posons $h=x-\tilde{\varepsilon}_j^k$ et calculons
 \begin{align*}
 a_j^k(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k+h)
 &=-\frac{1}{\alpha} \Im \langle \tilde{\chi}_j^k |\mu^{*}(\tilde{\varepsilon}_j^k,\tilde{\varepsilon}_j^k+h)| \breve{\psi}_j^{k+1} \rangle\\
@@ -686,7 +692,7 @@ Nous considérons a nouveau :
 \begin{equation}
 i\dot y(t)= (A+c(t)B)y(t),
 \end{equation}
-En dimension2, l'évolution de la fonctionnelle $J(\varepsilon)$ est
+En dimension 2, l'évolution de la fonctionnelle $J(\varepsilon)$ est
 \begin{figure}[H]
 	\caption{Schéma explicite - évolution de la fonctionnelle}
 	\centering
